@@ -62,7 +62,7 @@ showLastUpdated = false
 disabled = false
 languageCode = 'cs-CZ'
 languageName = "Czech"
-title = "Gophercon 2025"
+title = "Gophercamp 2025"
 
 [languages.cs.params]
 subtitle = "A simple, retro theme for Hugo"
@@ -80,7 +80,7 @@ minuteReadingTime = "min čtení"
 words = "slov"
 
 [languages.cs.params.logo]
-logoText = "Gophercon 2025"
+logoText = "Gophercamp 2025"
 logoHomeLink = "/"
 
 [languages.cs.menu]
@@ -101,7 +101,7 @@ url = "/speakers"
 disabled = false
 languageCode = 'en-US'
 languageName = "English"
-title = "Gophercon 2025"
+title = "Gophercamp 2025"
 
 [languages.en.params]
 subtitle = "A simple, retro theme for Hugo"
@@ -119,7 +119,7 @@ minuteReadingTime = "min read"
 words = "words"
 
 [languages.en.params.logo]
-logoText = "Gophercon 2025"
+logoText = "Gophercamp 2025"
 logoHomeLink = "/"
 
 [languages.en.menu]

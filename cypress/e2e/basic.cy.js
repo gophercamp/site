@@ -4,6 +4,6 @@ describe('empty spec', () => {
   })
   it('displays the resources text', () => {
     cy.get('h1')
-    .contains('Gophercon 2025');
+    .contains('Gophercamp 2025');
   })
 })
