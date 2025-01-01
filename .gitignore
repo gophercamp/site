@@ -3,3 +3,7 @@
 
 # Package Files
 node_modules/
+
+.idea/
+
+public
