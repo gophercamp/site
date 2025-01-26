@@ -1,0 +1,126 @@
+theme: event
+sectionPagesMenu: main
+
+defaultContentLanguage: en
+
+languages:
+  _merge: deep
+  en:
+    disabled: false
+    menus:
+      main:
+        - identifier: about
+          pageRef: /about
+          weight: 10
+        - identifier: sessions
+          pageRef: /sessions
+          weight: 20
+        - identifier: speakers
+          pageRef: /speakers
+          weight: 30
+        - identifier: location
+          pageRef: /location
+          weight: 40
+        - identifier: sponsors
+          pageRef: /sponsors
+          weight: 50
+        - identifier: code_of_conduct
+          pageRef: /code-of-conduct
+          weight: 60
+      footer:
+        - identifier: imprint
+          pageRef: /imprint
+          weight: 10
+        - identifier: privacy
+          pageRef: /privacy-policy
+          weight: 20
+      secondary:
+        - identifier: about
+          pageRef: /about
+          weight: 10
+          params:
+            description: |
+              Learn more about our mission, values, and the people behind our organization.
+              The "About Us" page provides insights into who we are, what we do,
+              and why we’re passionate about our work.
+        - identifier: speakers
+          pageRef: /speakers
+          weight: 30
+          params:
+            description: |
+              Meet our distinguished speakers who will be sharing their expertise.
+              Learn more about their backgrounds and what they will discuss.
+        - identifier: location
+          pageRef: /location
+          weight: 40
+          params:
+            description: |
+              Find out where the event will take place.
+              This section provides details on the venue, directions, and nearby accommodations.
+        - identifier: code_of_conduct
+          pageRef: /code-of-conduct
+          weight: 60
+          params:
+            description: |
+              Read about the code of conduct for our event.
+              This section outlines the expectations for participant behavior and event policies.
+    params:
+      description: |
+        A demo website to showcase the features of the "Event" theme for the
+        static website generator HUGO.
+      themes:
+        event:
+          slogan: Meet your fellow Gophers!
+          location: Brno, Czech Republic
+          description: |
+            Join the first Golang conference in Brno
+            - Friday, April 25, 2025
+            - 10 talks, workshops, networking sessions
+            - 100 attendees
+          directions: |
+            ##### By Public Transportation
+            From Main Train station either take a short walk or
+            take the tram number 8 or 10 going to Líšeň or Stránská skála, drop off on Vlhká stop.
+
+          aboutUs: |
+            ### Organizers
+            - The conference is organized by Jan Bleha and Jakub Coufal
+            - If you want to join as a partner of the conference or help with organization, please contact janbleha@gmail.com
+
+
+params:
+  themes:
+    event:
+      # sessionizeId: test
+      title: Gophercamp 2025
+      location: Brno, Czech Republic
+      shortTitle: Gophercamp
+      startDate: 2025-04-25
+      endDate: 2025-04-25
+      address:
+      - Clubco, Business park Vlněna
+      - Vlněna 5
+      - 602 00, Brno
+      - Czech Republic
+      colors:
+        primaryLighter: '#5DC9E2'
+        primary: '#00ADD8'
+        primaryDarker: '#00ADD8'
+        secondary: '#CE3262'
+        secondaryDarker: '#CE3262'
+        track: '#00A29C'
+      map:
+        embeddableMapUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2607.572312033291!2d16.614781477470782!3d49.18970177733261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471295e59b9ac4e9%3A0x8a934dd181c8d98e!2sClubco!5e0!3m2!1scs!2scz!4v1737909812858!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade
+      images:
+        logo: images/logos/gopher.png
+        titleBackground: images/pexels-scottwebb-1048039.webp
+        location: images/clubco.jpg
+      callToAction:
+        eventbrite:
+          # 👇 Get your Eventbrite event ID from the URL of your event page
+          # 👇 and enter it here.
+          eventId:
+        other:
+          # 👇 Enter the URL of your ticket shop here.
+          url:
+        enableBanner: false
