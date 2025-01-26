@@ -33,7 +33,6 @@ Click this button and it will help you create a new repo, create a new Netlify p
 ## Regular Setup
 
  ### 1. Cloning + Running Locally
-
   - Clone this repo with one of these options:
 
     - Click the 'Use this template' button at the top of the page

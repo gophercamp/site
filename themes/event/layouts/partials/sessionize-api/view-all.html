@@ -1,0 +1,11 @@
+{{ $input := . }}
+{{ $data := dict }}
+
+{{ $path := "event/event.json" }}
+{{ with resources.Get $path }}
+    {{ $data = . | transform.Unmarshal }}
+{{ else }}
+    {{ errorf "Unable to get test data resource %q." $path }}
+{{ end }}
+
+{{ return $data }}
