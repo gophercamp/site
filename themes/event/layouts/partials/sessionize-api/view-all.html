@@ -1,11 +1,39 @@
 {{ $input := . }}
 {{ $data := dict }}
 
-{{ $path := "event/event.json" }}
-{{ with resources.Get $path }}
-    {{ $data = . | transform.Unmarshal }}
+{{ with resources.Get "event/sessions.yaml" }}
+    {{- $sessions := . | transform.Unmarshal -}}
+    {{- $data = merge $data $sessions -}}
 {{ else }}
-    {{ errorf "Unable to get test data resource %q." $path }}
+    {{ errorf "Unable to get test data resource." }}
+{{ end }}
+
+{{ with resources.Get "event/categories.yaml" }}
+    {{- $categories := . | transform.Unmarshal -}}
+    {{- $data = merge $data $categories -}}
+{{ else }}
+    {{ errorf "Unable to get test data resource." }}
+{{ end }}
+
+{{ with resources.Get "event/questions.yaml" }}
+    {{- $questions := . | transform.Unmarshal -}}
+    {{- $data = merge $data $questions -}}
+{{ else }}
+    {{ errorf "Unable to get test data resource." }}
+{{ end }}
+
+{{ with resources.Get "event/rooms.yaml" }}
+    {{- $rooms := . | transform.Unmarshal -}}
+    {{- $data = merge $data $rooms -}}
+{{ else }}
+    {{ errorf "Unable to get test data resource." }}
+{{ end }}
+
+{{ with resources.Get "event/speakers.yaml" }}
+    {{- $speakers := . | transform.Unmarshal -}}
+    {{- $data = merge $data $speakers -}}
+{{ else }}
+    {{ errorf "Unable to get test data resource." }}
 {{ end }}
 
 {{ return $data }}

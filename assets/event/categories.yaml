@@ -1,0 +1,75 @@
+﻿categories:
+  - id: 81731
+    title: "Session format"
+    items:
+      - id: 290677
+        name: "Lightning talk"
+        sort: 1
+      - id: 290678
+        name: "Session"
+        sort: 2
+      - id: 290679
+        name: "Workshop"
+        sort: 3
+    sort: 0
+    type: "session"
+  - id: 81732
+    title: "Track"
+    items:
+      - id: 290680
+        name: "Business"
+        sort: 1
+      - id: 290681
+        name: "Technical"
+        sort: 2
+      - id: 290682
+        name: "Scientific"
+        sort: 3
+    sort: 1
+    type: "session"
+  - id: 81733
+    title: "Level"
+    items:
+      - id: 290683
+        name: "Introductory and overview"
+        sort: 1
+      - id: 290684
+        name: "Intermediate"
+        sort: 2
+      - id: 290685
+        name: "Advanced"
+        sort: 3
+      - id: 290686
+        name: "Expert"
+        sort: 4
+    sort: 2
+    type: "session"
+  - id: 81734
+    title: "Language"
+    items:
+      - id: 290687
+        name: "English"
+        sort: 1
+      - id: 290688
+        name: "Spanish"
+        sort: 2
+      - id: 290689
+        name: "German"
+        sort: 3
+      - id: 290690
+        name: "Italian"
+        sort: 4
+      - id: 290691
+        name: "French"
+        sort: 5
+      - id: 290692
+        name: "Chinese"
+        sort: 6
+      - id: 290693
+        name: "Arabic"
+        sort: 7
+      - id: 290694
+        name: "Portuguese"
+        sort: 8
+    sort: 3
+    type: "session"

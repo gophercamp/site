@@ -1,0 +1,10 @@
+﻿rooms:
+  - id: 1
+    name: "Main stage"
+    sort: 0
+  - id: 2
+    name: "Workshop room 1"
+    sort: 1
+  - id: 3
+    name: "Workshop Room 2"
+    sort: 1
