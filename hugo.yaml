@@ -91,7 +91,7 @@ languages:
 params:
   themes:
     event:
-      # sessionizeId: test
+      sessionizeId: test
       title: Gophercamp 2025
       location: Brno, Czech Republic
       shortTitle: Gophercamp
@@ -113,8 +113,22 @@ params:
         embeddableMapUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2607.572312033291!2d16.614781477470782!3d49.18970177733261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471295e59b9ac4e9%3A0x8a934dd181c8d98e!2sClubco!5e0!3m2!1scs!2scz!4v1737909812858!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade
       images:
         logo: images/logos/gopher.png
-        titleBackground: images/pexels-scottwebb-1048039.webp
+        titleBackground: images/event.jpg
         location: images/clubco.jpg
+      sponsors:
+      - logo: images/sponsors/microsoft.png
+        url: https://www.microsoft.com
+        name: Microsoft
+      partners:
+      - logo: images/partners/whalebone.png
+        url: https://www.whalebone.io
+        name: Whalebone
+      - logo: images/partners/oddin.webp
+        url: https://oddin.gg
+        name: Oddin.gg
+      - logo: images/partners/kiwi.png
+        url: https://www.kiwi.com
+        name: Kiwi
       callToAction:
         eventbrite:
           # 👇 Get your Eventbrite event ID from the URL of your event page
