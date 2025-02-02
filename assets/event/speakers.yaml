@@ -1,0 +1,18 @@
+﻿speakers:
+  - id: "1"
+    firstName: "Jakub"
+    lastName: "Coufal"
+    bio: |
+      Top Speaker 1 is a renowned cybersecurity expert with over 25 years of experience in protecting critical infrastructure and sensitive data. They have worked with leading global organizations to develop and implement robust security strategies. Known for their deep technical knowledge and strategic vision, Top Speaker 1 is a trusted advisor and frequent speaker at international security conferences. Outside of their professional endeavors, they are an avid traveler, a passionate advocate for digital privacy, and enjoy mentoring the next generation of cybersecurity professionals.
+    tagLine: "Visionary Technologist and Thought Leader"
+    profilePicture: "https://sessionize.com/image/8db9-400o400o1-test4.jpg"
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "http://linkedin.com/in/coufalja"
+        linkType: "LinkedIn"
+    sessions:
+      - 729575
+    fullName: "Jakub Coufal"
+    categoryItems: [ ]
+    questionAnswers: [ ]

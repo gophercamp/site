@@ -1,0 +1,7 @@
+﻿rooms:
+  - id: 52655
+    name: "Room 1"
+    sort: 0
+  - id: 52656
+    name: "Room 2"
+    sort: 1
