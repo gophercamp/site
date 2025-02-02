@@ -3,13 +3,15 @@
     firstName: "Jakub"
     lastName: "Coufal"
     bio: |
-      Top Speaker 1 is a renowned cybersecurity expert with over 25 years of experience in protecting critical infrastructure and sensitive data. They have worked with leading global organizations to develop and implement robust security strategies. Known for their deep technical knowledge and strategic vision, Top Speaker 1 is a trusted advisor and frequent speaker at international security conferences. Outside of their professional endeavors, they are an avid traveler, a passionate advocate for digital privacy, and enjoy mentoring the next generation of cybersecurity professionals.
-    tagLine: "Visionary Technologist and Thought Leader"
-    profilePicture: "https://sessionize.com/image/8db9-400o400o1-test4.jpg"
+      Jakub Coufal is a Principal Software Engineer at Microsoft.
+      Jakub is passionate about open source, cloud-native technologies, and helping developers and operators succeed with Kubernetes and Go language.
+      He is a frequent speaker at conferences and meetups, where he shares his knowledge and experience with the community.
+    tagLine: "Principal Software Engineer & Cloud Native Enthusiast"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C5103AQHJu14sfXqoeg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516972547555?e=1744243200&v=beta&t=4Zhs3I6ztR0SHZGdpab8t30aQC0xs0kQq6bYhNdUFPY"
     isTopSpeaker: true
     links:
       - title: "LinkedIn"
-        url: "http://linkedin.com/in/coufalja"
+        url: "https://linkedin.com/in/coufalja"
         linkType: "LinkedIn"
     sessions:
       - 729575
