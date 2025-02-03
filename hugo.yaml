@@ -134,7 +134,6 @@ params:
         url: https://www.kiwi.com
         name: Kiwi
       callToAction:
-        text: Register now!
         eventbrite:
           # 👇 Get your Eventbrite event ID from the URL of your event page
           # 👇 and enter it here.
