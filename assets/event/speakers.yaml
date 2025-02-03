@@ -6,13 +6,16 @@
       Jakub Coufal is a Principal Software Engineer at Microsoft.
       Jakub is passionate about open source, cloud-native technologies, and helping developers and operators succeed with Kubernetes and Go language.
       He is a frequent speaker at conferences and meetups, where he shares his knowledge and experience with the community.
-    tagLine: "Principal Software Engineer & Cloud Native Enthusiast"
+    tagLine: "Microsoft"
     profilePicture: "https://media.licdn.com/dms/image/v2/C5103AQHJu14sfXqoeg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516972547555?e=1744243200&v=beta&t=4Zhs3I6ztR0SHZGdpab8t30aQC0xs0kQq6bYhNdUFPY"
     isTopSpeaker: true
     links:
       - title: "LinkedIn"
         url: "https://linkedin.com/in/coufalja"
         linkType: "LinkedIn"
+      - title: "Microsoft"
+        url: "https://microsoft.com"
+        linkType: "Company_Website"
     sessions:
       - 729575
     fullName: "Jakub Coufal"
@@ -22,7 +25,7 @@
     firstName: "Adam"
     lastName: "Král"
     bio: ""
-    tagLine: "Go Developer"
+    tagLine: "Whalebone"
     profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQGnq5P643Vxrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1716137948780?e=1744243200&v=beta&t=HawMzN5wV0uc_apCxXgK00ERBWIjy5Wh4M0aTDmaw5U"
     isTopSpeaker: true
     links:

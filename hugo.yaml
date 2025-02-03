@@ -105,7 +105,8 @@ params:
       colors:
         primaryLighter: '#5DC9E2'
         primary: '#00ADD8'
-        primaryDarker: '#00ADD8'
+        primaryDarker: '#007997'
+        primaryDarkest: '#004556'
         secondary: '#FF417F'
         secondaryDarker: '#CE3262'
         track: '#00A29C'
@@ -140,4 +141,4 @@ params:
         other:
           # 👇 Enter the URL of your ticket shop here.
           url:
-        enableBanner: false
+        enableBanner: true
