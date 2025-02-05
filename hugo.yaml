@@ -34,36 +34,37 @@ languages:
         - identifier: privacy
           pageRef: /privacy-policy
           weight: 20
-      secondary:
-        - identifier: about
-          pageRef: /about
-          weight: 10
-          params:
-            description: |
-              Learn more about our mission, values, and the people behind our organization.
-              The "About Us" page provides insights into who we are, what we do,
-              and why we’re passionate about our work.
-        - identifier: speakers
-          pageRef: /speakers
-          weight: 30
-          params:
-            description: |
-              Meet our distinguished speakers who will be sharing their expertise.
-              Learn more about their backgrounds and what they will discuss.
-        - identifier: location
-          pageRef: /location
-          weight: 40
-          params:
-            description: |
-              Find out where the event will take place.
-              This section provides details on the venue, directions, and nearby accommodations.
-        - identifier: code_of_conduct
-          pageRef: /code-of-conduct
-          weight: 60
-          params:
-            description: |
-              Read about the code of conduct for our event.
-              This section outlines the expectations for participant behavior and event policies.
+#      FIXME: Remove the secondary menu
+#      secondary:
+#        - identifier: about
+#          pageRef: /about
+#          weight: 10
+#          params:
+#            description: |
+#              Learn more about our mission, values, and the people behind our organization.
+#              The "About Us" page provides insights into who we are, what we do,
+#              and why we’re passionate about our work.
+#        - identifier: speakers
+#          pageRef: /speakers
+#          weight: 30
+#          params:
+#            description: |
+#              Meet our distinguished speakers who will be sharing their expertise.
+#              Learn more about their backgrounds and what they will discuss.
+#        - identifier: location
+#          pageRef: /location
+#          weight: 40
+#          params:
+#            description: |
+#              Find out where the event will take place.
+#              This section provides details on the venue, directions, and nearby accommodations.
+#        - identifier: code_of_conduct
+#          pageRef: /code-of-conduct
+#          weight: 60
+#          params:
+#            description: |
+#              Read about the code of conduct for our event.
+#              This section outlines the expectations for participant behavior and event policies.
     params:
       description: |
         A demo website to showcase the features of the "Event" theme for the
