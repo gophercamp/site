@@ -1,50 +1,50 @@
-sessions:
-  - id: "b99eb568-4f2c-4fd9-8ec6-a1326b961dfc"
-    title: "Registration"
-    description: null
-    startsAt: "2025-04-25T11:00:00"
-    endsAt: "2025-04-25T12:00:00"
-    isServiceSession: true
-    isPlenumSession: false
-    speakers: [ ]
-    categoryItems: [ ]
-    questionAnswers: [ ]
-    roomId: 1
-    liveUrl: null
-    recordingUrl: null
-    status: null
-    isInformed: false
-    isConfirmed: false
-  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
-    title: "Coffee Break"
-    description: null
-    startsAt: "2025-04-25T13:00:00"
-    endsAt: "2025-04-25T14:00:00"
-    isServiceSession: true
-    isPlenumSession: false
-    speakers: [ ]
-    categoryItems: [ ]
-    questionAnswers: [ ]
-    roomId: 1
-    liveUrl: null
-    recordingUrl: null
-    status: null
-    isInformed: false
-    isConfirmed: false
-  - id: "3861063a-4d99-4aef-b4f2-ca3834218de8"
-    title: "Lunch"
-    description: |
-      Take a break and enjoy a delicious lunch while networking with fellow attendees. This is a great opportunity to relax, recharge, and discuss the morning sessions with peers. Whether you're looking to make new connections or catch up with old friends, this lunch session provides a perfect setting to foster meaningful conversations and collaborations.
-    startsAt: "2025-04-25T15:00:00"
-    endsAt: "2025-04-25T16:00:00"
-    isServiceSession: true
-    isPlenumSession: false
-    speakers: [ ]
-    categoryItems: [ ]
-    questionAnswers: [ ]
-    roomId: 52655
-    liveUrl: null
-    recordingUrl: null
-    status: null
-    isInformed: false
-    isConfirmed: false
+sessions: []
+#  - id: "b99eb568-4f2c-4fd9-8ec6-a1326b961dfc"
+#    title: "Registration"
+#    description: null
+#    startsAt: "2025-04-25T11:00:00"
+#    endsAt: "2025-04-25T12:00:00"
+#    isServiceSession: true
+#    isPlenumSession: false
+#    speakers: [ ]
+#    categoryItems: [ ]
+#    questionAnswers: [ ]
+#    roomId: 1
+#    liveUrl: null
+#    recordingUrl: null
+#    status: null
+#    isInformed: false
+#    isConfirmed: false
+#  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
+#    title: "Coffee Break"
+#    description: null
+#    startsAt: "2025-04-25T13:00:00"
+#    endsAt: "2025-04-25T14:00:00"
+#    isServiceSession: true
+#    isPlenumSession: false
+#    speakers: [ ]
+#    categoryItems: [ ]
+#    questionAnswers: [ ]
+#    roomId: 1
+#    liveUrl: null
+#    recordingUrl: null
+#    status: null
+#    isInformed: false
+#    isConfirmed: false
+#  - id: "3861063a-4d99-4aef-b4f2-ca3834218de8"
+#    title: "Lunch"
+#    description: |
+#      Take a break and enjoy a delicious lunch while networking with fellow attendees. This is a great opportunity to relax, recharge, and discuss the morning sessions with peers. Whether you're looking to make new connections or catch up with old friends, this lunch session provides a perfect setting to foster meaningful conversations and collaborations.
+#    startsAt: "2025-04-25T15:00:00"
+#    endsAt: "2025-04-25T16:00:00"
+#    isServiceSession: true
+#    isPlenumSession: false
+#    speakers: [ ]
+#    categoryItems: [ ]
+#    questionAnswers: [ ]
+#    roomId: 52655
+#    liveUrl: null
+#    recordingUrl: null
+#    status: null
+#    isInformed: false
+#    isConfirmed: false
