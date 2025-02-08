@@ -121,13 +121,13 @@ params:
       - logo: images/sponsors/microsoft.png
         url: https://www.microsoft.com
         name: Microsoft
+      - logo: images/partners/whalebone.png
+        url: https://www.whalebone.io
+        name: Whalebone
       - logo: images/sponsors/your.png
         url: /about/
         name: Want to see your logo here?
       partners:
-      - logo: images/partners/whalebone.png
-        url: https://www.whalebone.io
-        name: Whalebone
       - logo: images/partners/oddin.webp
         url: https://oddin.gg
         name: Oddin.gg
@@ -140,6 +140,5 @@ params:
           # 👇 and enter it here.
           eventId:
         other:
-          # 👇 Enter the URL of your ticket shop here.
-          url:
+          url: https://goout.net/en/gophercamp-konference/szkkoqx/
         enableBanner: true
