@@ -134,6 +134,10 @@ params:
       - logo: images/partners/kiwi.png
         url: https://www.kiwi.com
         name: Kiwi
+      socialLinks:
+        companyUrl: https://www.meetup.com/golang-brno/events/305535697/
+        facebookUrl: https://www.facebook.com/GolangBrno
+        linkedinUrl:
       callToAction:
         eventbrite:
           # 👇 Get your Eventbrite event ID from the URL of your event page
