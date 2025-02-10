@@ -13,9 +13,9 @@
       - title: "LinkedIn"
         url: "https://linkedin.com/in/coufalja"
         linkType: "LinkedIn"
-      - title: "Microsoft"
-        url: "https://microsoft.com"
-        linkType: "Company_Website"
+      - title: "Github"
+        url: "https://github.com/coufalja"
+        linkType: "Github"
     sessions:
       - 729575
     fullName: "Jakub Coufal"
