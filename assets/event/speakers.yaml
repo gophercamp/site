@@ -32,8 +32,30 @@
       - title: "LinkedIn"
         url: "https://www.linkedin.com/in/adam-kr%C3%A1l-184124180/"
         linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/adamkral12"
+        linkType: "Github"
     sessions:
       - 729578
     fullName: "Adam Král"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "3"
+    firstName: "Lucas"
+    lastName: "Andrade"
+    bio: ""
+    tagLine: "Whalebone"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQFUqnlkyr7KuA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1629728284959?e=1744848000&v=beta&t=nwp7zH8qpGewt5x9au_dewreeqtYF4oQkUBdnU6zCfY"
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/lucas-andrade-flores/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/lucasandradeflores"
+        linkType: "Github"
+    sessions:
+      - 729578
+    fullName: "Lucas Andrade Flores"
     categoryItems: [ ]
     questionAnswers: [ ]
