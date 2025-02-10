@@ -7,6 +7,7 @@
     {{ $sessionIds := apply .sessions "cast.ToString" "." }}
     {{ $sessions := where $input.sessionize.sessions "id" "in" $sessionIds }}
     {{ $xUrl := (index (where .links "linkType" "eq" "Twitter") 0).url }}
+    {{ $githubUrl := (index (where .links "linkType" "eq" "Github") 0).url }}
     {{ $linkedinUrl := (index (where .links "linkType" "eq" "LinkedIn") 0).url }}
     {{ $companyUrl := (index (where .links "linkType" "eq" "Company_Website") 0).url }}
     {{ $params :=
@@ -18,6 +19,7 @@
         "xUrl" $xUrl
         "linkedinUrl" $linkedinUrl
         "companyUrl" $companyUrl
+        "githubUrl" $githubUrl
         "lastName" .lastName
         "firstName" .firstName
     }}
