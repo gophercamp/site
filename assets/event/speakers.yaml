@@ -46,7 +46,7 @@
     bio: ""
     tagLine: "Whalebone"
     profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQFUqnlkyr7KuA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1629728284959?e=1744848000&v=beta&t=nwp7zH8qpGewt5x9au_dewreeqtYF4oQkUBdnU6zCfY"
-    isTopSpeaker: true
+    isTopSpeaker: false
     links:
       - title: "LinkedIn"
         url: "https://www.linkedin.com/in/lucas-andrade-flores/"
@@ -54,8 +54,40 @@
       - title: "Github"
         url: "https://github.com/lucasandradeflores"
         linkType: "Github"
-    sessions:
-      - 729578
+    sessions: [ ]
     fullName: "Lucas Andrade Flores"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "4"
+    firstName: "Michal"
+    lastName: "Bradáč"
+    bio: ""
+    tagLine: "Oddin.gg"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQHtybtms6QMUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1631362807324?e=1744848000&v=beta&t=vJ64FfgbHCtGZqGh8FION1PusImegLKyc3uvgCJSkaQ"
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/michal-bradac/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/prathoss"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Michal Bradáč"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "5"
+    firstName: "Martin"
+    lastName: "Sucha"
+    bio: ""
+    tagLine: "Kiwi.com"
+    profilePicture: "https://avatars.githubusercontent.com/u/2007393?v=4"
+    isTopSpeaker: false
+    links:
+      - title: "Github"
+        url: "https://github.com/martin-sucha"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Martin Sucha"
     categoryItems: [ ]
     questionAnswers: [ ]
