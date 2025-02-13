@@ -38,7 +38,7 @@
 
     {{- partial "sections/cta.html" (
         dict
-        "eventbriteId" $event.callToAction.eventbrite.eventId
+        "cfpUrl" $event.callToAction.other.cfp
         "ctaUrl" $event.callToAction.other.url
         )
     }}

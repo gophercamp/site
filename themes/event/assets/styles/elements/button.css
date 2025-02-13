@@ -18,6 +18,22 @@
         border 0.3s ease;
 }
 
+.button-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.button-group .button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button-group .button:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .button:hover {
     color: white;
     background: var(--color-primary-darker);

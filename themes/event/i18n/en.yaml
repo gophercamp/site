@@ -5,6 +5,7 @@ countdown.seconds: Secs
 cta_banner.message: CFP is open! Submit your proposal now!
 cta_banner.link: https://docs.google.com/forms/d/e/1FAIpQLSdZBpdABHEapQYfEOF14PNTr4ckcnJqQF-qAYfHcbtBsLy2FA/viewform?usp=dialog
 cta_button.get_ticket: Register now!
+cta_button.become_speaker: Become a speaker!
 cta_section.heading: Registration for attendees will open soon.
 cta_section.subheading: Become a speaker – submit your proposal now!
 cta_section.message: ""

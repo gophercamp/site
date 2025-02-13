@@ -135,7 +135,7 @@
 
     {{- partial "sections/cta.html" (
         dict
-        "eventbriteId" .Site.Params.themes.event.callToAction.eventbrite.eventId
+        "cfpUrl" .Site.Params.themes.event.callToAction.other.cfp
         "ctaUrl" .Site.Params.themes.event.callToAction.other.url
         )
     }}
