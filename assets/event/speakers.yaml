@@ -91,3 +91,21 @@
     fullName: "Martin Sucha"
     categoryItems: [ ]
     questionAnswers: [ ]
+  - id: "5"
+    firstName: "Ondřej"
+    lastName: "Šika"
+    bio: "I'm a DevOps engineer and consultant from Prague. I help companies to set up or improve DevOps to deliver easier, faster and more reliable software products. I also run a DevOps company SikaLabs."
+    tagLine: "SikaLabs"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQHjNniMC2cwiA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1581755541391?e=1744848000&v=beta&t=myN5KdMU2LASuhjjKaI9eGVoJu4du9J2oFLyWwyZD28"
+    isTopSpeaker: false
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/ondrejsika/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/ondrejsika"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Ondřej Šika"
+    categoryItems: [ ]
+    questionAnswers: [ ]
