@@ -109,3 +109,21 @@
     fullName: "Ondřej Šika"
     categoryItems: [ ]
     questionAnswers: [ ]
+  - id: "7"
+    firstName: "Josef"
+    lastName: "Podaný"
+    bio: ""
+    tagLine: "Microsoft"
+    profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQFeqnlyRWe1rA/profile-displayphoto-shrink_400_400/B4EZNttEZyHEAk-/0/1732712352154?e=1745452800&v=beta&t=a5ByPUZhKpON_ozFQKQp5uR2leALnvR-YLMkHQgcApk"
+    isTopSpeaker: false
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/josef-podany/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/jsfpdn"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Josef Podaný"
+    categoryItems: [ ]
+    questionAnswers: [ ]
