@@ -64,14 +64,13 @@ languages:
 #              This section outlines the expectations for participant behavior and event policies.
     params:
       description: |
-        A demo website to showcase the features of the "Event" theme for the
-        static website generator HUGO.
+        The first Go conference in Czech Republic.
       themes:
         event:
           slogan: Meet your fellow Gophers!
           location: Brno, Czech Republic
           description: |
-            Join the first Golang conference in Brno
+            Join the first Golang conference in Czech Republic
             - Friday, April 25, 2025
             - 10 talks, workshops, networking sessions
             - 100 attendees
