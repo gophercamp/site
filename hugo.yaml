@@ -13,7 +13,7 @@ languages:
           pageRef: /about
           weight: 10
         - identifier: sessions
-          pageRef: /sessions
+          pageRef: /speakers
           weight: 20
         - identifier: speakers
           pageRef: /speakers
@@ -120,13 +120,13 @@ params:
       - logo: images/partners/whalebone.png
         url: https://www.whalebone.io
         name: Whalebone
+      - logo: images/partners/oddin.webp
+        url: https://oddin.gg
+        name: Oddin.gg
       - logo: images/sponsors/your.png
         url: /about/
         name: Want to see your logo here?
       partners:
-      - logo: images/partners/oddin.webp
-        url: https://oddin.gg
-        name: Oddin.gg
       - logo: images/partners/kiwi.png
         url: https://www.kiwi.com
         name: Kiwi
