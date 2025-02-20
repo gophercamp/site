@@ -81,7 +81,7 @@
     lastName: "Sucha"
     bio: ""
     tagLine: "Kiwi.com"
-    profilePicture: "https://avatars.githubusercontent.com/u/2007393?v=4"
+    profilePicture: "https://8138620997.cbaul-cdnwnd.com/5d7e2868892eee62e4feca5c32321a16/200000003-6f9066f909/avatar%20%281%29.webp?ph=8138620997"
     isTopSpeaker: false
     links:
       - title: "Github"
@@ -125,5 +125,23 @@
         linkType: "Github"
     sessions: [ ]
     fullName: "Josef Podaný"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "8"
+    firstName: "Peter"
+    lastName: "Malina"
+    bio: "Peter Malina is a Google Developer Expert for Cloud and Director of Engineering at Kiwi.com, where he leads teams building platform solutions. Passionate about fostering high-performing engineering cultures, Peter champions the use of Go for its efficiency and scalability in cloud environments. He strongly advocates customer-value-driven engineering and explores how technology can be strategically applied for AI automation and impactful business outcomes."
+    tagLine: "Kiwi.com"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQGYrzkz4J-c-A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1611216097070?e=1745452800&v=beta&t=TnllgFNakKKRHYmRryc8RYswFoGoCAMv6nU0jzBPvtw"
+    isTopSpeaker: false
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/petomalina/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/petomalina"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Peter Malina"
     categoryItems: [ ]
     questionAnswers: [ ]
