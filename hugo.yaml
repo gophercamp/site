@@ -123,9 +123,9 @@ params:
       - logo: images/partners/oddin.webp
         url: https://oddin.gg
         name: Oddin.gg
-      - logo: images/sponsors/your.png
-        url: /about/
-        name: Want to see your logo here?
+      - logo: images/partners/ardan.png
+        url: https://www.ardanlabs.com
+        name: Ardanlabs
       partners:
       - logo: images/partners/kiwi.png
         url: https://www.kiwi.com
