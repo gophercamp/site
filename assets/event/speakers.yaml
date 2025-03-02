@@ -43,7 +43,7 @@
   - id: "3"
     firstName: "Lucas"
     lastName: "Andrade"
-    bio: ""
+    bio: "I'm someone who was lost in advertising and marketing and decided to start a new chapter in life as a backend developer four years ago. I'm a backend engineer and help companies to build fast, reliable, and tested backend services."
     tagLine: "Whalebone"
     profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQFUqnlkyr7KuA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1629728284959?e=1744848000&v=beta&t=nwp7zH8qpGewt5x9au_dewreeqtYF4oQkUBdnU6zCfY"
     isTopSpeaker: false
@@ -112,7 +112,7 @@
   - id: "7"
     firstName: "Josef"
     lastName: "Podaný"
-    bio: ""
+    bio: "Josef is a programming-language enthusiast with a keen interest in compilers, interpreters, static analyzers, and all things related to developer tooling. He likes to explore the intricacies of Go, Rust, Zig and purely-functional languages and currently works on Rust developer tooling at Microsoft."
     tagLine: "Microsoft"
     profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQFeqnlyRWe1rA/profile-displayphoto-shrink_400_400/B4EZNttEZyHEAk-/0/1732712352154?e=1745452800&v=beta&t=a5ByPUZhKpON_ozFQKQp5uR2leALnvR-YLMkHQgcApk"
     isTopSpeaker: false
