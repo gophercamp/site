@@ -79,7 +79,10 @@
   - id: "5"
     firstName: "Martin"
     lastName: "Sucha"
-    bio: ""
+    bio: |
+      Martin Sucha is a Staff Software Engineer at Kiwi.com, a leading global travel tech company, where he helps build services handling more than 1 million database queries per second that power the Kiwi.com Search Engine.
+      Martin’s enthusiasm for open-source together with a decade of Go experience helps him in contributing with improvements and fixes to various open-source projects.
+      In his free time Martin likes hiking and helps organize puzzle hunt games.
     tagLine: "Kiwi.com"
     profilePicture: "https://8138620997.cbaul-cdnwnd.com/5d7e2868892eee62e4feca5c32321a16/200000003-6f9066f909/avatar%20%281%29.webp?ph=8138620997"
     isTopSpeaker: false
