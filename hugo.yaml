@@ -13,7 +13,7 @@ languages:
           pageRef: /about
           weight: 10
         - identifier: sessions
-          pageRef: /speakers
+          pageRef: /sessions
           weight: 20
         - identifier: speakers
           pageRef: /speakers
@@ -104,8 +104,8 @@ params:
         primary: '#00ADD8'
         primaryDarker: '#007997'
         primaryDarkest: '#004556'
-        secondary: '#FF417F'
-        secondaryDarker: '#CE3262'
+        secondary: '#5DC9E2'
+        secondaryDarker: '#004556'
         track: '#00A29C'
       map:
         embeddableMapUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2607.572312033291!2d16.614781477470782!3d49.18970177733261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471295e59b9ac4e9%3A0x8a934dd181c8d98e!2sClubco!5e0!3m2!1scs!2scz!4v1737909812858!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade
@@ -142,4 +142,4 @@ params:
         other:
           cfp: https://docs.google.com/forms/d/e/1FAIpQLSdZBpdABHEapQYfEOF14PNTr4ckcnJqQF-qAYfHcbtBsLy2FA/viewform?usp=dialog
           url: https://goout.net/en/gophercamp-konference/szkkoqx/
-        enableBanner: true
+        enableBanner: false
