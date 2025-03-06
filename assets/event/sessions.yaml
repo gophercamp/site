@@ -23,6 +23,23 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
+  - id: "2"
+    title: "Program coming soon!"
+    startsAt: "2025-04-25T10:00:00"
+    endsAt: "2025-04-25T18:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      Program coming soon!
+    speakers: [ "1" ]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
 #  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
 #    title: "Coffee Break"
 #    description: null
