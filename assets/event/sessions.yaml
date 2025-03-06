@@ -1,20 +1,28 @@
-sessions: []
-#  - id: "b99eb568-4f2c-4fd9-8ec6-a1326b961dfc"
-#    title: "Registration"
-#    description: null
-#    startsAt: "2025-04-25T11:00:00"
-#    endsAt: "2025-04-25T12:00:00"
-#    isServiceSession: true
-#    isPlenumSession: false
-#    speakers: [ ]
-#    categoryItems: [ ]
-#    questionAnswers: [ ]
-#    roomId: 1
-#    liveUrl: null
-#    recordingUrl: null
-#    status: null
-#    isInformed: false
-#    isConfirmed: false
+sessions:
+  - id: "1"
+    title: "Full-Day Workshop: Ultimate Software Design and Engineering (requires a separate ticket)"
+    startsAt: "2025-04-24T10:00:00"
+    endsAt: "2025-04-24T18:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      "As a program evolves and acquires more features, it becomes complicated, with subtle dependencies between components.
+      Over time, complexity accumulates, and it becomes harder and harder for programmers to keep all the relevant factors in their minds as they modify the system.
+      This slows down development and leads to bugs, which slow development even more and add to its cost. Complexity increases inevitably over the life of any program.
+      The larger the program, and the more people that work on it, the more diﬃcult it is to manage complexity." – John Ousterhout
+      This class teaches you how to engineer production-level software in Go leveraging the power of a domain-driven, data-oriented architecture that can run in Kubernetes.
+      From the beginning, you will program along with the instructor as he walks through the design philosophies and guidelines for engineering software in Go.
+      With each new feature added to the project, you will learn how to think about, read, maintain, manage, and debug code.
+      The core of this class is to teach you how to handle and reduce the spread of complexity in the systems you are building.
+    speakers: ["11"]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 0
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
 #  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
 #    title: "Coffee Break"
 #    description: null

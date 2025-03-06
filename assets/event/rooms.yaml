@@ -1,4 +1,7 @@
 ﻿rooms:
+  - id: 0
+    name: "TBD"
+    sort: 0
   - id: 1
     name: "Main stage"
     sort: 0
