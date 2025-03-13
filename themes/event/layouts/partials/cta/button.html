@@ -2,14 +2,9 @@
 
 {{ define "partials/inline/cta/link.html" }}
     {{ $input := . }}
-    <span class="button-group">
-        <a class="button button--outlined" href="{{ $input.ctaUrl }}" rel="noopener noreferrer" rel="external" target="_blank">
-            {{ T "cta_button.get_ticket" }}
-        </a>
-        <a class="button button--outlined" href="{{ $input.cfpUrl }}" rel="noopener noreferrer" rel="external" target="_blank">
-            {{ T "cta_button.become_speaker" }}
-        </a>
-    </span>
+    <a class="button button--outlined" href="{{ $input.ctaUrl }}" rel="noopener noreferrer" rel="external" target="_blank">
+        {{ T "cta_button.get_ticket" }}
+    </a>
 {{ end }}
 
 {{- if $input.ctaUrl }}
