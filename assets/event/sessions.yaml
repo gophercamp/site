@@ -14,6 +14,8 @@ sessions:
       From the beginning, you will program along with the instructor as he walks through the design philosophies and guidelines for engineering software in Go.
       With each new feature added to the project, you will learn how to think about, read, maintain, manage, and debug code.
       The core of this class is to teach you how to handle and reduce the spread of complexity in the systems you are building.
+      
+      This session requires a [separate ticket.](https://goout.net/en/full-day-workshop-ultimate-software-design-and-engineering/szlkurx/)
     speakers: ["11"]
     categoryItems: [ ]
     questionAnswers: [ ]

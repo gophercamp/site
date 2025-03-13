@@ -1,13 +1,13 @@
 ﻿rooms:
   - id: 0
-    name: "TBD"
+    name: "JIC – INTECH 2, U vodárny 2, Brno"
     sort: 0
   - id: 1
-    name: "Main stage"
+    name: "Clubco Event space"
     sort: 0
   - id: 2
-    name: "Workshop room 1"
+    name: "Clubco Cashmere"
     sort: 1
   - id: 3
-    name: "Workshop Room 2"
+    name: "Clubco Shetland"
     sort: 1
