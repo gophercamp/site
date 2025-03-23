@@ -19,24 +19,45 @@ sessions:
       
       This session requires a [separate ticket.](https://goout.net/en/full-day-workshop-ultimate-software-design-and-engineering/szlkurx/)
     speakers: ["11"]
-    categoryItems: [ ]
+    categoryItems: [290679, 290681]
     questionAnswers: [ ]
     roomId: 0
     liveUrl: null
     recordingUrl: null
     status: null
-    isInformed: false
-    isConfirmed: false
+    isInformed: true
+    isConfirmed: true
   - id: "2"
-    title: "Program coming soon!"
-    startsAt: "2025-04-25T10:00:00"
-    endsAt: "2025-04-25T18:00:00"
+    title: "Kick off"
+    startsAt: "2025-04-25T09:00:00"
+    endsAt: "2025-04-25T09:30:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
-      Program coming soon!
+      Join us in the main event space for a conference kick off.
     speakers: [ "1" ]
-    categoryItems: [ ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "3"
+    title: "Writing AI Agents with Go"
+    startsAt: "2025-04-25T10:00:00"
+    endsAt: "2025-04-25T11:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      - Introduction to AI Agents
+      - Building a Simple Console Agent
+      - Architecting Multi-Agent Systems
+      - Giving Agents Tools and Resources for Complex Tasks
+      - A Live Demo
+    speakers: [ "10" ]
+    categoryItems: [290678, 290680, 290683]
     questionAnswers: [ ]
     roomId: 1
     liveUrl: null
