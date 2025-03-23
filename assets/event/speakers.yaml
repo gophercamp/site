@@ -8,7 +8,7 @@
       He is a frequent speaker at conferences and meetups, where he shares his knowledge and experience with the community.
     tagLine: "Microsoft"
     profilePicture: "https://media.licdn.com/dms/image/v2/C5103AQHJu14sfXqoeg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516972547555?e=1744243200&v=beta&t=4Zhs3I6ztR0SHZGdpab8t30aQC0xs0kQq6bYhNdUFPY"
-    isTopSpeaker: true
+    isTopSpeaker: false
     links:
       - title: "LinkedIn"
         url: "https://linkedin.com/in/coufalja"
@@ -206,5 +206,35 @@
         linkType: "LinkedIn"
     sessions: [ ]
     fullName: "William Kennedy"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "12"
+    firstName: "Naďa"
+    lastName: "Jašíková"
+    bio: TBD
+    tagLine: "Microsoft"
+    profilePicture: ""
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/nadajasikova/"
+        linkType: "LinkedIn"
+    sessions: [ ]
+    fullName: "Naďa Jašíková"
+    categoryItems: [ ]
+    questionAnswers: [ ]
+  - id: "13"
+    firstName: "Vilibald"
+    lastName: "Wanca"
+    bio: TBD
+    tagLine: "Pure Storage"
+    profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQEXitGXZ8NBqg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1670951991175?e=1748476800&v=beta&t=62EZ88HfSACUDKR5oQcnTyLMFQVdF1ozuYflt8OJydw"
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/wvi/"
+        linkType: "LinkedIn"
+    sessions: [ ]
+    fullName: "Vilibald Wanca"
     categoryItems: [ ]
     questionAnswers: [ ]
