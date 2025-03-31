@@ -65,6 +65,9 @@ languages:
     params:
       description: |
         The first Go conference in Czech Republic.
+      images:
+        - images/event.jpg
+        - images/logos/gopher.png
       themes:
         event:
           slogan: Meet your fellow Gophers!
