@@ -241,8 +241,9 @@
   - id: "14"
     firstName: "Gabriel"
     lastName: "Augendre"
-    bio: TBD
-    tagLine: "OVHCloud"
+    bio: |
+      I’m Gabriel, technical lead in a software development team at OVHcloud and FOSS enthusiast.
+    tagLine: "OVHcloud"
     profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQEta6YyMH4spA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1715076424296?e=1749081600&v=beta&t=DdgGfKxID5ndjHALDnnFb0I0eM5veMXgBFjCUu6pTu8"
     isTopSpeaker: true
     links:
@@ -259,14 +260,22 @@
   - id: "15"
     firstName: "Sébastien"
     lastName: "Ferrer"
-    bio: TBD
-    tagLine: "OVHCloud"
+    bio: |
+      Sébastien is a software engineer at OVHcloud in Nantes, in the SIA (Service Integration & Automation) team.
+      Having been working in this field for more than 12 years now, he has always enjoyed popularizing and sharing his knowledge in public.
+      He currently gives talks on cybersecurity, incident management and various other technical subjects.
+      He has a great interest in teaching and also regularly gives talks at schools and universities.
+      He is also passionate about theater, having spent 10 years performing with a theater company in Paris.
+    tagLine: "OVHcloud"
     profilePicture: "https://media.licdn.com/dms/image/v2/D4D03AQE5m4yt-ZC07w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1666729566609?e=1749081600&v=beta&t=uPPIYxpcw2egIQhkbZ8qaET9_HInoGXyBsfMDsgHaP8"
     isTopSpeaker: true
     links:
       - title: "LinkedIn"
         url: "https://www.linkedin.com/in/s%C3%A9bastien-ferrer-076ba052/"
         linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/sebferrer"
+        linkType: "Github"
     sessions: [ ]
     fullName: "Sébastien Ferrer"
     categoryItems: [ ]
@@ -274,7 +283,9 @@
   - id: "16"
     firstName: "Alexandr"
     lastName: "Kara"
-    bio: TBD
+    bio: |
+      Alexandr worked most of the career in C/C++ at Skype/Microsoft working on the P2P stack and at Google working in anti-abuse, YouTube and Assistant and switched to Golang at Outreach.
+      Enjoys thinking about the low-level aspects of running programs.
     tagLine: "Outreach"
     profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQEA3WujdUizNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516616356166?e=1749081600&v=beta&t=yBQl5aIhCohTbHf2TCdTivrwToKntxp_dPy1kbpzDu4"
     isTopSpeaker: true
