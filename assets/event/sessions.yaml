@@ -65,6 +65,32 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
+  - id: "4"
+    title: "Your code deserves better: give it a linter!"
+    startsAt: "2025-04-25T14:00:00"
+    endsAt: "2025-04-25T15:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      Don't know what a linter is? Have you ever heard of a linter without really understanding its purpose? 
+      Do you already use a linter on a daily basis, but would like to go one step further by customizing it to your needs? Then this talk is for you!
+  
+      In this session, we'll demystify the concept of linter, explaining its fundamental role in improving code quality and automating best practices. 
+      We'll explore the basics of how they work, before getting down to the nitty-gritty of building a customized linter, step by step. 
+      At the end of the session, you'll leave with the knowledge and tools you need to create and share your own linter, tailored to your team or the open source community.
+  
+      Whether you're a beginner or an experienced developer, come and discover how a well-designed linter can transform the way you code!
+  
+      We'll be using the Go language for our examples, but we'll also be opening the door to tooling for other programming languages.
+    speakers: [ "14", "15" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
 #  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
 #    title: "Coffee Break"
 #    description: null
