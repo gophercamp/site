@@ -299,3 +299,23 @@
     fullName: "Alexandr Kara"
     categoryItems: [ ]
     questionAnswers: [ ]
+  - id: "17"
+    firstName: "Alban"
+    lastName: "Crequy"
+    bio: |
+      I initiated the Inspektor Gadget project in 2019 at Kinvolk.
+      Now at Microsoft, I continue to work as a software engineer, co-maintaining Inspektor Gadget and contributing to other eBPF projects.
+    tagLine: "Microsoft"
+    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQHZVhQu5bKcZw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1547638925426?e=1749686400&v=beta&t=jfvU8H5HCZnZeXwthBvg0HoY1E3KdGej1rxdS3a_bRI"
+    isTopSpeaker: true
+    links:
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/albancrequy/"
+        linkType: "LinkedIn"
+      - title: "Github"
+        url: "https://github.com/alban"
+        linkType: "Github"
+    sessions: [ ]
+    fullName: "Alban Crequy"
+    categoryItems: [ ]
+    questionAnswers: [ ]
