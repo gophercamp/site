@@ -211,9 +211,11 @@
   - id: "12"
     firstName: "Naďa"
     lastName: "Jašíková"
-    bio: TBD
+    bio: |
+      I'm a site reliability engineer at heart, poking around different areas that spark joy: observability, infrastructure management, developer tooling and automation.
+      At Microsoft, I'm a part of the team that operates the Defender K8s platform, a fleet of several hundred AKS clusters.
     tagLine: "Microsoft"
-    profilePicture: ""
+    profilePicture: "images/speakers/nada_jasikova.png"
     isTopSpeaker: true
     links:
       - title: "LinkedIn"
