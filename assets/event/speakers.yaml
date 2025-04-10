@@ -61,7 +61,8 @@
   - id: "4"
     firstName: "Michal"
     lastName: "Bradáč"
-    bio: ""
+    bio: |
+      I am father, sports enthusiast, and web developer with a slight interest in QA. I am part of the Oddin.gg working on the core services.
     tagLine: "Oddin.gg"
     profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQHtybtms6QMUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1631362807324?e=1744848000&v=beta&t=vJ64FfgbHCtGZqGh8FION1PusImegLKyc3uvgCJSkaQ"
     isTopSpeaker: true
