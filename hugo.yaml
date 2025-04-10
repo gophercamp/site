@@ -130,19 +130,22 @@ params:
       - logo: images/sponsors/microsoft.png
         url: https://www.microsoft.com
         name: Microsoft
-      - logo: images/partners/whalebone.png
+      - logo: images/sponsors/whalebone.png
         url: https://www.whalebone.io
         name: Whalebone
-      - logo: images/partners/oddin.webp
+      - logo: images/sponsors/oddin.webp
         url: https://oddin.gg
         name: Oddin.gg
-      - logo: images/partners/ardan.png
+      - logo: images/sponsors/ardan.png
         url: https://www.ardanlabs.com
         name: Ardanlabs
-      partners:
-      - logo: images/partners/kiwi.png
+      - logo: images/sponsors/kiwi.png
         url: https://www.kiwi.com
         name: Kiwi
+      - logo: images/sponsors/ovhcloud.png
+        url: https://www.ovhcloud.com
+        name: OVHcloud
+      partners: []
       socialLinks:
         companyUrl: https://www.meetup.com/golang-brno/events/305535697/
         facebookUrl: https://www.facebook.com/GolangBrno
