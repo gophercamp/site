@@ -46,8 +46,8 @@ sessions:
     isConfirmed: false
   - id: "3"
     title: "Writing AI Agents with Go"
-    startsAt: "2025-04-25T10:30:00"
-    endsAt: "2025-04-25T11:00:00"
+    startsAt: "2025-04-25T09:30:00"
+    endsAt: "2025-04-25T10:00:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
@@ -67,8 +67,8 @@ sessions:
     isConfirmed: false
   - id: "5"
     title: "Let's write a Terraform / OpenTofu plugin"
-    startsAt: "2025-04-25T09:30:00"
-    endsAt: "2025-04-25T10:00:00"
+    startsAt: "2025-04-25T10:30:00"
+    endsAt: "2025-04-25T11:00:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
@@ -87,8 +87,8 @@ sessions:
     isConfirmed: false
   - id: "6"
     title: "Let's write a Terraform / OpenTofu plugin"
-    startsAt: "2025-04-25T15:00:00"
-    endsAt: "2025-04-25T16:30:00"
+    startsAt: "2025-04-25T16:00:00"
+    endsAt: "2025-04-25T17:30:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
@@ -236,6 +236,96 @@ sessions:
     isServiceSession: false
     isPlenumSession: false
     speakers: [ "4" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "14"
+    title: "Optimizing Go code for memory locality"
+    description: |
+      A couple of tricks and explanations about how to change the layout of data in order to make the program run faster and maybe even use less memory.
+    startsAt: "2025-04-25T13:00:00"
+    endsAt: "2025-04-25T13:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "16" ]
+    categoryItems: [290678, 290682, 290683]
+    questionAnswers: [ ]
+    roomId: 2
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "15"
+    title: "The Power of BPF in Your Go Code with Inspektor Gadget"
+    description: |
+      Unlock deeper insights into your Go applications with BPF gadgets via Inspektor Gadget. I'll show Go developers how to easily integrate community-driven BPF tools, distributed via OCI registries, for observability without deep BPF expertise.
+      Discover how Inspektor Gadget simplifies using this rich ecosystem of gadgets to monitor system behavior, analyze networks, and profile performance, directly in your Go applications.
+    startsAt: "2025-04-25T10:30:00"
+    endsAt: "2025-04-25T11:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "17" ]
+    categoryItems: [290678, 290682, 290683]
+    questionAnswers: [ ]
+    roomId: 2
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "16"
+    title: "Memory scavenging in Go"
+    description: |
+      The presentation will provide an in-depth exploration of memory scavenging in Go, focusing on its critical role within the garbage collection (GC) system.
+      We will examine the purpose of memory scavenging, how it helps in efficiently reclaiming heap memory, and the optimization techniques employed by Go’s garbage collector to balance memory usage.
+      Attendees will gain a comprehensive understanding of Go's memory management and how scavenging plays a vital role in optimizing memory retention and system performance.
+    startsAt: "2025-04-25T11:00:00"
+    endsAt: "2025-04-25T12:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "2" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "17"
+    title: "Working with webrpc"
+    description: |
+      Creating web-first REST APIs with chi and webrpc.
+    startsAt: "2025-04-25T17:00:00"
+    endsAt: "2025-04-25T17:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "9" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "17"
+    title: "Own CLI tooling in Go"
+    description: |
+      Writing complex shell scripts is hard, running python script anywhere is also hard.
+      The ultimate solution for custom tooling is Go. We use custom CLI tools written in Go by ourself and with our clients.
+      I'll show you how to write own CLI util and how to easily distribute it across all the platforms (Mac, Linux, Windows).
+    startsAt: "2025-04-25T15:00:00"
+    endsAt: "2025-04-25T15:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "6" ]
     categoryItems: [290678, 290680, 290683]
     questionAnswers: [ ]
     roomId: 1

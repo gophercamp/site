@@ -22,6 +22,9 @@
       - id: 290681
         name: "Workshop"
         sort: 2
+      - id: 290682
+        name: "Deep dive"
+        sort: 3
     sort: 1
     type: "session"
   - id: 81733
