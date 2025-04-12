@@ -42,17 +42,32 @@
         {{/* Store profile pictures of speakers. */}}
         {{ $speaker := . }}
         {{ with $url := $speaker.profilePicture }}
-            {{ with resources.GetRemote $url  | images.Filter (images.Process "q90 webp") }}
-                {{ $content := dict "mediaType" .MediaType.Type "value" .Content }}
-                {{ $params := dict "alt" $speaker.fullName }}
-                {{ $resource := dict
-                    "content" $content
-                    "params" $params
-                    "path" (printf "%s/avatar %s.%s" $path $speaker.id .MediaType.SubType)
-                }}
-                {{ $resources = $resources | append $resource }}
+            {{ if (resources.Get $url) }}
+                {{ with resources.Get $url | images.Filter (images.Process "q90 webp") }}
+                    {{ $content := dict "mediaType" .MediaType.Type "value" .Content }}
+                    {{ $params := dict "alt" $speaker.fullName }}
+                    {{ $resource := dict
+                        "content" $content
+                        "params" $params
+                        "path" (printf "%s/avatar %s.%s" $path $speaker.id .MediaType.SubType)
+                    }}
+                    {{ $resources = $resources | append $resource }}
+                {{ else }}
+                    {{ errorf "Unable to process local resource %s" $url }}
+                {{ end }}
             {{ else }}
-                {{ errorf "Unable to get remote resource %s" $url }}
+                {{ with resources.GetRemote $url | images.Filter (images.Process "q90 webp") }}
+                    {{ $content := dict "mediaType" .MediaType.Type "value" .Content }}
+                    {{ $params := dict "alt" $speaker.fullName }}
+                    {{ $resource := dict
+                        "content" $content
+                        "params" $params
+                        "path" (printf "%s/avatar %s.%s" $path $speaker.id .MediaType.SubType)
+                    }}
+                    {{ $resources = $resources | append $resource }}
+                {{ else }}
+                    {{ errorf "Unable to get remote resource %s" $url }}
+                {{ end }}
             {{ end }}
         {{ end }}
     {{ end }}
