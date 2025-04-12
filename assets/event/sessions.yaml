@@ -174,9 +174,7 @@ sessions:
     endsAt: "2025-04-25T17:00:00"
     isServiceSession: false
     isPlenumSession: false
-    speakers: [ "1" ]
     categoryItems: [ ]
-    questionAnswers: [ ]
     roomId: 1
     liveUrl: null
     recordingUrl: null
@@ -208,9 +206,7 @@ sessions:
     endsAt: "2025-04-25T12:30:00"
     isServiceSession: false
     isPlenumSession: true
-    speakers: [ "1" ]
     categoryItems: [ ]
-    questionAnswers: [ ]
     roomId: 1
     liveUrl: null
     recordingUrl: null
@@ -224,8 +220,23 @@ sessions:
     endsAt: "2025-04-25T10:30:00"
     isServiceSession: false
     isPlenumSession: false
-    speakers: [ "1" ]
     categoryItems: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "13"
+    title: "Better testing with testcontainers"
+    description: |
+      Go has great support and tooling for writing unit tests. But what to do when unit just are not enough? Let’s take a look at how testcontainers can help us writing tests requiring more complicated setup. We’ll go through integration testing external services and databases and test performance tuning.
+    startsAt: "2025-04-25T13:00:00"
+    endsAt: "2025-04-25T13:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "4" ]
+    categoryItems: [290678, 290680, 290683]
     questionAnswers: [ ]
     roomId: 1
     liveUrl: null
