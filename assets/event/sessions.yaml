@@ -46,7 +46,7 @@ sessions:
     isConfirmed: false
   - id: "3"
     title: "Writing AI Agents with Go"
-    startsAt: "2025-04-25T10:00:00"
+    startsAt: "2025-04-25T10:30:00"
     endsAt: "2025-04-25T11:00:00"
     isServiceSession: false
     isPlenumSession: false
@@ -130,36 +130,106 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
-#  - id: "3447531d-f78e-4ca0-8b80-22368909baa4"
-#    title: "Coffee Break"
-#    description: null
-#    startsAt: "2025-04-25T13:00:00"
-#    endsAt: "2025-04-25T14:00:00"
-#    isServiceSession: true
-#    isPlenumSession: false
-#    speakers: [ ]
-#    categoryItems: [ ]
-#    questionAnswers: [ ]
-#    roomId: 1
-#    liveUrl: null
-#    recordingUrl: null
-#    status: null
-#    isInformed: false
-#    isConfirmed: false
-#  - id: "3861063a-4d99-4aef-b4f2-ca3834218de8"
-#    title: "Lunch"
-#    description: |
-#      Take a break and enjoy a delicious lunch while networking with fellow attendees. This is a great opportunity to relax, recharge, and discuss the morning sessions with peers. Whether you're looking to make new connections or catch up with old friends, this lunch session provides a perfect setting to foster meaningful conversations and collaborations.
-#    startsAt: "2025-04-25T15:00:00"
-#    endsAt: "2025-04-25T16:00:00"
-#    isServiceSession: true
-#    isPlenumSession: false
-#    speakers: [ ]
-#    categoryItems: [ ]
-#    questionAnswers: [ ]
-#    roomId: 52655
-#    liveUrl: null
-#    recordingUrl: null
-#    status: null
-#    isInformed: false
-#    isConfirmed: false
+  - id: "7"
+    title: "Understanding runtime traces"
+    startsAt: "2025-04-25T16:00:00"
+    endsAt: "2025-04-25T16:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      In this talk, we will explore how runtime tracing works in the Go runtime and how we can use it to understand the runtime behaviour of Go programs.
+      The first part of the talk is dedicated to the history of runtime tracing in Go, recording traces and what information the traces contain.
+      Then we will take a look at tools that you can use to explore the contents of the traces and how to use them to get insights from the data.
+      After this talk, you will have an overview of runtime tracing in Go, so that you can start exploring the behavior of your own programs.
+    speakers: [ "5" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "8"
+    title: "Living in a container"
+    startsAt: "2025-04-25T15:30:00"
+    endsAt: "2025-04-25T16:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    description: |
+      In this session we are going to build an app in a container, and take a deeper look on namespaces, syscalls and channels.
+    speakers: [ "12", "13" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "9"
+    title: "Coffee Break"
+    description: Take a break and enjoy a delicious coffee while networking with fellow attendees.
+    startsAt: "2025-04-25T16:30:00"
+    endsAt: "2025-04-25T17:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "1" ]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "10"
+    title: "Lightning talks and closing remarks"
+    description: An opportunity to hit the stage with a lightning talk, we will be gathering ideas throughout the day, get your 5 minutes on the stage!
+    startsAt: "2025-04-25T17:30:00"
+    endsAt: "2025-04-25T18:00:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "1" ]
+    categoryItems: [290678, 290680, 290683]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "11"
+    title: "Lunch"
+    description: |
+      Take a break and enjoy a lunch while networking with fellow attendees. This is a great opportunity to relax, recharge, and discuss the morning sessions with peers.
+      Whether you're looking to make new connections or catch up with old friends, this lunch session provides a perfect setting to foster meaningful conversations and collaborations.
+    startsAt: "2025-04-25T12:00:00"
+    endsAt: "2025-04-25T12:30:00"
+    isServiceSession: false
+    isPlenumSession: true
+    speakers: [ "1" ]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "12"
+    title: "Coffee Break"
+    description: Take a break and enjoy a delicious coffee while networking with fellow attendees.
+    startsAt: "2025-04-25T10:00:00"
+    endsAt: "2025-04-25T10:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "1" ]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 1
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
