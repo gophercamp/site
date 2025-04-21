@@ -334,3 +334,22 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
+  - id: "18"
+    title: "A Look Inside the Go Compiler"
+    description: |
+      This talk offers a guided tour through the internals of the Go compiler, exploring how Go code is transformed into machine code.
+      While not diving too deep into any one area, we'll touch on key components, design decisions, and interesting behaviors developers might not be aware of.
+      Whether you're a language nerd or just curious how your code comes to life, there's something here for you. No prior compiler knowledge required.
+    startsAt: "2025-04-25T11:00:00"
+    endsAt: "2025-04-25T11:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ "7" ]
+    categoryItems: [290678, 290682, 290683]
+    questionAnswers: [ ]
+    roomId: 2
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
