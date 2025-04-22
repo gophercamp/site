@@ -1,7 +1,7 @@
 sessions:
   - id: "1"
     title: "Full-Day Workshop: Ultimate Software Design and Engineering (requires a separate ticket)"
-    startsAt: "2025-04-24T10:00:00"
+    startsAt: "2025-04-24T08:30:00"
     endsAt: "2025-04-24T18:00:00"
     isServiceSession: false
     isPlenumSession: false
