@@ -40,24 +40,6 @@
     fullName: "Adam Král"
     categoryItems: [ ]
     questionAnswers: [ ]
-  - id: "3"
-    firstName: "Lucas"
-    lastName: "Andrade"
-    bio: "I'm someone who was lost in advertising and marketing and decided to start a new chapter in life as a backend developer four years ago. I'm a backend engineer and help companies to build fast, reliable, and tested backend services."
-    tagLine: "Whalebone"
-    profilePicture: "https://media.licdn.com/dms/image/v2/C4D03AQFUqnlkyr7KuA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1629728284959?e=1744848000&v=beta&t=nwp7zH8qpGewt5x9au_dewreeqtYF4oQkUBdnU6zCfY"
-    isTopSpeaker: false
-    links:
-      - title: "LinkedIn"
-        url: "https://www.linkedin.com/in/lucas-andrade-flores/"
-        linkType: "LinkedIn"
-      - title: "Github"
-        url: "https://github.com/lucasandradeflores"
-        linkType: "Github"
-    sessions: [ ]
-    fullName: "Lucas Andrade Flores"
-    categoryItems: [ ]
-    questionAnswers: [ ]
   - id: "4"
     firstName: "Michal"
     lastName: "Bradáč"
@@ -86,7 +68,7 @@
       In his free time Martin likes hiking and helps organize puzzle hunt games.
     tagLine: "Kiwi.com"
     profilePicture: "images/speakers/martin_sucha.png"
-    isTopSpeaker: false
+    isTopSpeaker: true
     links:
       - title: "Github"
         url: "https://github.com/martin-sucha"
