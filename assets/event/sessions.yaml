@@ -66,16 +66,15 @@ sessions:
     isInformed: false
     isConfirmed: false
   - id: "5"
-    title: "Let's write a Terraform / OpenTofu plugin"
+    title: "Introduction to OpenTofu / Terraform Provider Development"
     startsAt: "2025-04-25T10:30:00"
     endsAt: "2025-04-25T11:00:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
-      Writing complex shell scripts is hard, running python script anywhere is also hard.
-      The ultimate solution for custom tooling is Go. We use custom CLI tools written in Go by ourself and with our clients.
-      I'll show you how to write own CLI util and how to easily distribute it across all the platforms (Mac, Linux, Windows).
-      This session is introduction for a workshop happening later in the day.
+      Dive into the architecture that powers Infrastructure as Code tools like OpenTofu and Terraform. 
+      Learn what providers are, how they bridge the gap to specific APIs, understand their core responsibilities,
+      and get a high-level overview of the development process before diving into hands-on coding at the workshop happening later today.
     speakers: [ "8" ]
     categoryItems: [290678, 290680, 290683]
     questionAnswers: [ ]
@@ -86,15 +85,14 @@ sessions:
     isInformed: false
     isConfirmed: false
   - id: "6"
-    title: "Let's write a Terraform / OpenTofu plugin"
+    title: "Let's build your own OpenTofu provider"
     startsAt: "2025-04-25T16:00:00"
     endsAt: "2025-04-25T17:30:00"
     isServiceSession: false
     isPlenumSession: false
     description: |
-      Writing complex shell scripts is hard, running python script anywhere is also hard.
-      The ultimate solution for custom tooling is Go. We use custom CLI tools written in Go by ourself and with our clients.
-      I'll show you how to write own CLI util and how to easily distribute it across all the platforms (Mac, Linux, Windows).
+      In this workshop, I’ll guide you through the fundamentals of provider development, culminating in building a minimalistic but functional provider with custom logic.
+      I’ll highlight various features of the relevant SDKs and frameworks.
     speakers: [ "8" ]
     categoryItems: [ 290678, 290681, 290683 ]
     questionAnswers: [ ]
@@ -315,7 +313,7 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
-  - id: "17"
+  - id: "18"
     title: "Own CLI tooling in Go"
     description: |
       Writing complex shell scripts is hard, running python script anywhere is also hard.
@@ -334,7 +332,7 @@ sessions:
     status: null
     isInformed: false
     isConfirmed: false
-  - id: "18"
+  - id: "19"
     title: "A Look Inside the Go Compiler"
     description: |
       This talk offers a guided tour through the internals of the Go compiler, exploring how Go code is transformed into machine code.
@@ -348,6 +346,25 @@ sessions:
     categoryItems: [290678, 290682, 290683]
     questionAnswers: [ ]
     roomId: 2
+    liveUrl: null
+    recordingUrl: null
+    status: null
+    isInformed: false
+    isConfirmed: false
+  - id: "20"
+    title: "Afterparty"
+    description: |
+      Join us for the Gophercamp 2025 afterparty! Celebrate the end of an amazing conference with fellow attendees and speakers.
+      Enjoy food, drinks, and great conversations as we reflect on the insights and connections made during the event.
+      Don't miss this opportunity to unwind and network in a relaxed atmosphere. We look forward to seeing you there!
+    startsAt: "2025-04-25T18:15:00"
+    endsAt: "2025-04-25T23:30:00"
+    isServiceSession: false
+    isPlenumSession: false
+    speakers: [ ]
+    categoryItems: [ ]
+    questionAnswers: [ ]
+    roomId: 4
     liveUrl: null
     recordingUrl: null
     status: null
