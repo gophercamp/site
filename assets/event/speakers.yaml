@@ -73,6 +73,9 @@
       - title: "Github"
         url: "https://github.com/martin-sucha"
         linkType: "Github"
+      - title: "LinkedIn"
+        url: "https://www.linkedin.com/in/martin-sucha/"
+        linkType: "LinkedIn"
     sessions: [ ]
     fullName: "Martin Sucha"
     categoryItems: [ ]
