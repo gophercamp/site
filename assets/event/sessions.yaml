@@ -297,9 +297,15 @@ sessions:
     isInformed: false
     isConfirmed: false
   - id: "17"
-    title: "Working with webrpc"
+    title: "Building scalable REST APIs with chi and webrpc"
     description: |
-      Creating web-first REST APIs with chi and webrpc.
+      Building and maintaining APIs is often a complex and time-consuming process.
+      Developers need to manage RESTful endpoints, handle JSON serialization, maintain client libraries, and ensure backward compatibility while keeping API documentation up to date.
+      webrpc offers a streamlined alternative—a lightweight schema and code-generation tool that simplifies API development. 
+      With webrpc, developers can define APIs and generate strongly-typed clients and servers in Go, TypeScript, Kotlin, Dart, and even OpenAPI documentation. 
+      At its core, webrpc uses Go templates for code generation, making it highly flexible and easy to customize.
+      In this talk, we’ll explore the motivation behind webrpc, how it differs from traditional REST and gRPC approaches, and the advantages of its simple, declarative API definitions.
+      Through a real-world example, we’ll demonstrate how webrpc can improve developer productivity, reduce boilerplate, and enable seamless client-server communication.
     startsAt: "2025-04-25T17:00:00"
     endsAt: "2025-04-25T17:30:00"
     isServiceSession: false
