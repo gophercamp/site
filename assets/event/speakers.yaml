@@ -211,7 +211,12 @@
   - id: "13"
     firstName: "Vilibald"
     lastName: "Wanca"
-    bio: TBD
+    bio: |
+      When it comes to computers, Vilibald wants to be the magician who knows all the tricks in all the books.
+      He's a fairly experienced engineer with 20+ years across various platforms and programming languages, carrying the pager on and off since the beginning.
+      He's interested in bridging the gap—between low-level and high-level, server and client, human and computer. 
+      From C to Python and beyond, he's always thinking about the humans in all of this.
+      These days, he's at Pure Storage, helping bring the company to the cloud.
     tagLine: "Pure Storage"
     profilePicture: "https://media.licdn.com/dms/image/v2/D4E03AQEXitGXZ8NBqg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1670951991175?e=1748476800&v=beta&t=62EZ88HfSACUDKR5oQcnTyLMFQVdF1ozuYflt8OJydw"
     isTopSpeaker: true
