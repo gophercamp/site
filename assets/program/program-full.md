@@ -31,12 +31,12 @@
 ---
 
 ## 10:30 - 11:00
-**Let's write a Terraform / OpenTofu plugin**  
-*Writing complex shell scripts is hard, running python script anywhere is also hard.  
-The ultimate solution for custom tooling is Go. We use custom CLI tools written in Go by ourselves and with our clients.  
-I'll show you how to write your own CLI util and how to easily distribute it across all the platforms (Mac, Linux, Windows).*  
+**Introduction to OpenTofu / Terraform Provider Development**  
+*Dive into the architecture that powers Infrastructure as Code tools like OpenTofu and Terraform. 
+Learn what providers are, how they bridge the gap to specific APIs, understand their core responsibilities,
+and get a high-level overview of the development process before diving into hands-on coding at the workshop happening later today.*  
 **Room:** Clubco Event space  
-**Tags:** Talk, Advanced  
+**Tags:** Talk, Intermediate  
 **Speaker:** Konstantin Ignatov  
 [LinkedIn](https://www.linkedin.com/in/work-of-kpp/) | [GitHub](https://github.com/code-of-kpp)
 
@@ -47,7 +47,7 @@ I'll show you how to write your own CLI util and how to easily distribute it acr
 *Unlock deeper insights into your Go applications with BPF gadgets via Inspektor Gadget. I'll show Go developers how to easily integrate community-driven BPF tools, distributed via OCI registries, for observability without deep BPF expertise.  
 Discover how Inspektor Gadget simplifies using this rich ecosystem of gadgets to monitor system behavior, analyze networks, and profile performance, directly in your Go applications.*  
 **Room:** Clubco Cashmere  
-**Tags:** Talk, Deep dive  
+**Tags:** Deep dive, Advanced  
 **Speaker:** Alban Crequy (Microsoft)  
 [LinkedIn](https://www.linkedin.com/in/albancrequy/) | [GitHub](https://github.com/alban)
 
@@ -59,7 +59,7 @@ Discover how Inspektor Gadget simplifies using this rich ecosystem of gadgets to
 While not diving too deep into any one area, we'll touch on key components, design decisions, and interesting behaviors developers might not be aware of.  
 Whether you're a language nerd or just curious how your code comes to life, there's something here for you. No prior compiler knowledge required.*  
 **Room:** Clubco Cashmere  
-**Tags:** Talk, Deep dive  
+**Tags:** Deep dive, Advanced  
 **Speaker:** Josef Podaný (Microsoft)  
 [LinkedIn](https://www.linkedin.com/in/josef-podany/) | [GitHub](https://github.com/jsfpdn)
 
@@ -68,7 +68,7 @@ Whether you're a language nerd or just curious how your code comes to life, ther
 ## 11:00 - 12:00
 **Memory scavenging in Go**  
 *The presentation will provide an in-depth exploration of memory scavenging in Go, focusing on its critical role within the garbage collection (GC) system.  
-We will examine the purpose of memory scavenging, how it helps in efficiently reclaiming heap memory, and the optimization techniques employed by Go’s garbage collector to balance memory usage.  
+We will examine the purpose of memory scavenging, how it helps in efficiently reclaiming heap memory, and the optimization techniques employed by Go's garbage collector to balance memory usage.  
 Attendees will gain a comprehensive understanding of Go's memory management and how scavenging plays a vital role in optimizing memory retention and system performance.*  
 **Room:** Clubco Event space  
 **Tags:** Talk, Expert  
@@ -88,8 +88,8 @@ Whether you're looking to make new connections or catch up with old friends, thi
 ## 13:00 - 13:30
 **Better testing with testcontainers**  
 *Go has great support and tooling for writing unit tests. But what to do when unit tests are not enough?  
-Let’s take a look at how testcontainers can help us write tests requiring more complicated setup.  
-We’ll go through integration testing external services and databases and test performance tuning.*  
+Let's take a look at how testcontainers can help us write tests requiring more complicated setup.  
+We'll go through integration testing external services and databases and test performance tuning.*  
 **Room:** Clubco Event space  
 **Tags:** Talk, Intermediate  
 **Speaker:** Michal Bradáč (Oddin.gg)  
@@ -134,6 +134,17 @@ I'll show you how to write your own CLI util and how to easily distribute it acr
 
 ---
 
+## 15:00 - 17:30
+**Let's build your own OpenTofu provider**  
+*In this workshop, I'll guide you through the fundamentals of provider development, culminating in building a minimalistic but functional provider with custom logic.  
+I'll highlight various features of the relevant SDKs and frameworks.*  
+**Room:** Clubco Cashmere  
+**Tags:** Workshop, Advanced  
+**Speaker:** Konstantin Ignatov  
+[LinkedIn](https://www.linkedin.com/in/work-of-kpp/) | [GitHub](https://github.com/code-of-kpp)
+
+---
+
 ## 15:30 - 16:00
 **Living in a container**  
 *In this session, we are going to build an app in a container, and take a deeper look at namespaces, syscalls, and channels.*  
@@ -166,8 +177,14 @@ After this talk, you will have an overview of runtime tracing in Go, so that you
 ---
 
 ## 17:00 - 17:30
-**Working with webrpc**  
-*Creating web-first REST APIs with chi and webrpc.*  
+**Building scalable REST APIs with chi and webrpc**  
+*Building and maintaining APIs is often a complex and time-consuming process.  
+Developers need to manage RESTful endpoints, handle JSON serialization, maintain client libraries, and ensure backward compatibility while keeping API documentation up to date.  
+webrpc offers a streamlined alternative—a lightweight schema and code-generation tool that simplifies API development.  
+With webrpc, developers can define APIs and generate strongly-typed clients and servers in Go, TypeScript, Kotlin, Dart, and even OpenAPI documentation.  
+At its core, webrpc uses Go templates for code generation, making it highly flexible and easy to customize.  
+In this talk, we'll explore the motivation behind webrpc, how it differs from traditional REST and gRPC approaches, and the advantages of its simple, declarative API definitions.  
+Through a real-world example, we'll demonstrate how webrpc can improve developer productivity, reduce boilerplate, and enable seamless client-server communication.*  
 **Room:** Clubco Event space  
 **Tags:** Talk, Intermediate  
 **Speaker:** Vojtěch Vítek (Golang.cz)  
@@ -182,3 +199,12 @@ After this talk, you will have an overview of runtime tracing in Go, so that you
 **Tags:** Lightning talk, Introductory and overview  
 **Speaker:** Jakub Coufal (Microsoft)  
 [LinkedIn](https://linkedin.com/in/coufalja) | [GitHub](https://github.com/coufalja)
+
+---
+
+## 18:15 - 23:30
+**Afterparty**  
+*Join us for the Gophercamp 2025 afterparty! Celebrate the end of an amazing conference with fellow attendees and speakers.  
+Enjoy food, drinks, and great conversations as we reflect on the insights and connections made during the event.  
+Don't miss this opportunity to unwind and network in a relaxed atmosphere. We look forward to seeing you there!*  
+**Room:** Charlies Square pub
