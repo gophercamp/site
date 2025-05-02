@@ -70,17 +70,13 @@ languages:
         - images/logos/gopher.png
       themes:
         event:
-          slogan: Meet your fellow Gophers!
+          slogan: Thank you!
           location: Brno, Czech Republic
           description: |
-            Join the first Golang conference in Czech Republic
+            Thank you for making the first Golang conference in Czech Republic a success!
             - Friday, April 25, 2025
-            - 10 talks, workshops, networking sessions
-            - 100 attendees
-            
-            There will be a full day [workshop](/sessions/full-day-workshop-ultimate-software-design-and-engineering-requires-a-separate-ticket-1/) on the day before the conference. 
-            - Thursday, April 24, 2025
-            - [Tickets sold separately](https://goout.net/en/full-day-workshop-ultimate-software-design-and-engineering/szlkurx/)
+            - 17 speakers
+            - Over 100 attendees
           directions: |
             ### To the main event
             The address is Clubco, Vlněna 5, 602 00 Brno, Czech Republic.
@@ -105,8 +101,8 @@ params:
       title: Gophercamp 2025
       location: Brno, Czech Republic
       shortTitle: Gophercamp
-      startDate: 2025-04-25
-      endDate: 2025-04-25
+#      startDate: 2025-04-25
+#      endDate: 2025-04-25
       address:
       - Clubco, Business park Vlněna
       - Vlněna 5
@@ -151,11 +147,11 @@ params:
         facebookUrl: https://www.facebook.com/GolangBrno
         linkedinUrl:
       callToAction:
-        eventbrite:
-          # 👇 Get your Eventbrite event ID from the URL of your event page
-          # 👇 and enter it here.
-          eventId:
-        other:
-          cfp: https://docs.google.com/forms/d/e/1FAIpQLSdZBpdABHEapQYfEOF14PNTr4ckcnJqQF-qAYfHcbtBsLy2FA/viewform?usp=dialog
-          url: https://goout.net/en/gophercamp-konference/szkkoqx/
+#        eventbrite:
+#          # 👇 Get your Eventbrite event ID from the URL of your event page
+#          # 👇 and enter it here.
+#          eventId:
+#        other:
+#          cfp: https://docs.google.com/forms/d/e/1FAIpQLSdZBpdABHEapQYfEOF14PNTr4ckcnJqQF-qAYfHcbtBsLy2FA/viewform?usp=dialog
+#          url: https://goout.net/en/gophercamp-konference/szkkoqx/
         enableBanner: false

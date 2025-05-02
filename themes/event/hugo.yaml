@@ -52,8 +52,6 @@ params:
             # 👇 your event title is very long. The short title may be used in
             # 👇 places where space is limited, such as on mobile devices or in the header menu.
             shortTitle:
-            startDate: 2026-06-01
-            endDate: 2026-06-03
             location: City, Country
             address:
                 - Building
