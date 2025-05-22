@@ -74,9 +74,12 @@ languages:
           location: Brno, Czech Republic
           description: |
             Thank you for making the first Golang conference in Czech Republic a success!
-            - Friday, April 25, 2025
-            - 17 speakers
-            - Over 100 attendees
+            
+            We are not stopping there and already planning Gophercamp 2026 - 24.4.2026. 
+            
+            In meanwhile videos captured from the main stage are available on https://www.youtube.com/@gophercamp
+            
+            If you would like to stay in touch follow us on https://www.facebook.com/GolangBrno and https://www.meetup.com/golang-brno/
           directions: |
             ### To the main event
             The address is Clubco, Vlněna 5, 602 00 Brno, Czech Republic.
