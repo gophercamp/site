@@ -38,8 +38,8 @@ export default function Button({
   // Variant classes
   const variantClasses = {
     primary: 'bg-go-blue hover:bg-go-blue-dark text-white border border-transparent',
-    secondary: 'bg-white hover:bg-gray-100 text-go-black border border-gray-200',
-    outline: 'bg-transparent hover:bg-gray-100 text-go-blue border border-go-blue',
+    secondary: 'bg-primary hover-bg-opacity-90 text-primary border border-primary',
+    outline: 'bg-transparent hover:bg-secondary text-go-blue border border-go-blue',
   };
   
   // Disabled classes

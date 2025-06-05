@@ -9,34 +9,34 @@ export default function Footer() {
   const socialLinks = getFooterSocialLinks();
   
   return (
-    <footer className="bg-gray-50 border-t border-gray-100 py-12">
+    <footer className="bg-secondary border-t border-primary py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-go-black text-lg mb-4">Gophercamp 2026</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="font-bold text-primary text-lg mb-4">Gophercamp 2026</h3>
+            <p className="text-secondary mb-4">
               The Go programming language conference in the Czech Republic.
             </p>
-            <p className="text-gray-600">
+            <p className="text-secondary">
               April 24, 2026 • {contactInfo.location}
             </p>
           </div>
           
           <div>
-            <h3 className="font-bold text-go-black text-lg mb-4">Links</h3>
+            <h3 className="font-bold text-primary text-lg mb-4">Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#about" className="text-gray-600 hover:text-go-blue transition-colors">
+                <Link href="#about" className="text-secondary hover:text-go-blue transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/code-of-conduct" className="text-gray-600 hover:text-go-blue transition-colors">
+                <Link href="/code-of-conduct" className="text-secondary hover:text-go-blue transition-colors">
                   Code of Conduct
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-600 hover:text-go-blue transition-colors">
+                <Link href="/privacy" className="text-secondary hover:text-go-blue transition-colors">
                   Privacy Policy
                 </Link>
               </li>
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-bold text-go-black text-lg mb-4">Connect</h3>
+            <h3 className="font-bold text-primary text-lg mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
@@ -54,7 +54,7 @@ export default function Footer() {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={`text-gray-500 transition-colors ${social.hoverColor}`}
+                    className={`text-secondary transition-colors ${social.hoverColor}`}
                     aria-label={social.ariaLabel}
                     onClick={() => trackSocialClick(social.trackingId)}
                   >
@@ -63,7 +63,7 @@ export default function Footer() {
                 );
               })}
             </div>
-            <p className="text-gray-600">
+            <p className="text-secondary">
               Email: <a 
                 href={`mailto:${contactInfo.email}`} 
                 className="text-go-blue hover:text-go-blue-dark"
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500 text-sm">
+        <div className="border-t border-primary mt-8 pt-8 text-center text-secondary text-sm">
           <p>© {currentYear} Gophercamp. All rights reserved.</p>
         </div>
       </div>

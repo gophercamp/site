@@ -70,10 +70,10 @@ export default function NewsletterSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-3xl mx-auto"
         >
-          <div className="bg-white rounded-lg p-8 md:p-12 shadow-lg">
+          <div className="bg-primary rounded-lg p-8 md:p-12 shadow-lg">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-go-black mb-4">Stay Informed</h2>
-              <p className="text-gray-600">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Stay Informed</h2>
+              <p className="text-secondary">
                 Sign up for updates about Gophercamp 2026 including speaker announcements,
                 ticket sales, and more.
               </p>
@@ -86,7 +86,7 @@ export default function NewsletterSection() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-go-blue focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-md border border-primary bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-go-blue focus:border-transparent"
                   disabled={isSubmitting || isSubmitted}
                 />
                 
@@ -117,15 +117,15 @@ export default function NewsletterSection() {
                 </motion.p>
               )}
               
-              <p className="text-gray-500 text-xs mt-4 text-center">
+              <p className="text-secondary text-xs mt-4 text-center">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </form>
             
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
-                <h3 className="font-bold text-lg mb-2 text-go-black">Contact Us</h3>
-                <p className="text-gray-600">
+                <h3 className="font-bold text-lg mb-2 text-primary">Contact Us</h3>
+                <p className="text-secondary">
                   <a 
                     href={`mailto:${contactInfo.email}`} 
                     className="text-go-blue hover:text-go-blue-dark"
@@ -137,8 +137,8 @@ export default function NewsletterSection() {
               </div>
               
               <div>
-                <h3 className="font-bold text-lg mb-2 text-go-black">Follow Us</h3>
-                <p className="text-gray-600">
+                <h3 className="font-bold text-lg mb-2 text-primary">Follow Us</h3>
+                <p className="text-secondary">
                   Stay connected on 
                   <a 
                     href={xLink?.url} 
@@ -153,8 +153,8 @@ export default function NewsletterSection() {
               </div>
               
               <div>
-                <h3 className="font-bold text-lg mb-2 text-go-black">Location</h3>
-                <p className="text-gray-600">{contactInfo.location}</p>
+                <h3 className="font-bold text-lg mb-2 text-primary">Location</h3>
+                <p className="text-secondary">{contactInfo.location}</p>
               </div>
             </div>
           </div>

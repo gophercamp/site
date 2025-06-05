@@ -70,7 +70,7 @@ export default function BackgroundSlideshow({
             }}
           />
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 overlay-background" />
         </motion.div>
       </AnimatePresence>
     </div>

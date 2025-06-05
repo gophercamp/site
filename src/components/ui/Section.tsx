@@ -13,7 +13,7 @@ export interface SectionProps {
 export default function Section({ title, children }: SectionProps) {
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">{title}</h2>
+      <h2 className="text-2xl font-bold text-primary mb-4">{title}</h2>
       {children}
     </section>
   );

@@ -4,6 +4,7 @@ import Analytics from "@/components/Analytics";
 import PageTracker from "@/components/PageTracker";
 import "./globals.css";
 import DefaultLayout from "@/components/layout/DefaultLayout";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -50,15 +51,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${robotoMono.variable} font-sans antialiased bg-gray-50 text-go-black`}
+        className={`${inter.variable} ${robotoMono.variable} font-sans antialiased bg-primary text-primary`}
       >
-        <Analytics />
-        <PageTracker />
-        <DefaultLayout>
-          {children}
-        </DefaultLayout>
+        <ThemeProvider>
+          <Analytics />
+          <PageTracker />
+          <DefaultLayout>
+            {children}
+          </DefaultLayout>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -19,22 +19,22 @@ export default function InfoBox({
 }: InfoBoxProps) {
   const variantStyles = {
     default: {
-      bg: 'bg-gray-50',
-      border: 'border-gray-200',
-      titleColor: 'text-gray-800',
-      textColor: 'text-gray-700'
+      bg: 'infobox-bg-default',
+      border: 'infobox-border-default',
+      titleColor: 'infobox-title-default',
+      textColor: 'infobox-text-default'
     },
     info: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      titleColor: 'text-blue-800',
-      textColor: 'text-blue-700'
+      bg: 'infobox-bg-info',
+      border: 'infobox-border-info',
+      titleColor: 'infobox-title-info',
+      textColor: 'infobox-text-info'
     },
     warning: {
-      bg: 'bg-red-50',
-      border: 'border-red-200',
-      titleColor: 'text-red-800',
-      textColor: 'text-red-700'
+      bg: 'infobox-bg-warning',
+      border: 'infobox-border-warning',
+      titleColor: 'infobox-title-warning',
+      textColor: 'infobox-text-warning'
     }
   };
   

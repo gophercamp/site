@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import { trackSocialClick } from '@/lib/analytics';
 import { getHeaderSocialLinks } from '@/lib/social';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Header() {
   const socialLinks = getHeaderSocialLinks();
   
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-primary-90 backdrop-blur-sm border-b border-primary">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-mono font-bold text-go-blue text-xl md:text-2xl">
@@ -17,6 +18,8 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
+          
           {socialLinks.map((social) => {
             const IconComponent = social.icon;
             return (
@@ -25,7 +28,7 @@ export default function Header() {
                 href={social.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`text-gray-500 transition-colors p-1 ${social.hoverColor}`}
+                className={`text-secondary transition-colors p-1 ${social.hoverColor}`}
                 aria-label={social.ariaLabel}
                 onClick={() => trackSocialClick(social.trackingId)}
               >
@@ -33,13 +36,6 @@ export default function Header() {
               </a>
             );
           })}
-          <a 
-            href="#newsletter" 
-            className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-go-blue hover:bg-go-blue-dark text-white rounded-md transition-all duration-200 text-xs md:text-sm font-medium shadow-md hover:shadow-lg"
-          >
-            <span className="hidden sm:inline">Stay Informed</span>
-            <span className="sm:hidden">News</span>
-          </a>
         </div>
       </div>
     </header>

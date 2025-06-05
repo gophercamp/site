@@ -57,7 +57,7 @@ export default function HeroSection() {
           {/* Previous/Next arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-auto"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 button-overlay-bg button-overlay-hover-bg text-white p-3 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-auto"
             aria-label="Previous image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export default function HeroSection() {
           
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-auto"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 button-overlay-bg button-overlay-hover-bg text-white p-3 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-auto"
             aria-label="Next image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ export default function HeroSection() {
                 className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer pointer-events-auto ${
                   index === currentIndex 
                     ? 'bg-white scale-125' 
-                    : 'bg-white/50 hover:bg-white/75'
+                    : 'bg-white-50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -130,19 +130,19 @@ export default function HeroSection() {
             </h2>
             
             <div className="flex flex-col md:flex-row gap-4 mb-10">
-              <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20 shadow-lg">
+              <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-go-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span className="font-medium text-go-black">April 24, 2026</span>
+                <span className="font-medium text-primary">April 24, 2026</span>
               </div>
               
-              <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20 shadow-lg">
+              <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-go-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="font-medium text-go-black">Brno, Czech Republic</span>
+                <span className="font-medium text-primary">Brno, Czech Republic</span>
               </div>
             </div>
             
@@ -177,7 +177,7 @@ export default function HeroSection() {
                 href={primarySocial.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="absolute inset-0 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-xl hover:bg-white/25 transition-all duration-300 hover:scale-105 group"
+                className="absolute inset-0 rounded-full bg-white-20 backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 group"
                 onClick={() => trackSocialClick(primarySocial.trackingId)}
               >
                 <div className="text-center px-4">
