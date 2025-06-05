@@ -11,6 +11,8 @@ This is the official website for Gophercamp 2026, the Go conference in Czech Rep
 
 ## Getting Started
 
+### Local Development
+
 First, run the development server:
 
 ```bash
@@ -18,6 +20,16 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### GitHub Codespaces
+
+This repository includes a devcontainer configuration, allowing you to develop directly in GitHub Codespaces:
+
+1. Click the "Code" button on the GitHub repository
+2. Select the "Codespaces" tab
+3. Click "Create codespace on main"
+
+Once the Codespace is ready, the development environment will be fully configured with all necessary tools and dependencies.
 
 ## Project Structure
 
