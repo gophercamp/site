@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { FaTwitter, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { trackSocialClick, trackContactClick } from '@/lib/analytics';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -50,6 +51,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-go-blue transition-colors"
                 aria-label="Follow us on Twitter"
+                onClick={() => trackSocialClick('twitter')}
               >
                 <FaTwitter size={24} />
               </a>
@@ -59,6 +61,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-go-blue transition-colors"
                 aria-label="Follow us on GitHub"
+                onClick={() => trackSocialClick('github')}
               >
                 <FaGithub size={24} />
               </a>
@@ -68,6 +71,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-go-blue transition-colors"
                 aria-label="Follow us on LinkedIn"
+                onClick={() => trackSocialClick('linkedin')}
               >
                 <FaLinkedin size={24} />
               </a>
@@ -77,12 +81,19 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-go-blue transition-colors"
                 aria-label="Follow us on Facebook"
+                onClick={() => trackSocialClick('facebook')}
               >
                 <FaFacebook size={24} />
               </a>
             </div>
             <p className="text-gray-600">
-              Email: <a href="mailto:info@gophercamp.cz" className="text-go-blue hover:text-go-blue-dark">info@gophercamp.cz</a>
+              Email: <a 
+                href="mailto:info@gophercamp.cz" 
+                className="text-go-blue hover:text-go-blue-dark"
+                onClick={() => trackContactClick('email')}
+              >
+                info@gophercamp.cz
+              </a>
             </p>
           </div>
         </div>

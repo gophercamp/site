@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { trackSocialClick } from '@/lib/analytics';
 
 export default function Header() {
   return (
@@ -20,6 +21,7 @@ export default function Header() {
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-go-blue transition-colors"
             aria-label="Follow us on Twitter"
+            onClick={() => trackSocialClick('twitter')}
           >
             <FaTwitter size={20} />
           </a>
@@ -29,6 +31,7 @@ export default function Header() {
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-go-blue transition-colors"
             aria-label="Follow us on GitHub"
+            onClick={() => trackSocialClick('github')}
           >
             <FaGithub size={20} />
           </a>

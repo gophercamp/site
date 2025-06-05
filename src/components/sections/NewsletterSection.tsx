@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { validateEmail, subscribeToNewsletter } from '@/lib/forms';
+import { trackNewsletterSignup, trackContactClick, trackSocialClick } from '@/lib/analytics';
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,10 @@ export default function NewsletterSection() {
       if (result.success) {
         setIsSubmitted(true);
         setSuccessMessage(result.message);
+        
+        // Track successful newsletter signup
+        trackNewsletterSignup(email);
+        
         setEmail('');
         
         // Reset success message after some time
@@ -119,7 +124,11 @@ export default function NewsletterSection() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-go-black">Contact Us</h3>
                 <p className="text-gray-600">
-                  <a href="mailto:info@gophercamp.cz" className="text-go-blue hover:text-go-blue-dark">
+                  <a 
+                    href="mailto:info@gophercamp.cz" 
+                    className="text-go-blue hover:text-go-blue-dark"
+                    onClick={() => trackContactClick('email')}
+                  >
                     info@gophercamp.cz
                   </a>
                 </p>
@@ -129,7 +138,13 @@ export default function NewsletterSection() {
                 <h3 className="font-bold text-lg mb-2 text-go-black">Follow Us</h3>
                 <p className="text-gray-600">
                   Stay connected on 
-                  <a href="https://twitter.com/gophercamp" target="_blank" rel="noopener noreferrer" className="text-go-blue hover:text-go-blue-dark ml-1">
+                  <a 
+                    href="https://twitter.com/gophercamp" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-go-blue hover:text-go-blue-dark ml-1"
+                    onClick={() => trackSocialClick('twitter')}
+                  >
                     Twitter
                   </a>
                 </p>

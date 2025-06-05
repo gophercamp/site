@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
+import Analytics from "@/components/Analytics";
+import PageTracker from "@/components/PageTracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -50,6 +52,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${robotoMono.variable} font-sans antialiased bg-gray-50 text-go-black`}
       >
+        <Analytics />
+        <PageTracker />
         {children}
       </body>
     </html>

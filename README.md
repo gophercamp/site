@@ -7,6 +7,7 @@ This is the official website for Gophercamp 2026, the Go conference in Czech Rep
 - **Framework**: [Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 - **Language**: [TypeScript](https://www.typescriptlang.org/) - For type-safe code
+- **Analytics**: [Google Analytics 4](https://analytics.google.com/) - Privacy-first analytics with custom event tracking
 - **Deployment**: [Netlify](https://netlify.com/) - For continuous deployment and hosting
 
 ## Getting Started
@@ -71,6 +72,20 @@ The landing page includes:
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Lint code
+
+## Configuration
+
+### Environment Variables
+
+Create a `.env.local` file for local development:
+
+```bash
+# Google Analytics (optional)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_ANALYTICS_ENABLED=false
+```
+
+For detailed analytics setup, see [ANALYTICS.md](./ANALYTICS.md).
 
 ## Deployment
 
