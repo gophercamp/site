@@ -1,11 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { FaTwitter, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
 import { trackSocialClick, trackContactClick } from '@/lib/analytics';
+import { getFooterSocialLinks, contactInfo } from '@/lib/social';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const socialLinks = getFooterSocialLinks();
   
   return (
     <footer className="bg-gray-50 border-t border-gray-100 py-12">
@@ -17,7 +18,7 @@ export default function Footer() {
               The premier Go programming language conference in the Czech Republic.
             </p>
             <p className="text-gray-600">
-              April 24, 2026 • Prague, Czech Republic
+              April 24, 2026 • {contactInfo.location}
             </p>
           </div>
           
@@ -45,54 +46,30 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-go-black text-lg mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
-              <a 
-                href="https://twitter.com/gophercamp" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-go-blue transition-colors"
-                aria-label="Follow us on Twitter"
-                onClick={() => trackSocialClick('twitter')}
-              >
-                <FaTwitter size={24} />
-              </a>
-              <a 
-                href="https://github.com/gophercamp" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-go-blue transition-colors"
-                aria-label="Follow us on GitHub"
-                onClick={() => trackSocialClick('github')}
-              >
-                <FaGithub size={24} />
-              </a>
-              <a 
-                href="https://linkedin.com/company/gophercamp" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-go-blue transition-colors"
-                aria-label="Follow us on LinkedIn"
-                onClick={() => trackSocialClick('linkedin')}
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a 
-                href="https://facebook.com/GolangBrno" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-go-blue transition-colors"
-                aria-label="Follow us on Facebook"
-                onClick={() => trackSocialClick('facebook')}
-              >
-                <FaFacebook size={24} />
-              </a>
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a 
+                    key={social.id}
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`text-gray-500 transition-colors ${social.hoverColor}`}
+                    aria-label={social.ariaLabel}
+                    onClick={() => trackSocialClick(social.trackingId)}
+                  >
+                    <IconComponent size={24} />
+                  </a>
+                );
+              })}
             </div>
             <p className="text-gray-600">
               Email: <a 
-                href="mailto:info@gophercamp.cz" 
+                href={`mailto:${contactInfo.email}`} 
                 className="text-go-blue hover:text-go-blue-dark"
                 onClick={() => trackContactClick('email')}
               >
-                info@gophercamp.cz
+                {contactInfo.email}
               </a>
             </p>
           </div>

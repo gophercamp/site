@@ -5,8 +5,10 @@ import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { validateEmail, subscribeToNewsletter } from '@/lib/forms';
 import { trackNewsletterSignup, trackContactClick, trackSocialClick } from '@/lib/analytics';
+import { contactInfo, getSocialLink } from '@/lib/social';
 
 export default function NewsletterSection() {
+  const xLink = getSocialLink('x');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -125,11 +127,11 @@ export default function NewsletterSection() {
                 <h3 className="font-bold text-lg mb-2 text-go-black">Contact Us</h3>
                 <p className="text-gray-600">
                   <a 
-                    href="mailto:info@gophercamp.cz" 
+                    href={`mailto:${contactInfo.email}`} 
                     className="text-go-blue hover:text-go-blue-dark"
                     onClick={() => trackContactClick('email')}
                   >
-                    info@gophercamp.cz
+                    {contactInfo.email}
                   </a>
                 </p>
               </div>
@@ -139,20 +141,20 @@ export default function NewsletterSection() {
                 <p className="text-gray-600">
                   Stay connected on 
                   <a 
-                    href="https://twitter.com/gophercamp" 
+                    href={xLink?.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-go-blue hover:text-go-blue-dark ml-1"
-                    onClick={() => trackSocialClick('twitter')}
+                    onClick={() => trackSocialClick(xLink?.trackingId || 'x')}
                   >
-                    Twitter
+                    X
                   </a>
                 </p>
               </div>
               
               <div>
                 <h3 className="font-bold text-lg mb-2 text-go-black">Location</h3>
-                <p className="text-gray-600">Prague, Czech Republic</p>
+                <p className="text-gray-600">{contactInfo.location}</p>
               </div>
             </div>
           </div>

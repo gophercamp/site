@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { contactInfo } from '@/lib/social';
 
 export const metadata: Metadata = {
   title: 'Code of Conduct | Gophercamp 2026',
@@ -92,7 +93,7 @@ export default function CodeOfConductPage() {
                 If you experience or witness unacceptable behavior, please immediately report it to:
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                <p><strong>Email:</strong> conduct@gophercamp.cz</p>
+                <p><strong>Email:</strong> {contactInfo.conduct}</p>
                 <p><strong>Phone:</strong> [Emergency contact number]</p>
                 <p className="mt-2 text-sm text-blue-700">
                   Reports can be made anonymously if preferred
@@ -151,7 +152,7 @@ export default function CodeOfConductPage() {
               <p>
                 We are committed to making Gophercamp 2026 accessible to all participants. 
                 If you have specific accessibility needs, please contact us at 
-                <strong> accessibility@gophercamp.cz</strong> so we can ensure your 
+                <strong> {contactInfo.accessibility}</strong> so we can ensure your 
                 full participation in the conference.
               </p>
             </section>
@@ -176,7 +177,7 @@ export default function CodeOfConductPage() {
               <p>
                 If you have questions about this Code of Conduct or need clarification on 
                 any policies, please don&apos;t hesitate to contact the organizing committee at 
-                <strong> conduct@gophercamp.cz</strong>.
+                <strong> {contactInfo.conduct}</strong>.
               </p>
             </section>
 

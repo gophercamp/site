@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { contactInfo } from '@/lib/social';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Gophercamp 2026',
@@ -137,8 +138,8 @@ export default function PrivacyPage() {
                 If you have any questions about this Privacy Policy or our privacy practices, please contact us:
               </p>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>Email:</strong> privacy@gophercamp.cz</p>
-                <p><strong>Address:</strong> Gophercamp 2026 Organizing Committee</p>
+                <p><strong>Email:</strong> {contactInfo.privacy}</p>
+                <p><strong>Address:</strong> Gophercamp 2026 Organizing Committee, {contactInfo.location}</p>
               </div>
             </section>
           </div>

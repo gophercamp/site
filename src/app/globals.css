@@ -5,7 +5,25 @@
   --go-blue-light: #5DC9E2;
   --go-blue-dark: #007D9C;
   --go-blue-darker: #00526A;
+  --go-black: #2E2E2E;
 }
+
+/* Ensure custom colors are available as CSS classes */
+.bg-go-blue { background-color: var(--go-blue) !important; }
+.bg-go-blue-dark { background-color: var(--go-blue-dark) !important; }
+.bg-go-blue-light { background-color: var(--go-blue-light) !important; }
+.bg-go-blue-darker { background-color: var(--go-blue-darker) !important; }
+.text-go-blue { color: var(--go-blue) !important; }
+.text-go-blue-dark { color: var(--go-blue-dark) !important; }
+.text-go-black { color: var(--go-black) !important; }
+.border-go-blue { border-color: var(--go-blue) !important; }
+.border-go-blue-dark { border-color: var(--go-blue-dark) !important; }
+
+/* Background with opacity variations */
+.bg-go-blue\/10 { background-color: rgba(0, 173, 216, 0.1) !important; }
+.bg-go-blue\/5 { background-color: rgba(0, 173, 216, 0.05) !important; }
+.bg-go-blue\/20 { background-color: rgba(0, 173, 216, 0.2) !important; }
+.border-go-blue\/10 { border-color: rgba(0, 173, 216, 0.1) !important; }
 
 /* Smooth scrolling */
 html {
@@ -47,3 +65,10 @@ a:focus {
 section {
   transition: background-color 0.3s ease;
 }
+
+/* Social media hover colors - ensure they're always available */
+.social-x:hover { color: #000000 !important; }
+.social-youtube:hover { color: #dc2626 !important; } /* red-600 */
+.social-github:hover { color: #9333ea !important; } /* purple-600 */
+.social-linkedin:hover { color: #2563eb !important; } /* blue-600 */
+.social-facebook:hover { color: #3b82f6 !important; } /* blue-500 */

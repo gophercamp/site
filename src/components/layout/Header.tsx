@@ -1,10 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
 import { trackSocialClick } from '@/lib/analytics';
+import { getHeaderSocialLinks } from '@/lib/social';
 
 export default function Header() {
+  const socialLinks = getHeaderSocialLinks();
+  
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -14,32 +16,29 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-4">
-          <a 
-            href="https://twitter.com/gophercamp" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-go-blue transition-colors"
-            aria-label="Follow us on Twitter"
-            onClick={() => trackSocialClick('twitter')}
-          >
-            <FaTwitter size={20} />
-          </a>
-          <a 
-            href="https://github.com/gophercamp" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-go-blue transition-colors"
-            aria-label="Follow us on GitHub"
-            onClick={() => trackSocialClick('github')}
-          >
-            <FaGithub size={20} />
-          </a>
+        <div className="flex items-center gap-3">
+          {socialLinks.map((social) => {
+            const IconComponent = social.icon;
+            return (
+              <a 
+                key={social.id}
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`text-gray-500 transition-colors p-1 ${social.hoverColor}`}
+                aria-label={social.ariaLabel}
+                onClick={() => trackSocialClick(social.trackingId)}
+              >
+                <IconComponent size={18} className="md:w-5 md:h-5" />
+              </a>
+            );
+          })}
           <a 
             href="#newsletter" 
-            className="hidden md:inline-flex items-center px-4 py-2 bg-go-blue hover:bg-go-blue-dark text-white rounded-md transition-colors text-sm font-medium"
+            className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-go-blue hover:bg-go-blue-dark text-white rounded-md transition-all duration-200 text-xs md:text-sm font-medium shadow-md hover:shadow-lg"
           >
-            Stay Informed
+            <span className="hidden sm:inline">Stay Informed</span>
+            <span className="sm:hidden">News</span>
           </a>
         </div>
       </div>
