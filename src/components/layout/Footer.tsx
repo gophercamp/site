@@ -29,12 +29,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-go-blue transition-colors">
+                <Link href="/code-of-conduct" className="text-gray-600 hover:text-go-blue transition-colors">
                   Code of Conduct
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-go-blue transition-colors">
+                <Link href="/privacy" className="text-gray-600 hover:text-go-blue transition-colors">
                   Privacy Policy
                 </Link>
               </li>
