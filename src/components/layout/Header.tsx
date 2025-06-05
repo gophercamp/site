@@ -1,7 +1,6 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaGithub, FaTwitter } from 'react-icons/fa';
 
 export default function Header() {

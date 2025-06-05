@@ -20,8 +20,8 @@ export const validateEmail = (email: string): boolean => {
  * @param email Email address to subscribe
  * @returns Promise that resolves after a simulated delay
  */
-export const subscribeToNewsletter = async (email: string): Promise<{ success: boolean; message: string }> => {
-  // This is a simulation - in production, you'd call an actual API
+export const subscribeToNewsletter = async (/* email */): Promise<{ success: boolean; message: string }> => {
+  // This is a simulation - in production, you'd call an actual API with the email parameter
   return new Promise((resolve) => {
     setTimeout(() => {
       // Simulate successful subscription (always succeeds in this mock)

@@ -86,7 +86,7 @@ export default function AboutSection() {
             <h3 className="text-2xl font-bold text-go-black mb-4">Past Success</h3>
             <p className="text-gray-600 mb-4">
               Following the tremendous success of Gophercamp 2025, the first Go conference in the Czech Republic, 
-              we're excited to bring you an even more engaging experience in 2026.
+              we&apos;re excited to bring you an even more engaging experience in 2026.
             </p>
             <p className="text-gray-600">
               Stay tuned for announcements about keynote speakers, agenda, and early bird ticket opportunities.

@@ -9,6 +9,9 @@ This is the official Gophercamp 2026 website built with Next.js, TypeScript, and
 - Use 'use client' directive for client-side components
 - Maintain accessibility (WCAG) compliance
 - Keep components modular and reusable
+- Ensure code passes ESLint validation (run `npm run lint` before committing)
+- Use descriptive variable and function names
+- Comment complex logic and use JSDoc for exported functions
 
 ## Architecture
 - App Router structure (Next.js 14+)

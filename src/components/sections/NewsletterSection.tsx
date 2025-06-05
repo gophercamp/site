@@ -46,7 +46,7 @@ export default function NewsletterSection() {
       } else {
         setError('Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
