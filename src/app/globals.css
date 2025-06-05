@@ -195,6 +195,25 @@ section {
 .hover-bg-opacity-80:hover { background-color: rgba(var(--bg-primary-rgb), var(--bg-opacity-80)) !important; }
 .hover-bg-opacity-90:hover { background-color: rgba(var(--bg-primary-rgb), var(--bg-opacity-90)) !important; }
 
+/* Theme menu animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+.theme-menu-enter {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.theme-menu-exit {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
 .infobox-bg-info { background-color: var(--infobox-bg-info) !important; }
 .infobox-border-info { border-color: var(--infobox-border-info) !important; }
 .infobox-title-info { color: var(--infobox-title-info) !important; }

@@ -18,8 +18,6 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
-          
           {socialLinks.map((social) => {
             const IconComponent = social.icon;
             return (
@@ -36,6 +34,7 @@ export default function Header() {
               </a>
             );
           })}
+          <ThemeToggle />
         </div>
       </div>
     </header>
