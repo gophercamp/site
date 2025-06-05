@@ -7,7 +7,8 @@ import {
   FaGithub, 
   FaYoutube, 
   FaLinkedin, 
-  FaFacebook
+  FaFacebook,
+  FaMeetup
 } from 'react-icons/fa6';
 
 export interface SocialLink {
@@ -77,6 +78,15 @@ export const socialLinks: SocialLink[] = [
     ariaLabel: 'Follow us on Facebook',
     hoverColor: 'social-facebook', // Custom CSS class for Facebook hover
     trackingId: 'facebook'
+  },
+  {
+    id: 'meetup',
+    name: 'Meetup',
+    url: 'https://www.meetup.com/golang-brno/',
+    icon: FaMeetup,
+    ariaLabel: 'Join our Golang Brno Meetup group',
+    hoverColor: 'social-meetup', // Custom CSS class for Meetup hover
+    trackingId: 'meetup'
   }
 ];
 
@@ -95,7 +105,7 @@ export const contactInfo: ContactInfo = {
  * Get social links for header (subset of all links)
  */
 export function getHeaderSocialLinks(): SocialLink[] {
-  return socialLinks.filter(link => ['x', 'youtube', 'github'].includes(link.id));
+  return socialLinks.filter(link => ['x', 'youtube', 'github', 'meetup'].includes(link.id));
 }
 
 /**

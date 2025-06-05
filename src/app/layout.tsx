@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import Analytics from "@/components/Analytics";
 import PageTracker from "@/components/PageTracker";
 import "./globals.css";
+import DefaultLayout from "@/components/layout/DefaultLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,7 +55,9 @@ export default function RootLayout({
       >
         <Analytics />
         <PageTracker />
-        {children}
+        <DefaultLayout>
+          {children}
+        </DefaultLayout>
       </body>
     </html>
   );
