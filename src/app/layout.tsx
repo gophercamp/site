@@ -17,6 +17,7 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "Gophercamp 2026 | The Go Conference in Czech Republic",
+  metadataBase: new URL("https://gophercamp.cz"),
   description: "Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.",
   keywords: ["Go", "Golang", "Conference", "Gophercamp", "Czech Republic", "Prague", "Programming"],
   openGraph: {

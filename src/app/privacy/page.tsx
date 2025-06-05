@@ -4,7 +4,6 @@ import PolicyPage from '@/components/ui/PolicyPage';
 import Section from '@/components/ui/Section';
 import BulletList from '@/components/ui/BulletList';
 import InfoBox from '@/components/ui/InfoBox';
-import LeadText from '@/components/ui/LeadText';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Gophercamp 2026',
