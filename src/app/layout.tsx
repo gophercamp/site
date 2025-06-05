@@ -17,11 +17,11 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "Gophercamp 2026 | The Go Conference in Czech Republic",
-  description: "Join us for Gophercamp 2026, the premier Go programming language conference in Czech Republic on April 24, 2026.",
+  description: "Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.",
   keywords: ["Go", "Golang", "Conference", "Gophercamp", "Czech Republic", "Prague", "Programming"],
   openGraph: {
     title: "Gophercamp 2026 | The Go Conference in Czech Republic",
-    description: "Join us for Gophercamp 2026, the premier Go programming language conference in Czech Republic on April 24, 2026.",
+    description: "Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.",
     url: "https://gophercamp.cz",
     siteName: "Gophercamp 2026",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Gophercamp 2026 | The Go Conference in Czech Republic",
-    description: "Join us for Gophercamp 2026, the premier Go programming language conference in Czech Republic on April 24, 2026.",
+    description: "Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.",
     images: ["/images/og-image.png"],
   },
 };

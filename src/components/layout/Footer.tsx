@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-go-black text-lg mb-4">Gophercamp 2026</h3>
             <p className="text-gray-600 mb-4">
-              The premier Go programming language conference in the Czech Republic.
+              The Go programming language conference in the Czech Republic.
             </p>
             <p className="text-gray-600">
               April 24, 2026 • {contactInfo.location}
