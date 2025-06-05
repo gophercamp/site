@@ -1,113 +1,72 @@
-[![hugo](https://user-images.githubusercontent.com/43764894/223559747-e9d7f19d-91bf-46a9-a0cb-8d6a40d3cfa3.png)](https://ntl.fyi/3P9w1mr)
+# Gophercamp 2026 Website
 
-# Gophercamp 2025 site
-This is a static site for gophercamp.cz 2025 event.
+This is the official website for Gophercamp 2026, the Go conference in Czech Republic. The site is built using modern web technologies to provide a sleek, responsive experience for attendees and speakers.
 
-## Quick Setup + Deploy Option
+## Tech Stack
 
-Click this button and it will help you create a new repo, create a new Netlify project, and deploy!
+- **Framework**: [Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - For type-safe code
+- **Deployment**: [Netlify](https://netlify.com/) - For continuous deployment and hosting
 
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/hugo-quickstart)
+## Getting Started
 
-## Regular Setup
-
- ### 1. Cloning + Running Locally
-  - Clone this repo with one of these options:
-
-    - Click the 'Use this template' button at the top of the page
-    - Or via the command line `git clone https://github.com/netlify-templates/hugo-quickstart`
-
- - Start the Hugo sever & check it out:
-
-   - `hugo server -D`
-   - go to [http://localhost:1313/](http://localhost:1313/)
-
-  > Alternatively, you can run this locally with [the Netlify CLI](https://docs.netlify.com/cli/get-started/)'s by running the `netlify dev` command for more options like receiving a live preview to share (`netlify dev --live`) and the ability to test [Netlify Functions](https://www.netlify.com/products/functions) and [redirects](https://docs.netlify.com/routing/redirects/). 
-
-  ### 2. Deploying
-  - Install the Netlify CLI globally `npm install netlify-cli -g`
-    
-  - Run `hugo`
-
-  - Then use the `netlify deploy` for a deploy preview link or `netlify deploy --prod` to deploy to production
-
-  Here are a few other ways you can deploy this template:
-    
-  - Use the Netlify CLI's create from template command `netlify sites:create-template hugo-quickstart` which will create a repo, Netlify project, and deploy it
-    
-  - If you want to utilize continuous deployment through GitHub webhooks, run the Netlify command `netlify init` to create a new project based on your repo or `netlify link` to connect your repo to an existing project
-
-## Styling
-
-We've added some modern styling to this template using Sass within an external stylesheet, this will allow you to easily remove our styling and add in your own. 
-
-If you decide that you want to keep our styling you can review our style notes below. 
-
-### Notes on Styling
-
-The variables below give you the ability to change the gradient colors of the blobs and are interpolated into the URL string of the background-img within the body. 
-
-```css
-// Controls the blob blur gradient colors within the main tag's svg
---top-right-blur-1: #2ebc92;
---top-right-blur-2: #ecbb50;
---bttm-left-blur-1: #ff3e89;
---bttm-left-blur-2: #0095cc;
-```
-
-## Remove Styling
-
-If you decide that our styling is not for you, all you'll need to do is remove the [demo-styling.css](https://github.com/netlify-templates/hugo-quickstart/blob/main/themes/netlify-basic/static/css/demo-styling.css) file. 
-
-## Hugo + Netlify Resources
-
-Here are some resources to help you on your Hugo + Netlify coding fun!
-
-- [Hugo on Netlify Integration Page](https://ntl.fyi/3P9w1mr)
-
-
-Hope this template helps :) Happy coding 👩🏻‍💻!
-
----
-
-## Testing
-
-### Included Default Testing
-
-We’ve included some tooling that helps us maintain these templates. This template currently uses:
-
-- [Renovate](https://www.mend.io/free-developer-tools/renovate/) - to regularly update our dependencies
-- [Cypress](https://www.cypress.io/) - to run tests against how the template runs in the browser
-- [Cypress Netlify Build Plugin](https://github.com/cypress-io/netlify-plugin-cypress) - to run our tests during our build process
-
-If your team is not interested in this tooling, you can remove them with ease!
-
-### Removing Renovate
-
-In order to keep our project up-to-date with dependencies we use a tool called [Renovate](https://github.com/marketplace/renovate). If you’re not interested in this tooling, delete the `renovate.json` file and commit that onto your main branch.
-
-### Removing Cypress
-
-For our testing, we use [Cypress](https://www.cypress.io/) for end-to-end testing. This makes sure that we can validate that our templates are rendering and displaying as we’d expect. By default, we have Cypress not generate deploy links if our tests don’t pass. If you’d like to keep Cypress and still generate the deploy links, go into your `netlify.toml` and delete the plugin configuration lines:
-
-```diff
-[[plugins]]
-  package = "netlify-plugin-cypress"
--  [plugins.inputs.postBuild]
--    enable = true
--
--  [plugins.inputs]
--    enable = false 
-```
-
-If you’d like to remove the `netlify-plugin-cypress` build plugin entirely, you’d need to delete the entire block above instead. And then make sure sure to remove the package from the dependencies using:
+First, run the development server:
 
 ```bash
-npm uninstall -D netlify-plugin-cypress
+npm run dev
 ```
 
-And lastly if you’d like to remove Cypress entirely, delete the entire `cypress` folder and the `cypress.config.ts` file. Then remove the dependency using:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-npm uninstall cypress
+## Project Structure
+
+The project follows the Next.js App Router pattern:
+
 ```
+├── public/           # Static assets (favicon, logos, images)
+├── src/
+│   ├── app/          # Next.js App Router structure
+│   ├── components/   # Reusable UI components
+│   ├── styles/       # Global styles
+│   └── lib/          # Utility functions
+└── package.json      # Dependencies and scripts
+```
+
+## Design Decisions
+
+- **Modern & Clean Design**: A fresh approach with a contemporary UI focused on simplicity and clarity
+- **Responsive First**: Built with mobile-first approach to ensure optimal experience on all devices
+- **Go Branding**: Using Go's color palette with primary blue (#00ADD8) and complementary shades
+- **Animation & Interactivity**: Subtle animations using Framer Motion to enhance user engagement
+- **Consistent Components**: Modular design system with reusable components for maintainability
+- **Accessibility**: WCAG compliance with proper contrast, semantic HTML, and keyboard navigation
+- **Performance Optimized**: Lightweight assets and optimized rendering for fast page loads
+
+### Design Elements
+
+The landing page includes:
+
+1. **Header**: Minimal navigation with branding and social links
+2. **Hero Section**: Bold announcement of the event with date and location
+3. **About Section**: Brief overview of Gophercamp and its features
+4. **Newsletter Section**: Email signup form for event updates
+5. **Footer**: Comprehensive site navigation, social links, and contact info
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Lint code
+
+## Deployment
+
+The site is configured for deployment on Netlify:
+
+- Production deployments happen automatically from the main branch
+- Preview deployments are generated for each pull request
+
+## License
+
+All rights reserved. Copyright © 2025-2026 Gophercamp

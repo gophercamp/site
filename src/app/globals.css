@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --go-blue: #00ADD8;
+  --go-blue-light: #5DC9E2;
+  --go-blue-dark: #007D9C;
+  --go-blue-darker: #00526A;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus styles */
+*:focus-visible {
+  outline: 2px solid var(--go-blue);
+  outline-offset: 2px;
+}
+
+/* Override default focus styles for buttons */
+button:focus, 
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--go-blue);
+}
+
+/* Custom scrollbar for Chrome/Safari/Edge */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* Section transitions */
+section {
+  transition: background-color 0.3s ease;
+}
