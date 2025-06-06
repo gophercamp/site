@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 interface BackgroundSlideshowProps {
   images: string[];
@@ -64,11 +65,14 @@ export default function BackgroundSlideshow({
           transition={{ duration: 1.5, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${images[currentIndex]})`,
-            }}
+          <Image
+            src={images[currentIndex]}
+            alt="Gophercamp 2025 slideshow"
+            fill
+            priority
+            sizes="100vw"
+            quality={90}
+            className="object-cover object-center"
           />
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 overlay-background" />

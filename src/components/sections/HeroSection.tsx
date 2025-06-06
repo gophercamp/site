@@ -1,11 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import Button from '@/components/ui/Button';
 import BackgroundSlideshow from '@/components/ui/BackgroundSlideshow';
+import Button from '@/components/ui/Button';
 import { trackSocialClick } from '@/lib/analytics';
 import { getPrimarySocialLink } from '@/lib/social';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function HeroSection() {
   const primarySocial = getPrimarySocialLink();
@@ -100,20 +100,21 @@ export default function HeroSection() {
       )}
 
       {/* Grid pattern overlay for brand consistency */}
-      <div className="absolute inset-0 z-[5] opacity-10">
+      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5] opacity-5 pointer-events-none">
         <svg
-          className="w-full h-full"
+          className="w-full h-full absolute top-0 left-0"
           width="100%"
           height="100%"
+          preserveAspectRatio="xMidYMid slice"
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#00ADD8" strokeWidth="0.5" />
+            <pattern id="hero-grid" width="15" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 15 0 L 0 0 0 15" fill="none" stroke="#00ADD8" strokeWidth="0.3" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          <rect width="100%" height="100%" fill="url(#hero-grid)" />
         </svg>
       </div>
 
