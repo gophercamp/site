@@ -7,6 +7,8 @@ This is the official website for Gophercamp 2026, the Go conference in Czech Rep
 - **Framework**: [Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 - **Language**: [TypeScript](https://www.typescriptlang.org/) - For type-safe code
+- **Database**: [Supabase](https://supabase.com/) - For storing newsletter subscribers
+- **Email**: [Resend](https://resend.com/) - For sending newsletter confirmation emails
 - **Analytics**: [Google Analytics 4](https://analytics.google.com/) - Privacy-first analytics with custom event tracking
 - **Deployment**: [Netlify](https://netlify.com/) - For continuous deployment and hosting
 
@@ -14,7 +16,13 @@ This is the official website for Gophercamp 2026, the Go conference in Czech Rep
 
 ### Local Development
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -41,9 +49,13 @@ The project follows the Next.js App Router pattern:
 ├── src/
 │   ├── app/          # Next.js App Router structure
 │   ├── components/   # Reusable UI components
-│   ├── styles/       # Global styles
+│   ├── hooks/        # Custom React hooks
 │   └── lib/          # Utility functions
-└── package.json      # Dependencies and scripts
+├── docs/             # Project documentation
+├── .prettierrc.js    # Prettier configuration
+├── eslint.config.mjs # ESLint configuration
+├── package.json      # Dependencies and scripts
+└── tsconfig.json     # TypeScript configuration
 ```
 
 ## Design Decisions
@@ -87,12 +99,60 @@ NEXT_PUBLIC_ANALYTICS_ENABLED=false
 
 For detailed analytics setup, see [ANALYTICS.md](./ANALYTICS.md).
 
+## Integrations
+
+### Newsletter Subscription
+
+The website includes a newsletter subscription system that:
+
+1. Collects email addresses via a form submission
+2. Stores subscriber data in Supabase
+3. Sends confirmation emails via Resend
+4. Tracks confirmed subscribers
+
+Configuration:
+
+- See [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) for database setup
+- See [docs/RESEND_SETUP.md](docs/RESEND_SETUP.md) for email integration setup
+
+### Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```
+# Supabase configuration
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# Resend email configuration
+RESEND_API_KEY=your_resend_api_key
+EMAIL_FROM=newsletter@gophercamp.cz
+
+# Site configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+For production, add these environment variables in your Netlify dashboard.
+
 ## Deployment
 
 The site is configured for deployment on Netlify:
 
 - Production deployments happen automatically from the main branch
 - Preview deployments are generated for each pull request
+
+## Development Guidelines
+
+### Code Formatting and Linting
+
+The project uses Prettier for code formatting and ESLint for linting:
+
+- Run `npm run format` to format all files
+- Run `npm run lint` to check for code quality issues
+- Run `npm run fix` to run both format and lint
+- Pre-commit hooks automatically format staged files
+
+For more details, see the [Code Formatting Guide](docs/CODE_FORMATTING.md).
 
 ## License
 
