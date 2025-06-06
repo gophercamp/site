@@ -1,8 +1,5 @@
 import { Resend } from 'resend';
 
-// Initialize the Resend client with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 /**
  * Email configuration constants
  */
@@ -32,7 +29,7 @@ export interface EmailResult {
 export async function sendConfirmationEmail(email: string, token: string): Promise<EmailResult> {
   try {
     const confirmUrl = `${EMAIL_CONFIG.siteUrl}/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${token}`;
-
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: EMAIL_CONFIG.from,
       to: email,
@@ -85,6 +82,7 @@ export async function sendConfirmationEmail(email: string, token: string): Promi
  */
 export async function sendWelcomeEmail(email: string): Promise<EmailResult> {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: EMAIL_CONFIG.from,
       to: email,
