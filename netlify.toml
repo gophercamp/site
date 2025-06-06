@@ -3,6 +3,7 @@
   base = "/"
   publish = ".next"
   command = "npm run build"
+  functions = "netlify/functions"
 
 # Environment variables
 [build.environment]
