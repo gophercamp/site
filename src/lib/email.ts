@@ -1,3 +1,6 @@
+import ConfirmationEmail from '@/emails/ConfirmationEmail';
+import WelcomeEmail from '@/emails/WelcomeEmail';
+import { render } from '@react-email/render';
 import { Resend } from 'resend';
 
 /**
@@ -29,28 +32,17 @@ export interface EmailResult {
 export async function sendConfirmationEmail(email: string, token: string): Promise<EmailResult> {
   try {
     const confirmUrl = `${EMAIL_CONFIG.siteUrl}/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${token}`;
+
+    // Render the React component to HTML
+    const html = await render(ConfirmationEmail({ confirmUrl }));
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: EMAIL_CONFIG.from,
       to: email,
       subject: EMAIL_CONFIG.confirmationSubject,
       replyTo: EMAIL_CONFIG.replyTo,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #00ADD8;">Gophercamp 2026</h1>
-          <p>Hello,</p>
-          <p>Thank you for subscribing to the Gophercamp 2026 newsletter. Please confirm your subscription by clicking the button below:</p>
-          <a href="${confirmUrl}" style="display: inline-block; background-color: #00ADD8; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; margin: 20px 0;">
-            Confirm Subscription
-          </a>
-          <p>If you didn't sign up for this newsletter, you can safely ignore this email.</p>
-          <p>The Gophercamp team</p>
-          <p style="font-size: 12px; color: #666; margin-top: 30px;">
-            If the button doesn't work, copy and paste this URL into your browser: <br>
-            <a href="${confirmUrl}" style="color: #00ADD8;">${confirmUrl}</a>
-          </p>
-        </div>
-      `,
+      html,
     });
 
     if (error) {
@@ -82,29 +74,16 @@ export async function sendConfirmationEmail(email: string, token: string): Promi
  */
 export async function sendWelcomeEmail(email: string): Promise<EmailResult> {
   try {
+    // Render the React component to HTML
+    const html = await render(WelcomeEmail());
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: EMAIL_CONFIG.from,
       to: email,
       subject: 'Welcome to Gophercamp 2026 Newsletter!',
       replyTo: EMAIL_CONFIG.replyTo,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #00ADD8;">Welcome to Gophercamp 2026!</h1>
-          <p>Hello,</p>
-          <p>Thank you for confirming your subscription to the Gophercamp 2026 newsletter!</p>
-          <p>We'll keep you updated with the latest information about:</p>
-          <ul>
-            <li>Conference agenda and speaker announcements</li>
-            <li>Workshop schedules</li>
-            <li>Special events and networking opportunities</li>
-            <li>Important dates and deadlines</li>
-          </ul>
-          <p>Mark your calendar: <strong>April 24, 2026 • Brno, Czech Republic</strong></p>
-          <p>We're looking forward to seeing you at Gophercamp 2026!</p>
-          <p>The Gophercamp Team</p>
-        </div>
-      `,
+      html,
     });
 
     if (error) {
