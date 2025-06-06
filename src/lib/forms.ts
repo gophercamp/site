@@ -1,37 +1,50 @@
-"use client";
+'use client';
 
 /**
  * Utility functions for form handling
  */
 
-/**
- * Validates an email address with a simple regex pattern
- * @param email Email address to validate
- * @returns Boolean indicating if email is valid
- */
-export const validateEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+import { validateEmail as validateEmailFn } from '@/lib/validation';
 
 /**
- * Simulates sending a newsletter subscription request
- * In production, this would be replaced with an actual API call
- * @param email Email address to subscribe
- * @returns Promise that resolves after a simulated delay
+ * Re-export validateEmail for client components
  */
-export const subscribeToNewsletter = async (email: string): Promise<{ success: boolean; message: string }> => {
-  // This is a simulation - in production, you'd call an actual API with the email parameter
-  // For now, we'll just log the email to console for debugging purposes
-  console.log('Subscribing email:', email);
-  
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Simulate successful subscription (always succeeds in this mock)
-      resolve({
-        success: true,
-        message: 'Thank you for subscribing to Gophercamp 2026 updates!',
-      });
-    }, 1000);
-  });
+export const validateEmail = validateEmailFn;
+
+/**
+ * Sends a newsletter subscription request to the API
+ * @param email Email address to subscribe
+ * @returns Promise with subscription result
+ */
+export const subscribeToNewsletter = async (
+  email: string
+): Promise<{
+  success: boolean;
+  message: string;
+  alreadySubscribed?: boolean;
+}> => {
+  try {
+    const response = await fetch('/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const result = await response.json();
+
+    // Return API response data
+    return {
+      success: result.success,
+      message: result.message,
+      alreadySubscribed: result.alreadySubscribed,
+    };
+  } catch (error) {
+    console.error('Newsletter subscription error:', error);
+    return {
+      success: false,
+      message: 'Failed to subscribe. Please try again later.',
+    };
+  }
 };

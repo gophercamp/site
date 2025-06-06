@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import { getPrimarySocialLink } from '@/lib/social';
 
 export default function HeroSection() {
   const primarySocial = getPrimarySocialLink();
-  
+
   // Gophercamp 2025 photos for background slideshow
   const backgroundImages = [
     '/images/gallery/gophercamp-2025-1.jpeg',
@@ -42,7 +42,7 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background slideshow with Gophercamp 2025 photos */}
-      <BackgroundSlideshow 
+      <BackgroundSlideshow
         images={backgroundImages}
         interval={10000}
         className="z-0"
@@ -50,7 +50,7 @@ export default function HeroSection() {
         isPaused={isPaused}
         onIndexChange={handleIndexChange}
       />
-      
+
       {/* Slideshow controls */}
       {backgroundImages.length > 1 && (
         <div className="absolute inset-0 z-[50] pointer-events-none">
@@ -61,10 +61,15 @@ export default function HeroSection() {
             aria-label="Previous image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
-          
+
           <button
             onClick={goToNext}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 button-overlay-bg button-overlay-hover-bg text-white p-3 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-auto"
@@ -85,9 +90,7 @@ export default function HeroSection() {
                   setIsPaused(true);
                 }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer pointer-events-auto ${
-                  index === currentIndex 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white-50'
+                  index === currentIndex ? 'bg-white scale-125' : 'bg-white-50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -95,14 +98,14 @@ export default function HeroSection() {
           </div>
         </div>
       )}
-      
+
       {/* Grid pattern overlay for brand consistency */}
       <div className="absolute inset-0 z-[5] opacity-10">
-        <svg 
-          className="w-full h-full" 
-          width="100%" 
-          height="100%" 
-          viewBox="0 0 100 100" 
+        <svg
+          className="w-full h-full"
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -124,47 +127,66 @@ export default function HeroSection() {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
               Gophercamp <span className="text-go-blue">2026</span>
             </h1>
-            
+
             <h2 className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
               The Go Conference in Czech Republic
             </h2>
-            
+
             <div className="flex flex-col md:flex-row gap-4 mb-10">
               <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-go-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-go-blue"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 <span className="font-medium text-primary">April 24, 2026</span>
               </div>
-              
+
               <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-go-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-go-blue"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
                 </svg>
                 <span className="font-medium text-primary">Brno, Czech Republic</span>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                href="#newsletter"
-                variant="primary"
-                size="lg"
-              >
+              <Button href="#newsletter" variant="primary" size="lg">
                 Stay Informed
               </Button>
-              
-              <Button 
-                href="#about"
-                variant="secondary"
-                size="lg"
-              >
+
+              <Button href="#about" variant="secondary" size="lg">
                 Learn More
               </Button>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -173,27 +195,33 @@ export default function HeroSection() {
           >
             <div className="relative w-full max-w-xs aspect-square">
               {/* Showcase badge for past event */}
-              <a 
-                href={primarySocial.url} 
-                target="_blank" 
+              <a
+                href={primarySocial.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 rounded-full bg-white-20 backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 group"
                 onClick={() => trackSocialClick(primarySocial.trackingId)}
               >
                 <div className="text-center px-4">
-                  <div className="text-white text-base font-bold mb-2 drop-shadow-md">Memories from</div>
-                  <div className="text-go-blue text-xl font-bold drop-shadow-md mb-2">Gophercamp 2025</div>
-                  
+                  <div className="text-white text-base font-bold mb-2 drop-shadow-md">
+                    Memories from
+                  </div>
+                  <div className="text-go-blue text-xl font-bold drop-shadow-md mb-2">
+                    Gophercamp 2025
+                  </div>
+
                   {/* YouTube icon indicator */}
                   <div className="mt-3 flex items-center justify-center">
-                    <svg 
-                      className="w-6 h-6 text-red-500 drop-shadow-md group-hover:scale-110 transition-transform duration-300" 
-                      fill="currentColor" 
+                    <svg
+                      className="w-6 h-6 text-red-500 drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                      fill="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                     </svg>
-                    <span className="ml-2 text-white/90 text-xs font-medium drop-shadow-sm">Watch session recordings</span>
+                    <span className="ml-2 text-white/90 text-xs font-medium drop-shadow-sm">
+                      Watch session recordings
+                    </span>
                   </div>
                 </div>
               </a>

@@ -80,9 +80,7 @@ We use Tailwind CSS for styling with a custom color palette for Go branding:
 ### Example Usage
 
 ```tsx
-<div className="bg-go-blue text-white">
-  Go-branded content
-</div>
+<div className="bg-go-blue text-white">Go-branded content</div>
 ```
 
 ## State Management
@@ -94,12 +92,8 @@ import { useState } from 'react';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
-  
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      Count: {count}
-    </button>
-  );
+
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 }
 ```
 
@@ -124,3 +118,47 @@ npm run build
 ```
 
 This will generate the production-ready files in the `.next` directory.
+
+## Code Formatting and Linting
+
+We use Prettier for code formatting and ESLint for code quality. This ensures a consistent code style across the codebase.
+
+### Available Commands
+
+```bash
+# Format all files with Prettier
+npm run format
+
+# Check if all files are properly formatted
+npm run format:check
+
+# Run ESLint to check for code quality issues
+npm run lint
+
+# Run both format and lint together
+npm run fix
+```
+
+### Pre-commit Hook
+
+We use Husky with lint-staged to automatically format files before commits. This means:
+
+1. When you stage files with `git add`, they're prepared for commit
+2. When you run `git commit`, the pre-commit hook will:
+   - Format all staged files with Prettier
+   - Lint all staged JavaScript/TypeScript files with ESLint
+   - Only if both steps pass, your commit will succeed
+
+### VS Code Integration
+
+If you're using VS Code (recommended), install these extensions:
+
+- Prettier - Code formatter (esbenp.prettier-vscode)
+- ESLint (dbaeumer.vscode-eslint)
+
+The project includes VS Code settings that enable:
+
+- Format on save
+- ESLint auto-fix on save
+
+For more detailed information, see the [Code Formatting Guide](docs/CODE_FORMATTING.md).

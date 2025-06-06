@@ -10,10 +10,6 @@ export interface LeadTextProps {
   className?: string;
 }
 
-export default function LeadText({ children, className = "" }: LeadTextProps) {
-  return (
-    <p className={`lead text-xl text-secondary mb-8 ${className}`}>
-      {children}
-    </p>
-  );
+export default function LeadText({ children, className = '' }: LeadTextProps) {
+  return <p className={`lead text-xl text-secondary mb-8 ${className}`}>{children}</p>;
 }

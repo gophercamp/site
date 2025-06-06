@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { trackSocialClick } from '@/lib/analytics';
@@ -7,7 +7,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Header() {
   const socialLinks = getHeaderSocialLinks();
-  
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary-90 backdrop-blur-sm border-b border-primary">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -18,13 +18,13 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-3">
-          {socialLinks.map((social) => {
+          {socialLinks.map(social => {
             const IconComponent = social.icon;
             return (
-              <a 
+              <a
                 key={social.id}
-                href={social.url} 
-                target="_blank" 
+                href={social.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className={`text-secondary transition-colors p-1 ${social.hoverColor}`}
                 aria-label={social.ariaLabel}

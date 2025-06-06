@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { ANALYTICS_CONFIG, isAnalyticsEnabled } from '@/lib/analytics';
@@ -13,10 +13,5 @@ export default function Analytics() {
     return null;
   }
 
-  return (
-    <GoogleAnalytics 
-      gaId={ANALYTICS_CONFIG.GA_MEASUREMENT_ID}
-      dataLayerName="dataLayer"
-    />
-  );
+  return <GoogleAnalytics gaId={ANALYTICS_CONFIG.GA_MEASUREMENT_ID} dataLayerName="dataLayer" />;
 }

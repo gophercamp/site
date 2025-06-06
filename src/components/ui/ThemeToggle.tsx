@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { FaSun, FaMoon, FaLaptop } from "react-icons/fa6";
-import Dropdown from "@/components/ui/Dropdown";
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { FaSun, FaMoon, FaLaptop } from 'react-icons/fa6';
+import Dropdown from '@/components/ui/Dropdown';
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  
+
   // Avoid hydration mismatch by only rendering after mount
   useEffect(() => {
     setMounted(true);
   }, []);
-  
+
   if (!mounted) return null;
-  
+
   // Get the appropriate icon based on current theme
   const renderThemeIcon = () => {
     switch (theme) {
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
     { value: 'dark', label: 'Dark', icon: <FaMoon className="h-4 w-4 text-primary" /> },
     { value: 'system', label: 'System', icon: <FaLaptop className="h-4 w-4 text-primary" /> },
   ];
-  
+
   const triggerButton = (
     <button
       className="p-2 rounded-md transition-colors bg-secondary hover-bg-opacity-80 cursor-pointer"
@@ -43,14 +43,14 @@ export default function ThemeToggle() {
       {renderThemeIcon()}
     </button>
   );
-  
+
   return (
-    <Dropdown 
+    <Dropdown
       trigger={triggerButton}
       menuId="theme-menu"
       width="10rem" // 40 in rem units
     >
-      {themeOptions.map((option) => (
+      {themeOptions.map(option => (
         <button
           key={option.value}
           onClick={() => setTheme(option.value)}

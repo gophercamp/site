@@ -9,7 +9,7 @@ export interface BulletListProps {
   className?: string;
 }
 
-export default function BulletList({ items, className = "" }: BulletListProps) {
+export default function BulletList({ items, className = '' }: BulletListProps) {
   return (
     <ul className={`list-disc pl-6 mb-6 ${className}`}>
       {items.map((item, index) => (

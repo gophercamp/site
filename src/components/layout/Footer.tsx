@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { trackSocialClick, trackContactClick } from '@/lib/analytics';
@@ -7,7 +7,7 @@ import { getFooterSocialLinks, contactInfo } from '@/lib/social';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const socialLinks = getFooterSocialLinks();
-  
+
   return (
     <footer className="bg-secondary border-t border-primary py-12">
       <div className="container mx-auto px-4">
@@ -17,11 +17,9 @@ export default function Footer() {
             <p className="text-secondary mb-4">
               The Go programming language conference in the Czech Republic.
             </p>
-            <p className="text-secondary">
-              April 24, 2026 • {contactInfo.location}
-            </p>
+            <p className="text-secondary">April 24, 2026 • {contactInfo.location}</p>
           </div>
-          
+
           <div>
             <h3 className="font-bold text-primary text-lg mb-4">Links</h3>
             <ul className="space-y-2">
@@ -31,28 +29,34 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/code-of-conduct" className="text-secondary hover:text-go-blue transition-colors">
+                <Link
+                  href="/code-of-conduct"
+                  className="text-secondary hover:text-go-blue transition-colors"
+                >
                   Code of Conduct
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-secondary hover:text-go-blue transition-colors">
+                <Link
+                  href="/privacy"
+                  className="text-secondary hover:text-go-blue transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-bold text-primary text-lg mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
-              {socialLinks.map((social) => {
+              {socialLinks.map(social => {
                 const IconComponent = social.icon;
                 return (
-                  <a 
+                  <a
                     key={social.id}
-                    href={social.url} 
-                    target="_blank" 
+                    href={social.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`text-secondary transition-colors ${social.hoverColor}`}
                     aria-label={social.ariaLabel}
@@ -64,8 +68,9 @@ export default function Footer() {
               })}
             </div>
             <p className="text-secondary">
-              Email: <a 
-                href={`mailto:${contactInfo.email}`} 
+              Email:{' '}
+              <a
+                href={`mailto:${contactInfo.email}`}
                 className="text-go-blue hover:text-go-blue-dark"
                 onClick={() => trackContactClick('email')}
               >
@@ -74,7 +79,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-        
+
         <div className="border-t border-primary mt-8 pt-8 text-center text-secondary text-sm">
           <p>© {currentYear} Gophercamp. All rights reserved.</p>
         </div>

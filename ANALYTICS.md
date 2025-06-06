@@ -33,6 +33,7 @@ NEXT_PUBLIC_ANALYTICS_ENABLED=false
 ### 3. Verify Implementation
 
 The analytics system is automatically initialized when:
+
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set
 - Running in production OR `NEXT_PUBLIC_ANALYTICS_ENABLED=true`
 - User hasn't enabled Do Not Track
@@ -40,10 +41,12 @@ The analytics system is automatically initialized when:
 ## Tracked Events
 
 ### Automatic Events
+
 - **Page Views**: Tracked on every route change
 - **Core Web Vitals**: Automatically tracked by GA4
 
 ### Custom Events
+
 - **Newsletter Signup**: When users subscribe to newsletter
 - **Social Clicks**: Clicks on social media links
 - **Contact Clicks**: Clicks on email/contact methods
@@ -63,11 +66,7 @@ function MyComponent() {
     trackSocialClick(platform);
   };
 
-  return (
-    <button onClick={() => handleSocialClick('twitter')}>
-      Follow on Twitter
-    </button>
-  );
+  return <button onClick={() => handleSocialClick('twitter')}>Follow on Twitter</button>;
 }
 ```
 
@@ -86,17 +85,21 @@ trackExternalLink('https://example.com', 'Example Link');
 ## Privacy Compliance
 
 ### GDPR Compliance
+
 - Analytics only load when user hasn't opted out
 - IP addresses are anonymized by default
 - Respects Do Not Track browser settings
 
 ### Data Collection
+
 The system tracks:
+
 - Page views and navigation patterns
 - Custom events (newsletter, social clicks)
 - Performance metrics (Core Web Vitals)
 
 The system does NOT track:
+
 - Personal information
 - Form input data
 - Detailed user behavior when DNT is enabled
@@ -114,6 +117,7 @@ The system does NOT track:
 ### Debugging
 
 Check browser console for analytics messages:
+
 - Analytics initialization status
 - Event tracking confirmations
 - Privacy setting notifications
@@ -142,17 +146,20 @@ src/
 ## Troubleshooting
 
 ### Analytics Not Loading
+
 - Check `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set correctly
 - Verify you're in production or have `NEXT_PUBLIC_ANALYTICS_ENABLED=true`
 - Check browser's Do Not Track setting
 
 ### Events Not Tracking
+
 - Open browser dev tools → Console
 - Look for analytics error messages
 - Verify event parameters are correct
 - Check GA4 real-time reports (can take a few minutes)
 
 ### Build Errors
+
 - Ensure all TypeScript types are properly defined
 - Run `npm run lint` to check for ESLint issues
 - Verify imports are correct
@@ -160,6 +167,7 @@ src/
 ## Support
 
 For issues with this analytics implementation, check:
+
 1. Browser dev tools console for errors
 2. GA4 real-time reports for data verification
 3. Next.js documentation for third-party integration

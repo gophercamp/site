@@ -7,7 +7,8 @@
 export const ANALYTICS_CONFIG = {
   GA_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
   // Enable analytics only in production or when explicitly enabled
-  ENABLED: process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true',
+  ENABLED:
+    process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true',
   // Privacy settings
   ANONYMIZE_IP: true,
   RESPECT_DNT: true, // Respect Do Not Track header
@@ -57,8 +58,9 @@ export const isAnalyticsEnabled = (): boolean => {
 
   // Check for Do Not Track header in browser
   if (typeof window !== 'undefined' && ANALYTICS_CONFIG.RESPECT_DNT) {
-    const dnt = navigator.doNotTrack || 
-      (window as { doNotTrack?: string }).doNotTrack || 
+    const dnt =
+      navigator.doNotTrack ||
+      (window as { doNotTrack?: string }).doNotTrack ||
       (navigator as { msDoNotTrack?: string }).msDoNotTrack;
     if (dnt === '1' || dnt === 'yes') {
       return false;

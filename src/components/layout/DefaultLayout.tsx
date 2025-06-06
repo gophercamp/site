@@ -14,9 +14,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <>
       <Header />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );

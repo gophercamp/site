@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,19 +21,20 @@ interface BackgroundSlideshowProps {
  * @param isPaused - External control of pause state
  * @param onIndexChange - Callback when slide index changes
  */
-export default function BackgroundSlideshow({ 
-  images, 
-  interval = 5000, 
-  className = "",
+export default function BackgroundSlideshow({
+  images,
+  interval = 5000,
+  className = '',
   currentIndex: externalCurrentIndex,
   isPaused: externalIsPaused,
-  onIndexChange
+  onIndexChange,
 }: BackgroundSlideshowProps) {
   const [internalCurrentIndex, setInternalCurrentIndex] = useState(0);
   const [internalIsPaused] = useState(false);
-  
+
   // Use external state if provided, otherwise use internal state
-  const currentIndex = externalCurrentIndex !== undefined ? externalCurrentIndex : internalCurrentIndex;
+  const currentIndex =
+    externalCurrentIndex !== undefined ? externalCurrentIndex : internalCurrentIndex;
   const isPaused = externalIsPaused !== undefined ? externalIsPaused : internalIsPaused;
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function BackgroundSlideshow({
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
           <div

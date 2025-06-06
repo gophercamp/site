@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface DropdownProps {
   /**
@@ -23,7 +23,7 @@ export interface DropdownProps {
    * Dropdown menu position relative to trigger
    * @default "bottom-right"
    */
-  position?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
   /**
    * Dropdown menu width (CSS width value)
    * @default "auto"
@@ -39,11 +39,11 @@ export interface DropdownProps {
 export default function Dropdown({
   trigger,
   children,
-  className = "",
-  menuClassName = "",
-  position = "bottom-right",
-  width = "auto",
-  menuId = "dropdown-menu",
+  className = '',
+  menuClassName = '',
+  position = 'bottom-right',
+  width = 'auto',
+  menuId = 'dropdown-menu',
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -68,9 +68,9 @@ export default function Dropdown({
         closeDropdown();
       }
     };
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [closeDropdown]);
 
   const toggleDropdown = () => {
@@ -83,21 +83,19 @@ export default function Dropdown({
 
   // Position classes
   const positionClasses = {
-    "bottom-right": "right-0 top-full mt-2",
-    "bottom-left": "left-0 top-full mt-2",
-    "top-right": "right-0 bottom-full mb-2",
-    "top-left": "left-0 bottom-full mb-2",
+    'bottom-right': 'right-0 top-full mt-2',
+    'bottom-left': 'left-0 top-full mt-2',
+    'top-right': 'right-0 bottom-full mb-2',
+    'top-left': 'left-0 bottom-full mb-2',
   };
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       {/* Using cloneElement to add onClick handler to the trigger */}
-      <div onClick={toggleDropdown}>
-        {trigger}
-      </div>
-      
+      <div onClick={toggleDropdown}>{trigger}</div>
+
       {isOpen && (
-        <div 
+        <div
           id={menuId}
           className={`absolute ${positionClasses[position]} bg-primary border border-primary rounded-md shadow-lg py-1 z-50 ${isClosing ? 'theme-menu-exit' : 'theme-menu-enter'} ${menuClassName}`}
           role="menu"

@@ -2,14 +2,7 @@
  * Central configuration for all social media links and related data
  */
 
-import { 
-  FaXTwitter, 
-  FaGithub, 
-  FaYoutube, 
-  FaLinkedin, 
-  FaFacebook,
-  FaMeetup
-} from 'react-icons/fa6';
+import { FaXTwitter, FaGithub, FaYoutube, FaLinkedin, FaFacebook, FaMeetup } from 'react-icons/fa6';
 
 export interface SocialLink {
   id: string;
@@ -41,7 +34,7 @@ export const socialLinks: SocialLink[] = [
     icon: FaXTwitter,
     ariaLabel: 'Follow us on X',
     hoverColor: 'social-x', // Custom CSS class for X hover
-    trackingId: 'x'
+    trackingId: 'x',
   },
   {
     id: 'youtube',
@@ -50,7 +43,7 @@ export const socialLinks: SocialLink[] = [
     icon: FaYoutube,
     ariaLabel: 'Subscribe to our YouTube channel',
     hoverColor: 'social-youtube', // Custom CSS class for YouTube hover
-    trackingId: 'youtube'
+    trackingId: 'youtube',
   },
   {
     id: 'github',
@@ -59,7 +52,7 @@ export const socialLinks: SocialLink[] = [
     icon: FaGithub,
     ariaLabel: 'Follow us on GitHub',
     hoverColor: 'social-github', // Custom CSS class for GitHub hover
-    trackingId: 'github'
+    trackingId: 'github',
   },
   {
     id: 'linkedin',
@@ -68,7 +61,7 @@ export const socialLinks: SocialLink[] = [
     icon: FaLinkedin,
     ariaLabel: 'Follow us on LinkedIn',
     hoverColor: 'social-linkedin', // Custom CSS class for LinkedIn hover
-    trackingId: 'linkedin'
+    trackingId: 'linkedin',
   },
   {
     id: 'facebook',
@@ -77,7 +70,7 @@ export const socialLinks: SocialLink[] = [
     icon: FaFacebook,
     ariaLabel: 'Follow us on Facebook',
     hoverColor: 'social-facebook', // Custom CSS class for Facebook hover
-    trackingId: 'facebook'
+    trackingId: 'facebook',
   },
   {
     id: 'meetup',
@@ -86,8 +79,8 @@ export const socialLinks: SocialLink[] = [
     icon: FaMeetup,
     ariaLabel: 'Join our Golang Brno Meetup group',
     hoverColor: 'social-meetup', // Custom CSS class for Meetup hover
-    trackingId: 'meetup'
-  }
+    trackingId: 'meetup',
+  },
 ];
 
 /**
@@ -98,7 +91,7 @@ export const contactInfo: ContactInfo = {
   location: 'Brno, Czech Republic',
   privacy: 'privacy@gophercamp.cz',
   conduct: 'conduct@gophercamp.cz',
-  accessibility: 'accessibility@gophercamp.cz'
+  accessibility: 'accessibility@gophercamp.cz',
 };
 
 /**
