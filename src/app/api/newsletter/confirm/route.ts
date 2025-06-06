@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { supabase, SUBSCRIBERS_TABLE } from '@/lib/supabase';
-import { isTokenExpired } from '@/lib/token';
 import { sendWelcomeEmail } from '@/lib/email';
+import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { isTokenExpired } from '@/lib/token';
+import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * API handler for confirming newsletter subscriptions
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Find the subscriber with matching email and token
-    const { data, error } = await supabase
+    const { data, error } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
       .select('*')
       .eq('email', email.toLowerCase())
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Update subscription to confirmed status
-    const { error: updateError } = await supabase
+    const { error: updateError } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
       .update({
         confirmed: true,

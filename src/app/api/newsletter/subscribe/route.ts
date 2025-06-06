@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { supabase, SUBSCRIBERS_TABLE } from '@/lib/supabase';
-import { validateEmail } from '@/lib/validation';
 import { sendConfirmationEmail } from '@/lib/email';
-import { generateToken, createExpirationDate } from '@/lib/token';
+import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { createExpirationDate, generateToken } from '@/lib/token';
+import { validateEmail } from '@/lib/validation';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if the email already exists in the database
-    const { data: existingUser, error: checkError } = await supabase
+    const { data: existingUser, error: checkError } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
       .select('email')
       .eq('email', email.toLowerCase())
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     const tokenExpiresAt = createExpirationDate(48); // Token expires in 48 hours
 
     // Insert the new subscriber
-    const { error: insertError } = await supabase.from(SUBSCRIBERS_TABLE).insert({
+    const { error: insertError } = await getSupabaseClient().from(SUBSCRIBERS_TABLE).insert({
       email: email.toLowerCase(),
       subscribed_at: new Date().toISOString(),
       confirmed: false,

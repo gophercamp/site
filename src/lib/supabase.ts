@@ -1,16 +1,19 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Ensure these environment variables are set in your environment
-// You can add them to .env.local for local development
-// and configure them in your deployment platform for production
-const supabaseUrl = process.env.SUPABASE_DATABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+export function getSupabaseClient() {
+  // Ensure these environment variables are set in your environment
+  // You can add them to .env.local for local development
+  // and configure them in your deployment platform for production
+  const supabaseUrl = process.env.SUPABASE_DATABASE_URL || '';
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
-if (!supabaseUrl || !supabaseKey) {
-  console.warn('Supabase URL or key is missing. Functionality may be limited.');
+  if (!supabaseUrl || !supabaseKey) {
+    console.warn('Supabase URL or key is missing. Functionality may be limited.');
+  }
+
+  // Create and return the Supabase client
+  return createClient(supabaseUrl, supabaseKey);
 }
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
 
 /**
  * Table name for storing newsletter subscribers
