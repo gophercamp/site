@@ -1,10 +1,10 @@
-import { Metadata } from 'next';
-import { contactInfo } from '@/lib/social';
-import PolicyPage from '@/components/ui/PolicyPage';
-import Section from '@/components/ui/Section';
 import BulletList from '@/components/ui/BulletList';
 import InfoBox from '@/components/ui/InfoBox';
 import LeadText from '@/components/ui/LeadText';
+import PolicyPage from '@/components/ui/PolicyPage';
+import Section from '@/components/ui/Section';
+import { contactInfo } from '@/lib/social';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Code of Conduct | Gophercamp 2026',
@@ -114,7 +114,7 @@ export default function CodeOfConductPage() {
       </Section>
 
       <Section title="Enforcement">
-        <h3 className="text-xl font-semibold text-gray-900 mb-3">Reporting</h3>
+        <h3 className="text-xl font-semibold text-go-blue mb-3">Reporting</h3>
         <p className="mb-4">
           If you experience or witness unacceptable behavior, please immediately report it to:
         </p>
@@ -128,7 +128,7 @@ export default function CodeOfConductPage() {
           <p className="mt-2 text-sm">Reports can be made anonymously if preferred</p>
         </InfoBox>
 
-        <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Response</h3>
+        <h3 className="text-xl font-semibold text-go-blue mt-6 mb-3">Response</h3>
         <p className="mb-4">
           All reports will be handled with discretion and confidentiality. Conference organizers
           will respond to reports promptly and may take any action deemed necessary, including:

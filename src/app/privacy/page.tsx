@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
-import { contactInfo } from '@/lib/social';
-import PolicyPage from '@/components/ui/PolicyPage';
-import Section from '@/components/ui/Section';
 import BulletList from '@/components/ui/BulletList';
 import InfoBox from '@/components/ui/InfoBox';
+import PolicyPage from '@/components/ui/PolicyPage';
+import Section from '@/components/ui/Section';
+import { contactInfo } from '@/lib/social';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Gophercamp 2026',
@@ -61,13 +61,13 @@ export default function PrivacyPage() {
       </Section>
 
       <Section title="Information We Collect">
-        <h3 className="text-xl font-semibold text-gray-900 mb-3">Personal Information</h3>
+        <h3 className="text-xl font-semibold text-go-blue mb-3">Personal Information</h3>
         <p className="mb-4">
           We may collect personal information that you voluntarily provide, including:
         </p>
         <BulletList items={personalInfoItems} />
 
-        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+        <h3 className="text-xl font-semibold text-go-blue mb-3">
           Automatically Collected Information
         </h3>
         <p className="mb-4">
