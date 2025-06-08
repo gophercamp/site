@@ -1,4 +1,3 @@
-import { AuthProvider } from '@/components/providers/AuthProvider';
 import ThemeProvider from '@/components/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { Inter, Roboto_Mono } from 'next/font/google';
@@ -56,9 +55,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${robotoMono.variable} font-sans antialiased bg-primary text-primary`}
       >
-        <ThemeProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
