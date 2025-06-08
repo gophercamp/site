@@ -1,11 +1,22 @@
 'use client';
 
+import {
+  FormCheckbox,
+  FormError,
+  FormInput,
+  FormSection,
+  FormTextarea,
+  ImageUpload,
+} from '@/components/forms';
 import Button from '@/components/ui/Button';
-import { Speaker } from '@/lib/supabase';
+import { SpeakerFormData, speakerSchema } from '@/lib/forms';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { use, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { getSpeaker, updateSpeaker } from '../../actions';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -19,19 +30,32 @@ export default function EditSpeakerPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [notFound, setNotFound] = useState(false);
 
-  // Form state
-  const [formData, setFormData] = useState<Partial<Speaker>>({
-    name: '',
-    bio: '',
-    company: '',
-    title: '',
-    avatar_url: '',
-    social_twitter: '',
-    social_github: '',
-    social_linkedin: '',
-    social_website: '',
-    featured: false,
+  // Setup form with React Hook Form + Zod validation
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+    reset,
+  } = useForm({
+    resolver: zodResolver(speakerSchema),
+    defaultValues: {
+      name: '',
+      bio: '',
+      company: '',
+      title: '',
+      avatar_url: '',
+      social_twitter: '',
+      social_github: '',
+      social_linkedin: '',
+      social_website: '',
+      featured: false,
+    },
   });
+
+  // Current avatar URL value
+  const avatarUrl = watch('avatar_url');
 
   // Load speaker data on mount
   useEffect(() => {
@@ -39,19 +63,32 @@ export default function EditSpeakerPage({ params }: PageProps) {
       try {
         setLoading(true);
 
-        const response = await fetch(`/api/admin/speakers/${id}`);
-        const data = await response.json();
+        const result = await getSpeaker(id);
 
-        if (!response.ok) {
-          if (response.status === 404) {
+        if (result.error) {
+          if (result.error === 'Speaker not found') {
             setNotFound(true);
             return;
           }
-          throw new Error(data.error || 'Failed to load speaker');
+          throw new Error(result.error);
         }
 
-        setFormData(data.speaker || {});
-      } catch (err: Error | unknown) {
+        // Reset form with speaker data
+        if (result.speaker) {
+          reset({
+            name: result.speaker.name || '',
+            bio: result.speaker.bio || '',
+            company: result.speaker.company || '',
+            title: result.speaker.title || '',
+            avatar_url: result.speaker.avatar_url || '',
+            social_twitter: result.speaker.social_twitter || '',
+            social_github: result.speaker.social_github || '',
+            social_linkedin: result.speaker.social_linkedin || '',
+            social_website: result.speaker.social_website || '',
+            featured: result.speaker.featured || false,
+          });
+        }
+      } catch (err: unknown) {
         console.error('Error loading speaker:', err);
         const errorMessage = err instanceof Error ? err.message : 'Please try again.';
         setError('Failed to load speaker data. ' + errorMessage);
@@ -61,52 +98,29 @@ export default function EditSpeakerPage({ params }: PageProps) {
     }
 
     loadSpeaker();
-  }, [id]);
+  }, [id, reset]);
 
-  // Handle form input changes
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value, type } = e.target;
-
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    }));
+  // Handle image upload
+  const handleImageChange = (url: string) => {
+    setValue('avatar_url', url);
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: SpeakerFormData) => {
     try {
       setSaving(true);
       setError(null);
 
-      // Validate required fields
-      if (!formData.name) {
-        setError('Speaker name is required');
-        return;
-      }
+      // Update speaker via server action
+      const result = await updateSpeaker(id, data);
 
-      // Update speaker via API
-      const response = await fetch(`/api/admin/speakers/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to update speaker');
+      if (result.error) {
+        throw new Error(result.error);
       }
 
       // Redirect to speakers list on success
       router.push('/admin/speakers');
-    } catch (err: Error | unknown) {
+    } catch (err: unknown) {
       console.error('Error updating speaker:', err);
       const errorMessage = err instanceof Error ? err.message : 'Please try again.';
       setError('Failed to update speaker. ' + errorMessage);
@@ -119,7 +133,7 @@ export default function EditSpeakerPage({ params }: PageProps) {
     return (
       <div className="text-center py-12">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mx-auto"></div>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Loading speaker data...</p>
+        <p className="mt-2 text-sm text-secondary">Loading speaker data...</p>
       </div>
     );
   }
@@ -127,10 +141,8 @@ export default function EditSpeakerPage({ params }: PageProps) {
   if (notFound) {
     return (
       <div className="text-center py-12">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-          Speaker Not Found
-        </h1>
-        <p className="text-slate-600 dark:text-slate-400 mb-8">
+        <h1 className="text-2xl font-bold text-primary mb-4">Speaker Not Found</h1>
+        <p className="text-secondary mb-8">
           The speaker you are looking for doesn&apos;t exist or has been removed.
         </p>
         <Link href="/admin/speakers">
@@ -143,27 +155,26 @@ export default function EditSpeakerPage({ params }: PageProps) {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Edit Speaker</h1>
+        <h1 className="text-3xl font-bold text-primary">Edit Speaker</h1>
         <Link href="/admin/speakers">
           <Button variant="outline">Cancel</Button>
         </Link>
       </div>
 
-      {error && (
-        <div className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-400 text-red-700 dark:text-red-400 px-4 py-3 rounded relative">
-          {error}
-        </div>
-      )}
+      {error && <FormError error={error} />}
 
-      <div className="bg-white dark:bg-slate-800 shadow overflow-hidden rounded-lg">
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+      <div className="bg-[var(--bg-primary)] shadow overflow-hidden rounded-lg border border-[var(--border-color)]">
+        <form
+          onSubmit={handleSubmit(data => onSubmit(data as SpeakerFormData))}
+          className="p-6 space-y-6"
+        >
           {/* Preview */}
-          {formData.avatar_url && (
+          {avatarUrl && (
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <Image
-                  src={formData.avatar_url}
-                  alt={formData.name || 'Speaker avatar'}
+                  src={avatarUrl}
+                  alt="Speaker avatar"
                   className="h-32 w-32 rounded-full object-cover"
                   width={128}
                   height={128}
@@ -173,191 +184,93 @@ export default function EditSpeakerPage({ params }: PageProps) {
           )}
 
           {/* Basic Information */}
-          <div>
-            <h2 className="text-lg font-medium text-slate-900 dark:text-white mb-4">
-              Basic Information
-            </h2>
+          <FormSection title="Basic Information">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formData.name || ''}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="Name"
+                type="text"
+                required
+                error={errors.name?.message}
+                {...register('name')}
+              />
 
-              <div>
-                <label
-                  htmlFor="avatar_url"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Avatar URL
-                </label>
-                <input
-                  type="url"
+              <div className="sm:col-span-1">
+                <ImageUpload
+                  label="Speaker Photo"
                   name="avatar_url"
-                  id="avatar_url"
-                  value={formData.avatar_url || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
+                  value={avatarUrl}
+                  onChange={handleImageChange}
+                  error={errors.avatar_url?.message}
+                  bucketName="speakers"
+                  folderPath="avatars"
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Job Title
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  value={formData.title || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="Job Title"
+                type="text"
+                error={errors.title?.message}
+                {...register('title')}
+              />
 
-              <div>
-                <label
-                  htmlFor="company"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Company
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  value={formData.company || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="Company"
+                type="text"
+                error={errors.company?.message}
+                {...register('company')}
+              />
 
               <div className="sm:col-span-2">
-                <label
-                  htmlFor="bio"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Bio
-                </label>
-                <textarea
-                  name="bio"
-                  id="bio"
+                <FormTextarea
+                  label="Bio"
                   rows={4}
-                  value={formData.bio || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
+                  error={errors.bio?.message}
+                  {...register('bio')}
                 />
               </div>
 
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="featured"
-                  id="featured"
-                  checked={formData.featured || false}
-                  onChange={handleChange}
-                  className="h-4 w-4 text-primary focus:ring-primary border-slate-300 dark:border-slate-700 rounded"
+              <div className="sm:col-span-1">
+                <FormCheckbox
+                  label="Featured Speaker"
+                  error={errors.featured?.message}
+                  {...register('featured')}
                 />
-                <label
-                  htmlFor="featured"
-                  className="ml-2 block text-sm text-slate-700 dark:text-slate-300"
-                >
-                  Featured Speaker
-                </label>
               </div>
             </div>
-          </div>
+          </FormSection>
 
           {/* Social Links */}
-          <div>
-            <h2 className="text-lg font-medium text-slate-900 dark:text-white mb-4">
-              Social Links
-            </h2>
+          <FormSection title="Social Links">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div>
-                <label
-                  htmlFor="social_twitter"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Twitter URL
-                </label>
-                <input
-                  type="url"
-                  name="social_twitter"
-                  id="social_twitter"
-                  value={formData.social_twitter || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="Twitter URL"
+                type="url"
+                error={errors.social_twitter?.message}
+                {...register('social_twitter')}
+              />
 
-              <div>
-                <label
-                  htmlFor="social_github"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  GitHub URL
-                </label>
-                <input
-                  type="url"
-                  name="social_github"
-                  id="social_github"
-                  value={formData.social_github || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="GitHub URL"
+                type="url"
+                error={errors.social_github?.message}
+                {...register('social_github')}
+              />
 
-              <div>
-                <label
-                  htmlFor="social_linkedin"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  LinkedIn URL
-                </label>
-                <input
-                  type="url"
-                  name="social_linkedin"
-                  id="social_linkedin"
-                  value={formData.social_linkedin || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="LinkedIn URL"
+                type="url"
+                error={errors.social_linkedin?.message}
+                {...register('social_linkedin')}
+              />
 
-              <div>
-                <label
-                  htmlFor="social_website"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-                >
-                  Personal Website
-                </label>
-                <input
-                  type="url"
-                  name="social_website"
-                  id="social_website"
-                  value={formData.social_website || ''}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-slate-300 dark:border-slate-700 shadow-sm focus:border-primary focus:ring-primary dark:bg-slate-700 dark:text-white sm:text-sm"
-                />
-              </div>
+              <FormInput
+                label="Personal Website"
+                type="url"
+                error={errors.social_website?.message}
+                {...register('social_website')}
+              />
             </div>
-          </div>
+          </FormSection>
 
           {/* Form Actions */}
           <div className="flex justify-end space-x-3">
