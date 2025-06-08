@@ -14,6 +14,15 @@
   --text-primary: #2e2e2e;
   --text-secondary: #4b5563;
   --border-color: #e5e7eb;
+
+  /* Form element colors */
+  --form-focus-color: var(--go-blue);
+  --form-focus-ring-color: rgba(0, 173, 216, 0.3);
+  --form-error-color: #dc2626;
+  --form-error-text: #b91c1c;
+  --form-error-border: #ef4444;
+  --form-error-bg: #fef2f2;
+  --form-error-bg-dark: rgba(127, 29, 29, 0.3);
 }
 
 :root.dark {
@@ -30,6 +39,14 @@
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --border-color: #374151;
+
+  /* Form element colors - dark mode */
+  --form-focus-color: var(--go-blue);
+  --form-focus-ring-color: rgba(0, 173, 216, 0.4);
+  --form-error-color: #ef4444;
+  --form-error-text: #f87171;
+  --form-error-border: #b91c1c;
+  --form-error-bg: rgba(127, 29, 29, 0.3);
 }
 
 /* Ensure custom colors are available as CSS classes */
@@ -326,6 +343,27 @@ section {
 }
 .border-primary {
   border-color: var(--border-color) !important;
+}
+
+/* Form utility classes */
+.form-focus-color {
+  color: var(--form-focus-color) !important;
+}
+.form-focus-ring {
+  border-color: var(--form-focus-color) !important;
+  box-shadow: 0 0 0 3px var(--form-focus-ring-color) !important;
+}
+.form-error-color {
+  color: var(--form-error-color) !important;
+}
+.form-error-text {
+  color: var(--form-error-text) !important;
+}
+.form-error-border {
+  border-color: var(--form-error-border) !important;
+}
+.form-error-bg {
+  background-color: var(--form-error-bg) !important;
 }
 
 /* Social media hover colors - ensure they're always available */

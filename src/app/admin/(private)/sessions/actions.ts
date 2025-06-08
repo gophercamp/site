@@ -247,7 +247,8 @@ export async function getAllSpeakers(): Promise<{
       return { speakers: null, error: error.message };
     }
 
-    return { speakers: data, error: null };
+    // Type assertion for the partial speaker data that's sufficient for dropdowns
+    return { speakers: data as Speaker[], error: null };
   } catch (error: Error | unknown) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return { speakers: null, error: errorMessage };

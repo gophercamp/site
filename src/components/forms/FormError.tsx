@@ -8,7 +8,7 @@ const FormError = ({ error }: FormErrorProps) => {
   if (!error) return null;
 
   return (
-    <div className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-400 text-red-700 dark:text-red-400 px-4 py-3 rounded relative">
+    <div className="mb-4 bg-[var(--form-error-bg)] border border-[var(--form-error-border)] text-[var(--form-error-text)] px-4 py-3 rounded relative">
       {error}
     </div>
   );

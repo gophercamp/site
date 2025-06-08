@@ -1,10 +1,12 @@
 'use client';
 
 import { useAuth } from '@/components/providers/AuthProvider';
+import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { FiLogOut } from 'react-icons/fi';
 
 /**
  * Admin section navigation bar
@@ -22,8 +24,8 @@ export default function AdminNavbar() {
   const isLoggedIn = !!user;
 
   return (
-    <nav className="bg-primary shadow-sm border-b border-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-primary shadow-sm border-b border-primary w-full fixed top-0 z-10">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
@@ -38,15 +40,15 @@ export default function AdminNavbar() {
             <ThemeToggle />
             {isLoggedIn && (
               <div className="ml-4 flex items-center md:ml-6">
-                <div className="hidden md:block">
-                  <span className="text-sm text-secondary mr-4">{user.email}</span>
-                </div>
-                <button
+                <Button
                   onClick={handleSignOut}
-                  className="px-3 py-1 rounded-md text-sm font-medium text-secondary hover:bg-secondary transition-colors"
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2 hover:bg-secondary"
                 >
-                  Sign out
-                </button>
+                  <FiLogOut className="w-4 h-4" />
+                  <span>Sign out</span>
+                </Button>
               </div>
             )}
             {isLoggedIn && (
@@ -99,7 +101,9 @@ export default function AdminNavbar() {
 
       {/* Mobile menu, toggle classes based on menu state */}
       {isLoggedIn && (
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
+        <div
+          className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden absolute w-full bg-primary shadow-md z-20`}
+        >
           <div className="pt-2 pb-3 space-y-1">
             <Link
               href="/admin"
@@ -127,12 +131,15 @@ export default function AdminNavbar() {
                 <p className="text-sm font-medium text-secondary">{user.email}</p>
               </div>
               <div className="mt-3 px-2 space-y-1">
-                <button
+                <Button
                   onClick={handleSignOut}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-secondary hover:bg-secondary transition-colors rounded-md"
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2 w-full justify-start hover:bg-secondary"
                 >
-                  Sign out
-                </button>
+                  <FiLogOut className="w-4 h-4" />
+                  <span>Sign out</span>
+                </Button>
               </div>
             </div>
           </div>

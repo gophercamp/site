@@ -101,7 +101,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
     return (
       <div>
         <label htmlFor={name} className="block text-sm font-medium text-[var(--text-secondary)]">
-          {label} {required && <span className="text-red-500">*</span>}
+          {label} {required && <span className="text-[var(--form-error-color)]">*</span>}
         </label>
 
         <div className="mt-1">
@@ -117,7 +117,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
               <button
                 type="button"
                 onClick={handleClearImage}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors"
+                className="absolute -top-2 -right-2 bg-[var(--form-error-color)] text-white rounded-full p-1 shadow-md hover:bg-[var(--form-error-text)] transition-colors"
               >
                 <FaTimes size={12} />
               </button>
@@ -125,14 +125,14 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           ) : (
             <div
               className={`flex justify-center items-center border-2 border-dashed rounded-md p-6
-                ${error || uploadError ? 'border-red-500' : 'border-[var(--border-color)]'}`}
+                ${error || uploadError ? 'border-[var(--form-error-border)]' : 'border-[var(--border-color)]'}`}
             >
               <div className="space-y-1 text-center">
                 <FaUpload className="mx-auto h-12 w-12 text-[var(--text-secondary)]" />
                 <div className="text-sm text-[var(--text-secondary)]">
                   <label
                     htmlFor={name}
-                    className="relative cursor-pointer rounded-md font-medium text-primary hover:text-primary-dark focus-within:outline-none"
+                    className="relative cursor-pointer rounded-md font-medium text-[var(--form-focus-color)] hover:text-[var(--go-blue-dark)] focus-within:outline-none"
                   >
                     <span>Upload an image</span>
                     <input
@@ -153,7 +153,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
                 </p>
                 {isUploading && (
                   <div className="mt-2">
-                    <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-primary mx-auto"></div>
+                    <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-[var(--form-focus-color)] mx-auto"></div>
                     <p className="text-sm text-[var(--text-secondary)] mt-1">Uploading...</p>
                   </div>
                 )}
@@ -163,7 +163,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
         </div>
 
         {(error || uploadError) && (
-          <p className="mt-1 text-sm text-red-500">{error || uploadError}</p>
+          <p className="mt-1 text-sm text-[var(--form-error-text)]">{error || uploadError}</p>
         )}
       </div>
     );

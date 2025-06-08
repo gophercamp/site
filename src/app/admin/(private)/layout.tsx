@@ -19,7 +19,7 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
       <AdminNavbar />
 
       {/* Sidebar & Main content */}
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row pt-16">
         {/* Sidebar for desktop */}
         <AdminSidebar />
 
