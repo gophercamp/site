@@ -3,18 +3,21 @@
 import { useAuth } from '@/components/providers/AuthProvider';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-interface AdminNavbarProps {
-  handleSignOutAction: () => Promise<void>;
-}
 
 /**
  * Admin section navigation bar
  */
-export default function AdminNavbar({ handleSignOutAction }: AdminNavbarProps) {
-  const { user } = useAuth();
+export default function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/admin/login');
+  };
 
   const isLoggedIn = !!user;
 
@@ -39,7 +42,7 @@ export default function AdminNavbar({ handleSignOutAction }: AdminNavbarProps) {
                   <span className="text-sm text-secondary mr-4">{user.email}</span>
                 </div>
                 <button
-                  onClick={handleSignOutAction}
+                  onClick={handleSignOut}
                   className="px-3 py-1 rounded-md text-sm font-medium text-secondary hover:bg-secondary transition-colors"
                 >
                   Sign out
@@ -125,7 +128,7 @@ export default function AdminNavbar({ handleSignOutAction }: AdminNavbarProps) {
               </div>
               <div className="mt-3 px-2 space-y-1">
                 <button
-                  onClick={handleSignOutAction}
+                  onClick={handleSignOut}
                   className="block w-full text-left px-3 py-2 text-base font-medium text-secondary hover:bg-secondary transition-colors rounded-md"
                 >
                   Sign out
