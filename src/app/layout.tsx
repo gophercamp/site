@@ -1,10 +1,8 @@
+import { AuthProvider } from '@/components/providers/AuthProvider';
+import ThemeProvider from '@/components/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { Inter, Roboto_Mono } from 'next/font/google';
-import Analytics from '@/components/Analytics';
-import PageTracker from '@/components/PageTracker';
 import './globals.css';
-import DefaultLayout from '@/components/layout/DefaultLayout';
-import ThemeProvider from '@/components/providers/ThemeProvider';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -59,9 +57,7 @@ export default function RootLayout({
         className={`${inter.variable} ${robotoMono.variable} font-sans antialiased bg-primary text-primary`}
       >
         <ThemeProvider>
-          <Analytics />
-          <PageTracker />
-          <DefaultLayout>{children}</DefaultLayout>
+          <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>
       </body>
     </html>
