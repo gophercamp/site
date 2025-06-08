@@ -2,7 +2,7 @@
 [build]
   base = "/"
   publish = ".next"
-  command = "echo $NEXT_PUBLIC_SUPABASE_URL && npm run build"
+  command = "npm run build"
 
 # Environment variables
 [build.environment]

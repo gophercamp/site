@@ -121,7 +121,7 @@ Create a `.env.local` file with the following variables:
 
 ```
 # Supabase configuration
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_DATABASE_URL=your_supabase_url
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 # Resend email configuration
