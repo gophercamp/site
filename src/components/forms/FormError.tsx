@@ -1,5 +1,3 @@
-'use client';
-
 interface FormErrorProps {
   error: string | null;
 }

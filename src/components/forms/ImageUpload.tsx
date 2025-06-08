@@ -1,6 +1,6 @@
 'use client';
 
-import { getSupabaseClient } from '@/lib/supabase';
+import { uploadImage } from '@/components/forms/uploadImage';
 import Image from 'next/image';
 import { ChangeEvent, forwardRef, useEffect, useState } from 'react';
 import { FaTimes, FaUpload } from 'react-icons/fa';
@@ -42,47 +42,24 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
       const file = e.target.files?.[0];
       if (!file) return;
 
-      // Validate file type and size
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-      if (!allowedTypes.includes(file.type)) {
-        setUploadError('File type not supported. Please upload a JPEG, PNG, WEBP or GIF image.');
-        return;
-      }
-
-      // Max size: 5MB
-      const maxSize = 5 * 1024 * 1024;
-      if (file.size > maxSize) {
-        setUploadError('File is too large. Maximum size is 5MB.');
-        return;
-      }
-
       try {
         setIsUploading(true);
         setUploadError(null);
-        const supabase = getSupabaseClient();
 
-        // Generate a unique filename
-        const timestamp = new Date().getTime();
-        const fileExtension = file.name.split('.').pop();
-        const fileName = `${timestamp}_${Math.random().toString(36).substring(2, 15)}.${fileExtension}`;
-        const filePath = `${folderPath}/${fileName}`;
+        // Create FormData to send to server action
+        const formData = new FormData();
+        formData.append('file', file);
 
-        // Upload file to Supabase Storage
-        const { error: uploadError } = await supabase.storage
-          .from(bucketName)
-          .upload(filePath, file);
+        // Call server action to handle the upload
+        const result = await uploadImage(formData, bucketName, folderPath);
 
-        if (uploadError) {
-          throw new Error(uploadError.message);
+        if (!result.success || !result.url) {
+          throw new Error(result.error || 'Failed to upload image');
         }
 
-        // Get the public URL
-        const { data: publicUrlData } = supabase.storage.from(bucketName).getPublicUrl(filePath);
-        const imageUrl = publicUrlData.publicUrl;
-
-        // Update form and preview
-        onChange(imageUrl);
-        setPreviewUrl(imageUrl);
+        // Update form and preview with the returned URL
+        onChange(result.url);
+        setPreviewUrl(result.url);
       } catch (err) {
         console.error('Error uploading image:', err);
         setUploadError(

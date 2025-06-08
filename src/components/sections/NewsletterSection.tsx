@@ -2,8 +2,8 @@
 
 import Button from '@/components/ui/Button';
 import { trackContactClick, trackNewsletterSignup, trackSocialClick } from '@/lib/analytics';
-import { subscribeToNewsletter, validateEmail } from '@/lib/forms';
 import { contactInfo, getSocialLink } from '@/lib/social';
+import { validateEmail } from '@/lib/validation';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -38,6 +38,39 @@ export default function NewsletterSection() {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
+
+  const subscribeToNewsletter = async (
+    email: string
+  ): Promise<{
+    success: boolean;
+    message: string;
+    alreadySubscribed?: boolean;
+  }> => {
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      // Return API response data
+      return {
+        success: result.success,
+        message: result.message,
+        alreadySubscribed: result.alreadySubscribed,
+      };
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      return {
+        success: false,
+        message: 'Failed to subscribe. Please try again later.',
+      };
+    }
+  };
 
   const resendConfirmation = async () => {
     if (!email) {

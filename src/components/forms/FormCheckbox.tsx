@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 
 interface FormCheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {

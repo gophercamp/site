@@ -1,5 +1,3 @@
-'use client';
-
 import { forwardRef } from 'react';
 
 interface FormSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {

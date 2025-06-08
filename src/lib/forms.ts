@@ -1,16 +1,6 @@
 'use client';
 
-/**
- * Utility functions for form handling
- */
-
-import { validateEmail as validateEmailFn } from '@/lib/validation';
 import { z } from 'zod';
-
-/**
- * Re-export validateEmail for client components
- */
-export const validateEmail = validateEmailFn;
 
 // Speaker validation schema
 export const speakerSchema = z.object({
@@ -45,51 +35,3 @@ export const sessionSchema = z.object({
 });
 
 export type SessionFormData = z.infer<typeof sessionSchema>;
-
-// Custom validation functions
-export const validateDateRange = (startDate: string, endDate?: string): boolean => {
-  if (!endDate) return true;
-
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  return end > start;
-};
-
-/**
- * Sends a newsletter subscription request to the API
- * @param email Email address to subscribe
- * @returns Promise with subscription result
- */
-export const subscribeToNewsletter = async (
-  email: string
-): Promise<{
-  success: boolean;
-  message: string;
-  alreadySubscribed?: boolean;
-}> => {
-  try {
-    const response = await fetch('/api/newsletter/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    const result = await response.json();
-
-    // Return API response data
-    return {
-      success: result.success,
-      message: result.message,
-      alreadySubscribed: result.alreadySubscribed,
-    };
-  } catch (error) {
-    console.error('Newsletter subscription error:', error);
-    return {
-      success: false,
-      message: 'Failed to subscribe. Please try again later.',
-    };
-  }
-};
