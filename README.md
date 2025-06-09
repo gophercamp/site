@@ -84,6 +84,31 @@ The landing page includes:
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Lint code
+- `npm run setup-db` - Set up the database schema in Supabase
+
+## Database Setup
+
+The project uses Supabase as its database provider. To set up the database schema:
+
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Add your Supabase URL and keys to your `.env.local` file:
+   ```
+   NEXT_PUBLIC_SUPABASE_DATABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   ```
+3. Set up the database schema manually:
+   - Go to your Supabase dashboard
+   - Navigate to the SQL Editor
+   - Copy the contents of `scripts/setup-database.sql`
+   - Paste it into the SQL Editor and run it
+
+This SQL script will create all necessary tables, indices, and security policies. It's designed to be idempotent, so you can run it multiple times without creating duplicate tables.
+
+For detailed information:
+
+- [Database setup documentation](./scripts/README.md)
+- [Database update history](./docs/DATABASE_UPDATES.md)
 
 ## Configuration
 
