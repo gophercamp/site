@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/components/providers/AuthProvider';
 import Link from 'next/link';
-import { FaUsers } from 'react-icons/fa';
+import { FaEnvelope, FaUsers } from 'react-icons/fa';
 import { HiHome } from 'react-icons/hi';
 import { MdCalendarMonth } from 'react-icons/md';
 
@@ -75,6 +75,35 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Subscribers Card */}
+        <div className="bg-primary border border-primary overflow-hidden shadow-sm rounded-lg">
+          <div className="p-5">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 bg-go-blue bg-opacity-10 rounded-md p-3">
+                <FaEnvelope className="h-6 w-6 text-go-blue" />
+              </div>
+              <div className="ml-5 w-0 flex-1">
+                <dl>
+                  <dt className="text-sm font-medium text-secondary truncate">Newsletter</dt>
+                  <dd>
+                    <div className="text-lg font-medium text-primary">Manage Subscribers</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div className="bg-secondary px-5 py-3">
+            <div className="text-sm">
+              <Link
+                href="/admin/subscribers"
+                className="font-medium text-go-blue hover:text-go-blue-dark"
+              >
+                View all
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Website Card */}
         <div className="bg-primary border border-primary overflow-hidden shadow-sm rounded-lg">
           <div className="p-5">
@@ -109,8 +138,9 @@ export default function AdminDashboard() {
           </h3>
           <div className="mt-2 max-w-xl text-sm text-[var(--text-secondary)]">
             <p>
-              This admin panel allows you to manage speakers and sessions for the Gophercamp 2026
-              conference. Use the navigation menu to access different sections.
+              This admin panel allows you to manage speakers, sessions, and newsletter subscribers
+              for the Gophercamp 2026 conference. Use the navigation menu to access different
+              sections.
             </p>
           </div>
           <div className="mt-5">
@@ -119,6 +149,8 @@ export default function AdminDashboard() {
               <li>Manage session details including time, location, and speaker assignments</li>
               <li>Control which sessions are published to the public website</li>
               <li>Specify speaker details including bio, company, and social links</li>
+              <li>View and manage newsletter subscribers</li>
+              <li>Export subscriber data as CSV for analysis</li>
             </ul>
           </div>
         </div>
