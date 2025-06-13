@@ -59,22 +59,22 @@ export default function BackgroundSlideshow({
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
           <Image
             src={images[currentIndex]}
-            alt="Gophercamp 2025 slideshow"
+            alt="Gophercamp 2026 slideshow"
             fill
             priority
             sizes="100vw"
             quality={90}
             className="object-cover object-center"
           />
-          {/* Dark overlay for better text readability */}
+          {/* Theme-aware overlay for better text readability */}
           <div className="absolute inset-0 overlay-background" />
         </motion.div>
       </AnimatePresence>

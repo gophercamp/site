@@ -7,10 +7,10 @@
   --go-blue-dark: #007d9c;
   --go-blue-darker: #00526a;
   --go-black: #2e2e2e;
-  --bg-primary: #ffffff;
-  --bg-primary-rgb: 255, 255, 255;
-  --bg-secondary: #f9fafb;
-  --bg-secondary-rgb: 249, 250, 251;
+  --bg-primary: #f8f9fa;
+  --bg-primary-rgb: 248, 249, 250;
+  --bg-secondary: #f1f3f5;
+  --bg-secondary-rgb: 241, 243, 245;
   --text-primary: #2e2e2e;
   --text-secondary: #4b5563;
   --border-color: #e5e7eb;
@@ -150,11 +150,11 @@ section {
 
 /* Background overlay for slideshows and images */
 .overlay-background {
-  background-color: rgba(0, 0, 0, 0.4); /* Equivalent to bg-black/40 in light mode */
+  background-color: rgba(0, 0, 0, 0.15); /* Subtle overlay in light mode - 15% opacity */
 }
 
 .dark .overlay-background {
-  background-color: rgba(0, 0, 0, 0.6); /* Equivalent to bg-black/60 in dark mode */
+  background-color: rgba(0, 0, 0, 0.5); /* 50% black in dark mode */
 }
 
 /* InfoBox colors */
