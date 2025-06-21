@@ -1,12 +1,12 @@
-import EmailButton from '@/emails/components/EmailButton';
-import EmailLayout from '@/emails/components/EmailLayout';
+import { EmailButton, EmailLayout, EmailUnsubscribe } from '@/emails/components';
 import { Container, Hr, Link, Text } from '@react-email/components';
 
 export interface ConfirmationEmailProps {
   confirmUrl: string;
+  unsubscribeUrl?: string;
 }
 
-export default function ConfirmationEmail({ confirmUrl }: ConfirmationEmailProps) {
+export default function ConfirmationEmail({ confirmUrl, unsubscribeUrl }: ConfirmationEmailProps) {
   return (
     <EmailLayout>
       <Text>Hello,</Text>
@@ -29,6 +29,7 @@ export default function ConfirmationEmail({ confirmUrl }: ConfirmationEmailProps
             {confirmUrl}
           </Link>
         </Text>
+        <EmailUnsubscribe unsubscribeUrl={unsubscribeUrl} />
       </Container>
     </EmailLayout>
   );

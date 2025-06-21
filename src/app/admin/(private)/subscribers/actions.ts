@@ -112,3 +112,37 @@ export async function getSubscriberStats(): Promise<{
     };
   }
 }
+
+/**
+ * Get unsubscribe URL for a subscriber
+ */
+export async function getUnsubscribeUrl(email: string): Promise<{
+  url: string | null;
+  error: string | null;
+}> {
+  try {
+    const supabase = getSupabaseClient();
+
+    const { data, error } = await supabase
+      .from(SUBSCRIBERS_TABLE)
+      .select('unsubscribe_token')
+      .eq('email', email.toLowerCase())
+      .single();
+
+    if (error) {
+      return { url: null, error: error.message };
+    }
+
+    if (!data.unsubscribe_token) {
+      return { url: null, error: 'No unsubscribe token found for this subscriber' };
+    }
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gophercamp.cz';
+    const url = `${siteUrl}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}&token=${data.unsubscribe_token}`;
+
+    return { url, error: null };
+  } catch (error: Error | unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    return { url: null, error: errorMessage };
+  }
+}

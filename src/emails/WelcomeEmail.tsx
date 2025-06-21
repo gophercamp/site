@@ -1,7 +1,11 @@
+import { EmailLayout, EmailUnsubscribe } from '@/emails/components';
 import { Link, Section, Text } from '@react-email/components';
-import EmailLayout from './components/EmailLayout';
 
-export default function WelcomeEmail() {
+export interface WelcomeEmailProps {
+  unsubscribeUrl?: string;
+}
+
+export default function WelcomeEmail({ unsubscribeUrl }: WelcomeEmailProps = {}) {
   return (
     <EmailLayout>
       <Text>Hello,</Text>
@@ -26,6 +30,7 @@ export default function WelcomeEmail() {
             website
           </Link>
         </Text>
+        <EmailUnsubscribe unsubscribeUrl={unsubscribeUrl} />
       </Section>
     </EmailLayout>
   );

@@ -32,6 +32,13 @@ export default function NewsletterSection() {
         setError(
           'Your confirmation link has expired. Please subscribe again to receive a new link.'
         );
+      } else if (params.get('unsubscribed') === 'true') {
+        setSuccessMessage('You have been successfully unsubscribed from our newsletter.');
+        setIsSubmitted(true);
+      } else if (params.get('unsubscribeError') === 'true') {
+        setError(
+          'There was a problem processing your unsubscribe request. Please try again or contact us.'
+        );
       }
 
       // Clear the URL parameters without refreshing

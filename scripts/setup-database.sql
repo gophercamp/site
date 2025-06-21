@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS public.newsletter_subscribers (
   confirmation_token TEXT,
   token_expires_at TIMESTAMP WITH TIME ZONE,
   confirmed_at TIMESTAMP WITH TIME ZONE,
+  unsubscribe_token TEXT,
   ip_address TEXT,
   user_agent TEXT
 );

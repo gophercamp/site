@@ -60,16 +60,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Generate new confirmation token
+    // Generate new confirmation token and unsubscribe token if missing
     const confirmationToken = generateToken();
+    const unsubscribeToken = existingUser.unsubscribe_token || generateToken();
     const tokenExpiresAt = createExpirationDate(48); // Token expires in 48 hours
 
-    // Update with new confirmation token
+    // Update with new confirmation token and unsubscribe token
     const { error: updateError } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
       .update({
         confirmation_token: confirmationToken,
         token_expires_at: tokenExpiresAt,
+        unsubscribe_token: unsubscribeToken,
       })
       .eq('id', existingUser.id);
 
@@ -82,7 +84,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email
-    const emailResult = await sendConfirmationEmail(email, confirmationToken);
+    const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
 
     if (!emailResult.success) {
       console.error('Failed to send confirmation email:', emailResult.error);

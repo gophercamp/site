@@ -51,8 +51,9 @@ export async function POST(request: NextRequest) {
     const ip =
       request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || undefined;
 
-    // Generate confirmation token
+    // Generate confirmation token and unsubscribe token
     const confirmationToken = generateToken();
+    const unsubscribeToken = generateToken();
     const tokenExpiresAt = createExpirationDate(48); // Token expires in 48 hours
 
     // Insert the new subscriber
@@ -62,6 +63,7 @@ export async function POST(request: NextRequest) {
       confirmed: false,
       confirmation_token: confirmationToken,
       token_expires_at: tokenExpiresAt,
+      unsubscribe_token: unsubscribeToken,
       ip_address: ip,
       user_agent: userAgent,
     });
@@ -75,7 +77,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email
-    const emailResult = await sendConfirmationEmail(email, confirmationToken);
+    const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
 
     if (!emailResult.success) {
       return NextResponse.json(
