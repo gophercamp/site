@@ -1,12 +1,21 @@
 'use client';
 
-import { useAnalytics } from '@/hooks/useAnalytics';
+import { trackPageView } from '@/lib/analytics';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 /**
  * Client component to track page views automatically
  * This component should be included in the root layout
  */
 export default function PageTracker() {
-  useAnalytics();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Track page view when pathname changes
+    if (pathname) {
+      trackPageView(pathname);
+    }
+  }, [pathname]);
   return null;
 }
