@@ -1,6 +1,6 @@
 import { sendWelcomeEmail } from '@/lib/email';
 import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
-import { isTokenExpired } from '@/lib/token';
+import { generateToken, isTokenExpired } from '@/lib/token';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -51,15 +51,28 @@ export async function GET(request: NextRequest) {
     }
 
     // Update subscription to confirmed status
+    const updateData: {
+      confirmed: boolean;
+      confirmed_at: string;
+      confirmation_token: null;
+      token_expires_at: null;
+      unsubscribe_token?: string;
+    } = {
+      confirmed: true,
+      confirmed_at: new Date().toISOString(),
+      // Clear the token since it's been used
+      confirmation_token: null,
+      token_expires_at: null,
+    };
+
+    // Generate unsubscribe token if not present
+    if (!data.unsubscribe_token) {
+      updateData.unsubscribe_token = generateToken();
+    }
+
     const { error: updateError } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
-      .update({
-        confirmed: true,
-        confirmed_at: new Date().toISOString(),
-        // Clear the token since it's been used
-        confirmation_token: null,
-        token_expires_at: null,
-      })
+      .update(updateData)
       .eq('id', data.id);
 
     if (updateError) {
@@ -68,7 +81,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Send welcome email
-    sendWelcomeEmail(email).catch(error => {
+    sendWelcomeEmail(email, data.unsubscribe_token || updateData.unsubscribe_token).catch(error => {
       // Log but don't block on welcome email errors
       console.error('Failed to send welcome email:', error);
     });

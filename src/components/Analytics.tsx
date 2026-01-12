@@ -1,7 +1,5 @@
-'use client';
-
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { ANALYTICS_CONFIG, isAnalyticsEnabled } from '@/lib/analytics';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 /**
  * Analytics component that handles Google Analytics integration

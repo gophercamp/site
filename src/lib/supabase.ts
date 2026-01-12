@@ -31,6 +31,7 @@ export interface NewsletterSubscriber {
   confirmation_token?: string;
   token_expires_at?: string;
   confirmed_at?: string;
+  unsubscribe_token?: string;
   ip_address?: string;
   user_agent?: string;
 }
