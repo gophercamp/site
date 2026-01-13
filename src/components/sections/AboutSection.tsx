@@ -15,7 +15,7 @@ export default function AboutSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">About Gophercamp</h2>
           <p className="text-lg text-secondary">
-            The Go programming language conference in the Czech Republic
+            Two days of Go programming excellence in Brno, Czech Republic
           </p>
         </motion.div>
 
@@ -119,15 +119,15 @@ export default function AboutSection() {
           className="mt-16 bg-go-blue/5 p-6 md:p-8 rounded-lg border border-go-blue/10 relative overflow-hidden"
         >
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-primary mb-4">Past Success</h3>
+            <h3 className="text-2xl font-bold text-primary mb-4">Two Days of Go Excellence</h3>
             <p className="text-secondary mb-4">
-              Following the tremendous success of Gophercamp 2025, the first Go conference in the
-              Czech Republic, we&apos;re excited to bring you an even more engaging experience in
-              2026.
+              <strong>Day 1 - Thursday, April 23:</strong> Dive deep with hands-on workshops led by
+              industry experts. Perfect your Go skills in an interactive learning environment.
             </p>
-            <p className="text-secondary">
-              Stay tuned for announcements about keynote speakers, agenda, and early bird ticket
-              opportunities.
+            <p className="text-secondary mb-4">
+              <strong>Day 2 - Friday, April 24:</strong> Join 200 gophers for a full day of
+              inspiring talks from 20 speakers, covering everything from fundamentals to
+              cutting-edge Go applications.
             </p>
           </div>
 
