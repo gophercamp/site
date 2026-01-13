@@ -33,5 +33,15 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[redirects]]
+  from = "/cfp"
+  to = "https://sessionize.com/gophercamp"
+  status = 301
+
+[[redirects]]
+  from = "/tickets"
+  to = "https://luma.com/d2kgz2d8"
+  status = 301
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

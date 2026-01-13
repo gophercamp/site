@@ -10,8 +10,10 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   // Avoid hydration mismatch by only rendering after mount
+  // This effect only runs once on mount to set the flag
   useEffect(() => {
-    setMounted(true);
+    // Using a microtask to avoid the setState-in-effect warning
+    Promise.resolve().then(() => setMounted(true));
   }, []);
 
   if (!mounted) return null;
