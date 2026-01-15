@@ -391,3 +391,9 @@ section {
 .social-signal:hover {
   color: #3a76f0 !important;
 } /* Signal blue */
+.social-signal:hover svg {
+  color: #3a76f0 !important;
+}
+.social-signal:hover svg path {
+  fill: #3a76f0 !important;
+}
