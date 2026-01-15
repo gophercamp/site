@@ -133,7 +133,7 @@ export default function HeroSection() {
               The Go Conference in Czech Republic
             </h2>
 
-            <div className="flex flex-col md:flex-row gap-4 mb-10">
+            <div className="flex flex-col gap-3 mb-10">
               <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,10 @@ export default function HeroSection() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="font-medium text-primary">April 24, 2026</span>
+                <div className="flex flex-col">
+                  <span className="font-medium text-primary">April 23-24, 2026</span>
+                  <span className="text-sm text-primary/80">Workshops Thu • Conference Fri</span>
+                </div>
               </div>
 
               <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
@@ -173,19 +176,27 @@ export default function HeroSection() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span className="font-medium text-primary">Brno, Czech Republic</span>
+                <div className="flex flex-col">
+                  <span className="font-medium text-primary">Clubco, Brno</span>
+                  <span className="text-sm text-primary/80">Vlněna 5, Czech Republic</span>
+                </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button href="#newsletter" variant="primary" size="lg">
-                Stay Informed
+              <Button href="#tickets" variant="primary" size="lg">
+                Get Tickets
               </Button>
 
-              <Button href="#about" variant="secondary" size="lg">
-                Learn More
+              <Button href="#cfp" variant="secondary" size="lg">
+                Submit Your Talk
               </Button>
             </div>
+
+            <p className="mt-6 text-white/80 text-sm drop-shadow-md">
+              <span aria-hidden="true">🎉</span> Call for Speakers is now open! Share your Go
+              expertise with the community.
+            </p>
           </motion.div>
 
           <motion.div

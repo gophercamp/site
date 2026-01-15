@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function NewsletterSection() {
-  const xLink = getSocialLink('x');
+  const signalLink = getSocialLink('signal');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -250,17 +250,17 @@ export default function NewsletterSection() {
               </div>
 
               <div>
-                <h3 className="font-bold text-lg mb-2 text-primary">Follow Us</h3>
+                <h3 className="font-bold text-lg mb-2 text-primary">Connect with Us</h3>
                 <p className="text-secondary">
                   Stay connected on
                   <a
-                    href={xLink?.url}
+                    href={signalLink?.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-go-blue hover:text-go-blue-dark ml-1"
-                    onClick={() => trackSocialClick(xLink?.trackingId || 'x')}
+                    onClick={() => trackSocialClick(signalLink?.trackingId || 'signal')}
                   >
-                    X
+                    Signal
                   </a>
                 </p>
               </div>

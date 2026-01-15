@@ -53,13 +53,22 @@ export default function Button({
   };
 
   // If it's a link button
-  if (href) {
+  if (href && !disabled) {
     return (
       <motion.div whileTap="tap" variants={buttonAnimation}>
-        <Link href={href} className={buttonClasses} aria-disabled={disabled}>
+        <Link href={href} className={buttonClasses}>
           {children}
         </Link>
       </motion.div>
+    );
+  }
+
+  // If it's a disabled link button
+  if (href && disabled) {
+    return (
+      <span className={buttonClasses} aria-disabled={disabled}>
+        {children}
+      </span>
     );
   }
 

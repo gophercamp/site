@@ -123,7 +123,7 @@ export default function CodeOfConductPage() {
             <strong>Email:</strong> {contactInfo.conduct}
           </p>
           <p>
-            <strong>Phone:</strong> [Emergency contact number]
+            <strong>Phone:</strong> +420778405209
           </p>
           <p className="mt-2 text-sm">Reports can be made anonymously if preferred</p>
         </InfoBox>
