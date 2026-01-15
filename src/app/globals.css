@@ -388,3 +388,6 @@ section {
 .social-meetup:hover {
   color: #e51937 !important;
 } /* Meetup red */
+.social-signal:hover {
+  color: #3a76f0 !important;
+} /* Signal blue */

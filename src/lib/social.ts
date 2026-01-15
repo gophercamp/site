@@ -2,7 +2,8 @@
  * Central configuration for all social media links and related data
  */
 
-import { FaXTwitter, FaGithub, FaYoutube, FaLinkedin, FaFacebook, FaMeetup } from 'react-icons/fa6';
+import { FaGithub, FaYoutube, FaLinkedin, FaFacebook, FaMeetup } from 'react-icons/fa6';
+import { SiSignal } from 'react-icons/si';
 
 export interface SocialLink {
   id: string;
@@ -27,15 +28,6 @@ export interface ContactInfo {
  * Using specific CSS classes for hover effects to ensure consistency
  */
 export const socialLinks: SocialLink[] = [
-  {
-    id: 'x',
-    name: 'X',
-    url: 'https://x.com/gophercamp',
-    icon: FaXTwitter,
-    ariaLabel: 'Follow us on X',
-    hoverColor: 'social-x', // Custom CSS class for X hover
-    trackingId: 'x',
-  },
   {
     id: 'youtube',
     name: 'YouTube',
@@ -81,6 +73,15 @@ export const socialLinks: SocialLink[] = [
     hoverColor: 'social-meetup', // Custom CSS class for Meetup hover
     trackingId: 'meetup',
   },
+  {
+    id: 'signal',
+    name: 'Signal',
+    url: 'https://signal.group/#CjQKIASiyTp7u9S54wWxs4RdOFlh8-Tpt-yPUQY9ZvQrZVPsEhDB7o8_FGOVYCxchSHvWLdH',
+    icon: SiSignal,
+    ariaLabel: 'Join our Signal group',
+    hoverColor: 'social-signal', // Custom CSS class for Signal hover
+    trackingId: 'signal',
+  },
 ];
 
 /**
@@ -98,7 +99,7 @@ export const contactInfo: ContactInfo = {
  * Get social links for header (subset of all links)
  */
 export function getHeaderSocialLinks(): SocialLink[] {
-  return socialLinks.filter(link => ['x', 'youtube', 'github', 'meetup'].includes(link.id));
+  return socialLinks.filter(link => ['youtube', 'github', 'meetup', 'signal'].includes(link.id));
 }
 
 /**
