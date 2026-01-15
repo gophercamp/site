@@ -120,7 +120,7 @@ export default function TicketsSection() {
   ];
 
   return (
-    <section id="tickets" className="py-20 bg-primary">
+    <section id="tickets" className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

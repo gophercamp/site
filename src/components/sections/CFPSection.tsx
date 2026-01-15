@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function CFPSection() {
   return (
-    <section id="cfp" className="py-20 bg-gradient-to-br from-go-blue/5 to-go-blue/10">
+    <section id="cfp" className="py-20 bg-primary">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
