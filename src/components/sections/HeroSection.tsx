@@ -194,7 +194,8 @@ export default function HeroSection() {
             </div>
 
             <p className="mt-6 text-white/80 text-sm drop-shadow-md">
-              🎉 Call for Speakers is now open! Share your Go expertise with the community.
+              <span aria-hidden="true">🎉</span> Call for Speakers is now open! Share your Go
+              expertise with the community.
             </p>
           </motion.div>
 
