@@ -73,23 +73,23 @@ export default function CFPSection() {
               </h3>
               <ul className="space-y-2 text-secondary">
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>Go language features and best practices</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>Cloud-native development and microservices</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>Performance optimization and debugging</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>Real-world case studies and experiences</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>Testing, tooling, and DevOps</span>
                 </li>
               </ul>
@@ -121,21 +121,21 @@ export default function CFPSection() {
               </h3>
               <ul className="space-y-2 text-secondary">
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>
                     <strong>Regular Talk:</strong> 30 minutes
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>
                     <strong>Lightning Talk:</strong> 10 minutes
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-go-blue mt-1">•</span>
+                  <span className="text-go-blue">•</span>
                   <span>
-                    <strong>Workshop:</strong> 90 minutes
+                    <strong>Workshop:</strong> 90+ minutes
                   </span>
                 </li>
               </ul>

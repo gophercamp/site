@@ -3,7 +3,122 @@
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 
+/**
+ * Props for a ticket offering feature item
+ */
+interface TicketFeature {
+  text: string;
+}
+
+/**
+ * Props for the TicketCard component
+ */
+interface TicketCardProps {
+  /** Ticket title */
+  title: string;
+  /** Ticket price in euros */
+  price: number;
+  /** Price description/validity period */
+  priceDescription: string;
+  /** List of features included */
+  features: TicketFeature[];
+  /** Purchase URL */
+  href: string;
+  /** Button text */
+  buttonText: string;
+  /** Button variant */
+  buttonVariant?: 'primary' | 'secondary' | 'outline';
+  /** Optional badge text */
+  badge?: string;
+  /** Whether this ticket is disabled/unavailable */
+  disabled?: boolean;
+  /** Animation delay for stagger effect */
+  delay?: number;
+}
+
+/**
+ * Reusable ticket card component
+ */
+function TicketCard({
+  title,
+  price,
+  priceDescription,
+  features,
+  href,
+  buttonText,
+  buttonVariant = 'outline',
+  badge,
+  disabled = false,
+  delay = 0,
+}: TicketCardProps) {
+  const borderColor = badge ? 'border-go-blue/20' : 'border-primary';
+  const opacity = disabled ? 'opacity-50' : 'opacity-100';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true, margin: '-100px' }}
+      className={`bg-secondary rounded-lg border-2 ${borderColor} p-6 flex flex-col relative ${opacity} ${
+        disabled ? 'pointer-events-none' : ''
+      }`}
+    >
+      <div className="mb-4">
+        {(badge || disabled) && (
+          <div className="inline-block bg-go-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
+            {badge ? badge : 'Not Available Yet'}
+          </div>
+        )}
+        <h3 className="text-2xl font-bold text-primary mb-2">{title}</h3>
+        <div className="flex items-baseline gap-2">
+          <span className={`text-4xl font-bold ${badge ? 'text-go-blue' : 'text-primary'}`}>
+            €{price}
+          </span>
+        </div>
+        <p className="text-sm text-secondary mt-1">{priceDescription}</p>
+      </div>
+
+      <ul className="space-y-3 mb-6 flex-grow">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-start gap-2">
+            <svg
+              className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span className="text-secondary">{feature.text}</span>
+          </li>
+        ))}
+      </ul>
+
+      <Button href={href} variant={buttonVariant} size="lg" disabled={disabled}>
+        {buttonText}
+      </Button>
+    </motion.div>
+  );
+}
+
+/**
+ * Tickets section component displaying available ticket options
+ */
 export default function TicketsSection() {
+  // Common features for all tickets
+  const standardFeatures: TicketFeature[] = [
+    { text: 'Full conference access' },
+    { text: 'All talks & workshops' },
+    { text: 'Lunch & refreshments' },
+    { text: 'Conference swag' },
+  ];
+
   return (
     <section id="tickets" className="py-20 bg-primary">
       <div className="container mx-auto px-4">
@@ -24,272 +139,42 @@ export default function TicketsSection() {
 
           {/* Ticket Options */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Early Bird Ticket */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              className="bg-secondary rounded-lg border-2 border-go-blue/20 p-6 flex flex-col"
-            >
-              <div className="mb-4">
-                <div className="inline-block bg-go-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
-                  LIMITED TIME
-                </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">Super Early Bird</h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-go-blue">€TBA</span>
-                </div>
-                <p className="text-sm text-secondary mt-1">Until January 18, 2026</p>
-              </div>
+            <TicketCard
+              title="Super Early Bird"
+              price={42}
+              priceDescription="Until January 18, 2026"
+              features={standardFeatures}
+              href="https://luma.com/d2kgz2d8"
+              buttonText="Buy Super Early Bird"
+              buttonVariant="primary"
+              badge="Limited time"
+              disabled={false}
+              delay={0.1}
+            />
 
-              <ul className="space-y-3 mb-6 flex-grow">
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Full conference access</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">All talks & workshops</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Lunch & refreshments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Conference swag</span>
-                </li>
-              </ul>
+            <TicketCard
+              title="Standard"
+              price={89}
+              priceDescription="Standard pricing"
+              features={standardFeatures}
+              href="https://luma.com/d2kgz2d8"
+              buttonText="Buy Standard"
+              buttonVariant="outline"
+              disabled={true}
+              delay={0.2}
+            />
 
-              <Button href="https://luma.com/d2kgz2d8" variant="primary" size="lg">
-                Buy Super Early Bird
-              </Button>
-            </motion.div>
-
-            {/* Regular Ticket */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true, margin: '-100px' }}
-              className="bg-secondary rounded-lg border-2 border-primary p-6 flex flex-col relative"
-            >
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-primary mb-2">Standard</h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-primary">€TBA</span>
-                </div>
-                <p className="text-sm text-secondary mt-1">Standard pricing</p>
-              </div>
-
-              <ul className="space-y-3 mb-6 flex-grow">
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Full conference access</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">All talks & workshops</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Lunch & refreshments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Conference swag</span>
-                </li>
-              </ul>
-
-              <Button href="https://luma.com/d2kgz2d8" variant="outline" size="lg">
-                Buy Standard
-              </Button>
-            </motion.div>
-
-            {/* Student/Community Ticket */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true, margin: '-100px' }}
-              className="bg-secondary rounded-lg border-2 border-primary p-6 flex flex-col"
-            >
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-primary mb-2">Last Minute</h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-primary">€TBA</span>
-                </div>
-                <p className="text-sm text-secondary mt-1">Available closer to event</p>
-              </div>
-
-              <ul className="space-y-3 mb-6 flex-grow">
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Full conference access</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">All talks & workshops</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Lunch & refreshments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg
-                    className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-secondary">Conference swag</span>
-                </li>
-              </ul>
-
-              <Button href="https://luma.com/d2kgz2d8" variant="outline" size="lg">
-                Buy Last Minute
-              </Button>
-            </motion.div>
+            <TicketCard
+              title="Last Minute"
+              price={109}
+              priceDescription="Available closer to event"
+              features={standardFeatures}
+              href="https://luma.com/d2kgz2d8"
+              buttonText="Buy Last Minute"
+              buttonVariant="outline"
+              disabled={true}
+              delay={0.3}
+            />
           </div>
 
           {/* Additional Info */}
