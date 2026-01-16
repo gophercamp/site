@@ -30,6 +30,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/location"
+                  className="text-secondary hover:text-go-blue transition-colors"
+                >
+                  Location
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/code-of-conduct"
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
