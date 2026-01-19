@@ -30,8 +30,8 @@ interface TicketCardProps {
   buttonVariant?: 'primary' | 'secondary' | 'outline';
   /** Optional badge text */
   badge?: string;
-  /** Whether this ticket is disabled/unavailable */
-  disabled?: boolean;
+  /** Whether this ticket is enabled/available */
+  enabled?: boolean;
   /** Animation delay for stagger effect */
   delay?: number;
 }
@@ -48,11 +48,11 @@ function TicketCard({
   buttonText,
   buttonVariant = 'outline',
   badge,
-  disabled = false,
+  enabled = true,
   delay = 0,
 }: TicketCardProps) {
   const borderColor = badge ? 'border-go-blue/20' : 'border-primary';
-  const opacity = disabled ? 'opacity-50' : 'opacity-100';
+  const opacity = enabled ? 'opacity-100' : 'opacity-50';
 
   return (
     <motion.div
@@ -61,11 +61,11 @@ function TicketCard({
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true, margin: '-100px' }}
       className={`bg-secondary rounded-lg border-2 ${borderColor} p-6 flex flex-col relative ${opacity} ${
-        disabled ? 'pointer-events-none' : ''
+        enabled ? '' : 'pointer-events-none'
       }`}
     >
       <div className="mb-4">
-        {(badge || disabled) && (
+        {(badge || !enabled) && (
           <div className="inline-block bg-go-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
             {badge ? badge : 'Not Available Yet'}
           </div>
@@ -100,7 +100,7 @@ function TicketCard({
         ))}
       </ul>
 
-      <Button href={href} variant={buttonVariant} size="lg" disabled={disabled}>
+      <Button href={href} variant={buttonVariant} size="lg" disabled={!enabled}>
         {buttonText}
       </Button>
     </motion.div>
@@ -111,6 +111,16 @@ function TicketCard({
  * Tickets section component displaying available ticket options
  */
 export default function TicketsSection() {
+  // Define ticket availability periods
+  const EARLY_BIRD_END = new Date('2026-03-01'); // End of Feb 28, 2026
+  const STANDARD_END = new Date('2026-04-21'); // April 21, 2026
+
+  // Helper function to check if current date is within a period
+  const now = new Date();
+  const isEarlyBirdPeriod = now < EARLY_BIRD_END;
+  const isStandardPeriod = now >= EARLY_BIRD_END && now < STANDARD_END;
+  const isLastMinutePeriod = now >= STANDARD_END;
+
   // Common features for all tickets
   const standardFeatures: TicketFeature[] = [
     { text: 'Full conference access' },
@@ -140,15 +150,15 @@ export default function TicketsSection() {
           {/* Ticket Options */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <TicketCard
-              title="Super Early Bird"
-              price={42}
-              priceDescription="Until January 18, 2026"
+              title="Early Bird"
+              price={69}
+              priceDescription="Until February 28, 2026"
               features={standardFeatures}
               href="https://luma.com/d2kgz2d8"
-              buttonText="Buy Super Early Bird"
+              buttonText="Buy Early Bird"
               buttonVariant="primary"
               badge="Limited time"
-              disabled={false}
+              enabled={isEarlyBirdPeriod}
               delay={0.1}
             />
 
@@ -160,7 +170,7 @@ export default function TicketsSection() {
               href="https://luma.com/d2kgz2d8"
               buttonText="Buy Standard"
               buttonVariant="outline"
-              disabled={true}
+              enabled={isStandardPeriod}
               delay={0.2}
             />
 
@@ -172,7 +182,7 @@ export default function TicketsSection() {
               href="https://luma.com/d2kgz2d8"
               buttonText="Buy Last Minute"
               buttonVariant="outline"
-              disabled={true}
+              enabled={isLastMinutePeriod}
               delay={0.3}
             />
           </div>
