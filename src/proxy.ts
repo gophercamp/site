@@ -35,11 +35,14 @@ export async function proxy(request: NextRequest) {
   // Get the pathname from the URL
   const { pathname } = request.nextUrl;
 
-  // Check if the request is for an admin route
-  const isAdminRoute = pathname.startsWith('/admin') && pathname !== '/admin/login';
+  if (pathname.startsWith('/api') && !user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
+  // Check if the request is for an admin route
+  const isProtectedRoute = pathname.startsWith('/admin') && pathname !== '/admin/login';
   // If accessing an admin route without being logged in, redirect to login
-  if (isAdminRoute && !user) {
+  if (isProtectedRoute && !user) {
     const redirectUrl = new URL('/admin/login', request.url);
     redirectUrl.searchParams.set('returnUrl', pathname);
     return NextResponse.redirect(redirectUrl);
@@ -55,5 +58,5 @@ export async function proxy(request: NextRequest) {
 
 // Apply middleware only to admin routes
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/api/newsletter/send'],
 };
