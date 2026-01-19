@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     // Find the subscriber with matching email and token
     const { data, error } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
-      .select('*')
+      .select('*, unsubscribe_token')
       .eq('email', email.toLowerCase())
       .eq('confirmation_token', token)
       .single();
@@ -67,11 +67,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(errorUrl);
     }
 
-    // Send welcome email
-    sendWelcomeEmail(email).catch(error => {
-      // Log but don't block on welcome email errors
-      console.error('Failed to send welcome email:', error);
-    });
+    // Send welcome email with unsubscribe token
+    if (data.unsubscribe_token) {
+      sendWelcomeEmail(email, data.unsubscribe_token).catch(error => {
+        // Log but don't block on welcome email errors
+        console.error('Failed to send welcome email:', error);
+      });
+    }
 
     // Redirect to success page
     return NextResponse.redirect(successUrl);
