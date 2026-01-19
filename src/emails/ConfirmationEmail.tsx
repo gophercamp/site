@@ -4,9 +4,10 @@ import { Container, Hr, Link, Text } from '@react-email/components';
 
 export interface ConfirmationEmailProps {
   confirmUrl: string;
+  unsubscribeUrl: string;
 }
 
-export default function ConfirmationEmail({ confirmUrl }: ConfirmationEmailProps) {
+export default function ConfirmationEmail({ confirmUrl, unsubscribeUrl }: ConfirmationEmailProps) {
   return (
     <EmailLayout>
       <Text>Hello,</Text>
@@ -27,6 +28,12 @@ export default function ConfirmationEmail({ confirmUrl }: ConfirmationEmailProps
           If the button doesn&apos;t work, copy and paste this URL into your browser: <br />
           <Link href={confirmUrl} style={{ color: '#00ADD8' }}>
             {confirmUrl}
+          </Link>
+        </Text>
+        <Text style={{ marginTop: '20px' }}>
+          Don&apos;t want to receive these emails?{' '}
+          <Link href={unsubscribeUrl} style={{ color: '#00ADD8' }}>
+            Unsubscribe
           </Link>
         </Text>
       </Container>
