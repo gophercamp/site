@@ -1,7 +1,11 @@
 import { Link, Section, Text } from '@react-email/components';
 import EmailLayout from './components/EmailLayout';
 
-export default function WelcomeEmail() {
+export interface WelcomeEmailProps {
+  unsubscribeUrl: string;
+}
+
+export default function WelcomeEmail({ unsubscribeUrl }: WelcomeEmailProps) {
   return (
     <EmailLayout>
       <Text>Hello,</Text>
@@ -24,6 +28,12 @@ export default function WelcomeEmail() {
           Having trouble viewing this email? Visit our{' '}
           <Link href="https://gophercamp.cz" style={{ color: '#00ADD8' }}>
             website
+          </Link>
+        </Text>
+        <Text style={{ marginTop: '10px' }}>
+          Don&apos;t want to receive these emails?{' '}
+          <Link href={unsubscribeUrl} style={{ color: '#00ADD8' }}>
+            Unsubscribe
           </Link>
         </Text>
       </Section>

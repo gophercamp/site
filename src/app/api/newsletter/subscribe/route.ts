@@ -3,6 +3,7 @@ import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
 import { createExpirationDate, generateToken } from '@/lib/token';
 import { validateEmail } from '@/lib/validation';
 import { NextRequest, NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 
 export async function POST(request: NextRequest) {
   try {
@@ -55,6 +56,9 @@ export async function POST(request: NextRequest) {
     const confirmationToken = generateToken();
     const tokenExpiresAt = createExpirationDate(48); // Token expires in 48 hours
 
+    // Generate unsubscribe token (permanent, doesn't expire)
+    const unsubscribeToken = randomBytes(32).toString('hex');
+
     // Insert the new subscriber
     const { error: insertError } = await getSupabaseClient().from(SUBSCRIBERS_TABLE).insert({
       email: email.toLowerCase(),
@@ -62,6 +66,7 @@ export async function POST(request: NextRequest) {
       confirmed: false,
       confirmation_token: confirmationToken,
       token_expires_at: tokenExpiresAt,
+      unsubscribe_token: unsubscribeToken,
       ip_address: ip,
       user_agent: userAgent,
     });
@@ -75,7 +80,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email
-    const emailResult = await sendConfirmationEmail(email, confirmationToken);
+    const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
 
     if (!emailResult.success) {
       return NextResponse.json(

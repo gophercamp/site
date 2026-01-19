@@ -1,4 +1,5 @@
 import ConfirmationEmail from '@/emails/ConfirmationEmail';
+import NewsletterEmail from '@/emails/NewsletterEmail';
 import WelcomeEmail from '@/emails/WelcomeEmail';
 import { render } from '@react-email/render';
 import { Resend } from 'resend';
@@ -85,16 +86,22 @@ async function sendEmail({ email, to, subject }: EmailOptions): Promise<EmailRes
  *
  * @param email - Subscriber's email address
  * @param token - Confirmation token to verify the subscription
+ * @param unsubscribeToken - Token for unsubscribing from the newsletter
  * @returns Promise with email sending result
  */
-export async function sendConfirmationEmail(email: string, token: string): Promise<EmailResult> {
+export async function sendConfirmationEmail(
+  email: string,
+  token: string,
+  unsubscribeToken: string
+): Promise<EmailResult> {
   const config = getEmailConfig();
   const confirmUrl = `${config.siteUrl}/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${token}`;
+  const unsubscribeUrl = `${config.siteUrl}/unsubscribe?token=${unsubscribeToken}`;
 
   return sendEmail({
     to: email,
     subject: 'Confirm your Gophercamp 2026 newsletter subscription',
-    email: ConfirmationEmail({ confirmUrl }),
+    email: ConfirmationEmail({ confirmUrl, unsubscribeUrl }),
   });
 }
 
@@ -102,12 +109,44 @@ export async function sendConfirmationEmail(email: string, token: string): Promi
  * Sends a welcome email after subscription is confirmed
  *
  * @param email - Subscriber's email address
+ * @param unsubscribeToken - Token for unsubscribing from the newsletter
  * @returns Promise with email sending result
  */
-export async function sendWelcomeEmail(email: string): Promise<EmailResult> {
+export async function sendWelcomeEmail(
+  email: string,
+  unsubscribeToken: string
+): Promise<EmailResult> {
+  const config = getEmailConfig();
+  const unsubscribeUrl = `${config.siteUrl}/unsubscribe?token=${unsubscribeToken}`;
+
   return sendEmail({
     to: email,
     subject: 'Welcome to Gophercamp 2026 Newsletter!',
-    email: WelcomeEmail(),
+    email: WelcomeEmail({ unsubscribeUrl }),
+  });
+}
+
+/**
+ * Sends a newsletter email to a subscriber
+ *
+ * @param email - Subscriber's email address
+ * @param subject - Newsletter subject line
+ * @param content - Newsletter content (supports markdown-style paragraphs separated by \n\n)
+ * @param unsubscribeToken - Token for unsubscribing from the newsletter
+ * @returns Promise with email sending result
+ */
+export async function sendNewsletterEmail(
+  email: string,
+  subject: string,
+  content: string,
+  unsubscribeToken: string
+): Promise<EmailResult> {
+  const config = getEmailConfig();
+  const unsubscribeUrl = `${config.siteUrl}/unsubscribe?token=${unsubscribeToken}`;
+
+  return sendEmail({
+    to: email,
+    subject,
+    email: NewsletterEmail({ subject, content, unsubscribeUrl }),
   });
 }

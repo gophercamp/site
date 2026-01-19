@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Check if the email exists in the database
     const { data: existingUser, error: checkError } = await getSupabaseClient()
       .from(SUBSCRIBERS_TABLE)
-      .select('*')
+      .select('*, unsubscribe_token')
       .eq('email', email.toLowerCase())
       .single();
 
@@ -81,8 +81,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send confirmation email
-    const emailResult = await sendConfirmationEmail(email, confirmationToken);
+    // Send confirmation email with unsubscribe token
+    const emailResult = await sendConfirmationEmail(
+      email,
+      confirmationToken,
+      existingUser.unsubscribe_token || ''
+    );
 
     if (!emailResult.success) {
       console.error('Failed to send confirmation email:', emailResult.error);

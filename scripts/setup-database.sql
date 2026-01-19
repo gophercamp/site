@@ -107,7 +107,10 @@ CREATE TABLE IF NOT EXISTS public.newsletter_subscribers (
   token_expires_at TIMESTAMP WITH TIME ZONE,
   confirmed_at TIMESTAMP WITH TIME ZONE,
   ip_address TEXT,
-  user_agent TEXT
+  user_agent TEXT,
+  unsubscribed BOOLEAN DEFAULT FALSE,
+  unsubscribed_at TIMESTAMP WITH TIME ZONE,
+  unsubscribe_token TEXT UNIQUE
 );
 
 -- Enable RLS for newsletter subscribers table
@@ -124,6 +127,9 @@ USING ((select auth.uid()) IS NOT NULL);
 
 -- Create an index on the email field for faster lookups
 CREATE INDEX IF NOT EXISTS newsletter_subscribers_email_idx ON public.newsletter_subscribers (email);
+
+-- Create an index on the unsubscribe_token field for faster lookups
+CREATE INDEX IF NOT EXISTS newsletter_subscribers_unsubscribe_token_idx ON public.newsletter_subscribers (unsubscribe_token);
 
 -- ===============================
 -- TRIGGERS FOR UPDATING THE updated_at FIELD

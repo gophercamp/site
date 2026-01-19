@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaEnvelope, FaHome, FaMicrophone } from 'react-icons/fa';
+import { FaCalendarAlt, FaEnvelope, FaHome, FaMicrophone, FaPaperPlane } from 'react-icons/fa';
 import AdminNavIcon from './AdminNavIcon';
 import AdminNavLink from './AdminNavLink';
 import AdminSidebarDate from './AdminSidebarDate';
@@ -26,6 +26,10 @@ export default function AdminSidebar() {
 
           <AdminNavLink href="/admin/subscribers" label="Subscribers">
             <AdminNavIcon path="/admin/subscribers" icon={FaEnvelope} />
+          </AdminNavLink>
+
+          <AdminNavLink href="/admin/newsletter" label="Send Newsletter">
+            <AdminNavIcon path="/admin/newsletter" icon={FaPaperPlane} />
           </AdminNavLink>
         </nav>
       </div>
