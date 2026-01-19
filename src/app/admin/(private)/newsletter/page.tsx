@@ -28,6 +28,9 @@ export default function NewsletterPage() {
     if (subject.length < 5) {
       return 'Subject line must be at least 5 characters';
     }
+    if (subject.length > 255) {
+      return 'Subject line must be at most 255 characters';
+    }
     if (!content.trim()) {
       return 'Please enter newsletter content';
     }
