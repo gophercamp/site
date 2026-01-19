@@ -1,4 +1,5 @@
 import ConfirmationEmail from '@/emails/ConfirmationEmail';
+import NewsletterEmail from '@/emails/NewsletterEmail';
 import WelcomeEmail from '@/emails/WelcomeEmail';
 import { render } from '@react-email/render';
 import { Resend } from 'resend';
@@ -122,5 +123,30 @@ export async function sendWelcomeEmail(
     to: email,
     subject: 'Welcome to Gophercamp 2026 Newsletter!',
     email: WelcomeEmail({ unsubscribeUrl }),
+  });
+}
+
+/**
+ * Sends a newsletter email to a subscriber
+ *
+ * @param email - Subscriber's email address
+ * @param subject - Newsletter subject line
+ * @param content - Newsletter content (supports markdown-style paragraphs separated by \n\n)
+ * @param unsubscribeToken - Token for unsubscribing from the newsletter
+ * @returns Promise with email sending result
+ */
+export async function sendNewsletterEmail(
+  email: string,
+  subject: string,
+  content: string,
+  unsubscribeToken: string
+): Promise<EmailResult> {
+  const config = getEmailConfig();
+  const unsubscribeUrl = `${config.siteUrl}/unsubscribe?token=${unsubscribeToken}`;
+
+  return sendEmail({
+    to: email,
+    subject,
+    email: NewsletterEmail({ subject, content, unsubscribeUrl }),
   });
 }

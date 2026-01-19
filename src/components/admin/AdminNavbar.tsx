@@ -133,6 +133,13 @@ export default function AdminNavbar() {
             >
               Subscribers
             </Link>
+            <Link
+              href="/admin/newsletter"
+              className="block px-3 py-2 text-base font-medium text-secondary hover:bg-secondary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Send Newsletter
+            </Link>
             <div className="pt-4 pb-3 border-t border-primary">
               <div className="px-3">
                 <p className="text-sm font-medium text-secondary">{user.email}</p>
