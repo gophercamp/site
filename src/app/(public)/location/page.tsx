@@ -11,7 +11,7 @@ export default function LocationPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-20 py-12 bg-gradient-to-br from-go-blue/10 to-go-blue/5">
+      <section className="pt-20 pb-12 bg-gradient-to-br from-go-blue/10 to-go-blue/5">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
