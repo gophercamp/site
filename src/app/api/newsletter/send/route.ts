@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       .from(SUBSCRIBERS_TABLE)
       .select('email, unsubscribe_token')
       .eq('confirmed', true)
-      .eq('unsubscribed', false);
+      .neq('unsubscribed', true);
 
     if (fetchError) {
       console.error('Error fetching subscribers:', fetchError);
