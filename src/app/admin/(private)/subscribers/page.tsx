@@ -14,6 +14,8 @@ export default function SubscribersPage() {
     total: 0,
     confirmed: 0,
     unconfirmed: 0,
+    unsubscribed: 0,
+    active: 0,
   });
 
   // Load subscribers on page load
@@ -94,7 +96,7 @@ export default function SubscribersPage() {
   return (
     <div>
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5 mb-8">
         {/* Total Subscribers */}
         <div className="bg-primary border border-primary overflow-hidden shadow-sm rounded-lg">
           <div className="p-5">
@@ -145,6 +147,44 @@ export default function SubscribersPage() {
                   <dt className="text-sm font-medium text-secondary truncate">Unconfirmed</dt>
                   <dd>
                     <div className="text-lg font-medium text-primary">{stats.unconfirmed}</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Active Subscribers */}
+        <div className="bg-primary border border-primary overflow-hidden shadow-sm rounded-lg">
+          <div className="p-5">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                <FaEnvelope className="h-6 w-6 text-blue-800" />
+              </div>
+              <div className="ml-5 w-0 flex-1">
+                <dl>
+                  <dt className="text-sm font-medium text-secondary truncate">Active</dt>
+                  <dd>
+                    <div className="text-lg font-medium text-primary">{stats.active}</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Unsubscribed */}
+        <div className="bg-primary border border-primary overflow-hidden shadow-sm rounded-lg">
+          <div className="p-5">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 bg-red-100 rounded-md p-3">
+                <FaEnvelope className="h-6 w-6 text-red-800" />
+              </div>
+              <div className="ml-5 w-0 flex-1">
+                <dl>
+                  <dt className="text-sm font-medium text-secondary truncate">Unsubscribed</dt>
+                  <dd>
+                    <div className="text-lg font-medium text-primary">{stats.unsubscribed}</div>
                   </dd>
                 </dl>
               </div>
@@ -204,7 +244,11 @@ export default function SubscribersPage() {
                   <div className="text-sm font-medium text-primary">{subscriber.email}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {subscriber.confirmed ? (
+                  {subscriber.unsubscribed ? (
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                      Unsubscribed
+                    </span>
+                  ) : subscriber.confirmed ? (
                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                       Confirmed
                     </span>

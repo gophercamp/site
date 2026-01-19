@@ -62,6 +62,8 @@ export async function getSubscriberStats(): Promise<{
     total: number;
     confirmed: number;
     unconfirmed: number;
+    unsubscribed: number;
+    active: number;
   };
   error: string | null;
 }> {
@@ -75,7 +77,7 @@ export async function getSubscriberStats(): Promise<{
 
     if (totalError) {
       return {
-        stats: { total: 0, confirmed: 0, unconfirmed: 0 },
+        stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
         error: totalError.message,
       };
     }
@@ -84,30 +86,55 @@ export async function getSubscriberStats(): Promise<{
     const { count: confirmedCount, error: confirmedError } = await supabase
       .from(SUBSCRIBERS_TABLE)
       .select('*', { count: 'exact', head: true })
-      .eq('confirmed', true);
+      .eq('confirmed', true)
+      .eq('unsubscribed', false);
 
     if (confirmedError) {
       return {
-        stats: { total: totalCount || 0, confirmed: 0, unconfirmed: 0 },
+        stats: { total: totalCount || 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
         error: confirmedError.message,
       };
     }
 
-    // Calculate unconfirmed count
-    const unconfirmedCount = (totalCount || 0) - (confirmedCount || 0);
+    // Get unsubscribed count
+    const { count: unsubscribedCount, error: unsubscribedError } = await supabase
+      .from(SUBSCRIBERS_TABLE)
+      .select('*', { count: 'exact', head: true })
+      .eq('unsubscribed', true);
+
+    if (unsubscribedError) {
+      return {
+        stats: {
+          total: totalCount || 0,
+          confirmed: confirmedCount || 0,
+          unconfirmed: 0,
+          unsubscribed: 0,
+          active: 0,
+        },
+        error: unsubscribedError.message,
+      };
+    }
+
+    // Calculate unconfirmed count (not confirmed and not unsubscribed)
+    const unconfirmedCount = (totalCount || 0) - (confirmedCount || 0) - (unsubscribedCount || 0);
+
+    // Calculate active subscribers (confirmed and not unsubscribed)
+    const activeCount = confirmedCount || 0;
 
     return {
       stats: {
         total: totalCount || 0,
         confirmed: confirmedCount || 0,
         unconfirmed: unconfirmedCount,
+        unsubscribed: unsubscribedCount || 0,
+        active: activeCount,
       },
       error: null,
     };
   } catch (error: Error | unknown) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return {
-      stats: { total: 0, confirmed: 0, unconfirmed: 0 },
+      stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
       error: errorMessage,
     };
   }

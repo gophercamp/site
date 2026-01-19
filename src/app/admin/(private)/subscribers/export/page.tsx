@@ -63,19 +63,28 @@ export default function ExportPage() {
   // Generate CSV content from subscribers data
   function generateCSV(subscribers: NewsletterSubscriber[]): string {
     // CSV header
-    const header = ['Email', 'Status', 'Subscribed Date', 'Confirmed Date'];
+    const header = ['Email', 'Status', 'Subscribed Date', 'Confirmed Date', 'Unsubscribed Date'];
 
     // Format each row
     const rows = subscribers.map(subscriber => {
-      const status = subscriber.confirmed ? 'Confirmed' : 'Pending';
+      let status = 'Pending';
+      if (subscriber.unsubscribed) {
+        status = 'Unsubscribed';
+      } else if (subscriber.confirmed) {
+        status = 'Confirmed';
+      }
+
       const subscribedDate = subscriber.subscribed_at
         ? new Date(subscriber.subscribed_at).toISOString()
         : '';
       const confirmedDate = subscriber.confirmed_at
         ? new Date(subscriber.confirmed_at).toISOString()
         : '';
+      const unsubscribedDate = subscriber.unsubscribed_at
+        ? new Date(subscriber.unsubscribed_at).toISOString()
+        : '';
 
-      return [subscriber.email, status, subscribedDate, confirmedDate];
+      return [subscriber.email, status, subscribedDate, confirmedDate, unsubscribedDate];
     });
 
     // Combine header and rows
