@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function UnsubscribePage() {
+function UnsubscribeContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 
@@ -209,5 +209,29 @@ export default function UnsubscribePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function UnsubscribePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-go-blue-darker py-20">
+          <div className="container mx-auto px-4 max-w-2xl">
+            <div className="bg-primary rounded-lg shadow-lg p-8 md:p-12">
+              <h1 className="text-3xl md:text-4xl font-bold text-go-blue mb-6">
+                Unsubscribe from Newsletter
+              </h1>
+              <div className="text-center py-8">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-go-blue"></div>
+                <p className="mt-4 text-secondary">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <UnsubscribeContent />
+    </Suspense>
   );
 }
