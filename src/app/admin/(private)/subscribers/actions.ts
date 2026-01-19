@@ -119,7 +119,7 @@ export async function getSubscriberStats(): Promise<{
     const unconfirmedCount = (totalCount || 0) - (confirmedCount || 0) - (unsubscribedCount || 0);
 
     // Calculate active subscribers (confirmed and not unsubscribed)
-    const activeCount = confirmedCount || 0;
+    const activeCount = Math.max(0, (confirmedCount || 0) - (unsubscribedCount || 0));
 
     return {
       stats: {
