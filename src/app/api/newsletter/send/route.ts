@@ -1,4 +1,4 @@
-import { sendNewsletterEmail } from '@/lib/email';
+import { sendNewsletterEmail, sendNewsletterBatch } from '@/lib/email';
 import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -100,41 +100,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send emails to all subscribers
-    const results = await Promise.allSettled(
-      subscribers.map(subscriber =>
-        sendNewsletterEmail(subscriber.email, subject, content, subscriber.unsubscribe_token || '')
-      )
-    );
+    // Send emails to all subscribers using batch API
+    const batchSubscribers = subscribers.map(subscriber => ({
+      email: subscriber.email,
+      unsubscribeToken: subscriber.unsubscribe_token || '',
+    }));
 
-    // Count successful and failed sends
-    const successful = results.filter(
-      result => result.status === 'fulfilled' && result.value.success
-    ).length;
-    const failed = results.length - successful;
+    const result = await sendNewsletterBatch(batchSubscribers, subject, content);
 
     // Log failures
-    if (failed > 0) {
-      console.warn(`Newsletter sending completed with ${failed} failures out of ${results.length}`);
-      results.forEach((result, index) => {
-        if (
-          result.status === 'rejected' ||
-          (result.status === 'fulfilled' && !result.value.success)
-        ) {
-          console.error(
-            `Failed to send to ${subscribers[index].email}:`,
-            result.status === 'rejected' ? result.reason : result.value.error
-          );
-        }
-      });
+    if (result.failed > 0) {
+      console.warn(
+        `Newsletter sending completed with ${result.failed} failures out of ${result.total}`
+      );
+      if (result.errors && result.errors.length > 0) {
+        result.errors.forEach(error => {
+          console.error(`Failed to send to ${error.email}:`, error.error);
+        });
+      }
     }
 
     return NextResponse.json({
-      success: true,
-      message: `Newsletter sent to ${successful} of ${results.length} subscribers`,
-      sent: successful,
-      failed: failed,
-      total: results.length,
+      success: result.success,
+      message: `Newsletter sent to ${result.sent} of ${result.total} subscribers`,
+      sent: result.sent,
+      failed: result.failed,
+      total: result.total,
     });
   } catch (error) {
     console.error('Newsletter sending error:', error);
