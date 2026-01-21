@@ -12,13 +12,14 @@ export default function Footer() {
     <footer className="bg-secondary border-t border-primary py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="font-bold text-primary text-lg mb-4">Gophercamp 2026</h3>
-            <p className="text-secondary mb-4">
+          <ul className="space-y-2">
+            <li className="font-bold text-primary text-lg mb-4">Gophercamp 2026</li>
+            <li className="text-secondary">
               The Go programming language conference in the Czech Republic.
-            </p>
-            <p className="text-secondary">April 24, 2026 • {contactInfo.location}</p>
-          </div>
+            </li>
+            <li className="text-secondary">April 23 - 24, 2026 • {contactInfo.location}</li>
+            <Link href="/location">Clubco Brno, Vlněna 5, 602 00 Brno-střed, Czech Republic</Link>
+          </ul>
 
           <div>
             <h3 className="font-bold text-primary text-lg mb-4">Links</h3>
