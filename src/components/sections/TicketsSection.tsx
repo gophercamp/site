@@ -2,6 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
+import { SectionProps, getSectionBackgroundClass } from './types';
 
 /**
  * Props for a ticket offering feature item
@@ -110,7 +111,7 @@ function TicketCard({
 /**
  * Tickets section component displaying available ticket options
  */
-export default function TicketsSection() {
+export default function TicketsSection({ background }: SectionProps) {
   // Define ticket availability periods
   const EARLY_BIRD_END = new Date('2026-03-01'); // End of Feb 28, 2026
   const STANDARD_END = new Date('2026-04-21'); // April 21, 2026
@@ -129,8 +130,10 @@ export default function TicketsSection() {
     { text: 'Conference swag' },
   ];
 
+  const bgClass = getSectionBackgroundClass(background, 'secondary');
+
   return (
-    <section id="tickets" className="py-20 bg-secondary">
+    <section id="tickets" className={`py-20 ${bgClass}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

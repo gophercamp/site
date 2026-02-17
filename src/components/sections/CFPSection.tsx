@@ -2,10 +2,13 @@
 
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
+import { SectionProps, getSectionBackgroundClass } from './types';
 
-export default function CFPSection() {
+export default function CFPSection({ background }: SectionProps) {
+  const bgClass = getSectionBackgroundClass(background, 'primary');
+
   return (
-    <section id="cfp" className="py-20 bg-primary">
+    <section id="cfp" className={`py-20 ${bgClass}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

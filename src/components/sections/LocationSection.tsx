@@ -3,10 +3,13 @@
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { SectionProps, getSectionBackgroundClass } from './types';
 
-export default function LocationSection() {
+export default function LocationSection({ background }: SectionProps) {
+  const bgClass = getSectionBackgroundClass(background, 'primary');
+
   return (
-    <section id="location" className="py-20 bg-secondary">
+    <section id="location" className={`py-20 ${bgClass}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

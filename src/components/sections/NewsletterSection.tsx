@@ -6,8 +6,10 @@ import { contactInfo, getSocialLink } from '@/lib/social';
 import { validateEmail } from '@/lib/validation';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { SectionProps, getSectionBackgroundClass } from './types';
 
-export default function NewsletterSection() {
+export default function NewsletterSection({ background }: SectionProps) {
+  const bgClass = getSectionBackgroundClass(background, 'accent');
   const signalLink = getSocialLink('signal');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -162,7 +164,7 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section id="newsletter" className="py-20 bg-go-blue-darker">
+    <section id="newsletter" className={`py-20 ${bgClass}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
