@@ -30,6 +30,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/speakers"
+                  className="text-secondary hover:text-go-blue transition-colors"
+                >
+                  Speakers
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/location"
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
