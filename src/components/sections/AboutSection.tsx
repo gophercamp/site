@@ -1,10 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { SectionProps, getSectionBackgroundClass } from './types';
 
-export default function AboutSection() {
+export default function AboutSection({ background }: SectionProps) {
+  const bgClass = getSectionBackgroundClass(background, 'secondary');
+
   return (
-    <section id="about" className="py-20 bg-primary">
+    <section id="about" className={`py-20 ${bgClass}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
