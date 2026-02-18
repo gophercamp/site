@@ -208,12 +208,20 @@ export default async function SpeakerPage({ params }: SpeakerPageProps) {
               </h2>
               <div className="space-y-6">
                 {sessionDetails.map(session => (
-                  <div key={session.id} className="bg-primary rounded-lg p-6 border border-primary">
-                    <h3 className="text-xl font-bold text-primary mb-3">{session.title}</h3>
+                  <Link
+                    key={session.id}
+                    href={`/sessions/${session.id}`}
+                    className="block bg-primary rounded-lg p-6 border border-primary hover:border-go-blue/50 transition-colors group"
+                  >
+                    <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-go-blue transition-colors">
+                      {session.title}
+                    </h3>
                     {session.description && (
-                      <p className="text-secondary whitespace-pre-line">{session.description}</p>
+                      <p className="text-secondary whitespace-pre-line line-clamp-3">
+                        {session.description}
+                      </p>
                     )}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

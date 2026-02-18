@@ -11,18 +11,25 @@ export default function Footer() {
   return (
     <footer className="bg-secondary border-t border-primary py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ul className="space-y-2">
-            <li className="font-bold text-primary text-lg mb-4">Gophercamp 2026</li>
-            <li className="text-secondary">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* About Column */}
+          <div className="sm:col-span-2">
+            <h3 className="font-bold text-primary text-lg mb-4">Gophercamp 2026</h3>
+            <p className="text-secondary mb-2">
               The Go programming language conference in the Czech Republic.
-            </li>
-            <li className="text-secondary">April 23 - 24, 2026 • {contactInfo.location}</li>
-            <Link href="/location">Clubco Brno, Vlněna 5, 602 00 Brno-střed, Czech Republic</Link>
-          </ul>
+            </p>
+            <p className="text-secondary mb-2">April 23 - 24, 2026 • {contactInfo.location}</p>
+            <Link
+              href="/location"
+              className="text-secondary hover:text-go-blue transition-colors text-sm"
+            >
+              Clubco Brno, Vlněna 5, 602 00 Brno-střed, Czech Republic
+            </Link>
+          </div>
 
+          {/* Conference Links Column */}
           <div>
-            <h3 className="font-bold text-primary text-lg mb-4">Links</h3>
+            <h3 className="font-bold text-primary text-lg mb-4">Conference</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#about" className="text-secondary hover:text-go-blue transition-colors">
@@ -39,12 +46,27 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/sessions"
+                  className="text-secondary hover:text-go-blue transition-colors"
+                >
+                  Sessions
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/location"
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
                   Location
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Legal Links Column */}
+          <div>
+            <h3 className="font-bold text-primary text-lg mb-4">Legal</h3>
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/code-of-conduct"
@@ -64,6 +86,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Connect Column */}
           <div>
             <h3 className="font-bold text-primary text-lg mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">

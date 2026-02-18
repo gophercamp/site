@@ -61,27 +61,45 @@ export default function SpeakerCard({ speaker, index }: SpeakerCardProps) {
             {speaker.fullName}
           </h3>
           <p className="text-sm text-go-blue mb-3 line-clamp-2">{speaker.tagLine}</p>
+        </Link>
 
-          {/* Sessions */}
-          {speaker.sessions.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs text-secondary uppercase tracking-wide mb-1">
-                {speaker.sessions.length === 1 ? 'Session' : 'Sessions'}
-              </p>
-              <ul className="space-y-1">
-                {speaker.sessions.map(session => (
-                  <li
-                    key={session.id}
-                    className="text-sm text-secondary line-clamp-1"
+        {/* Sessions */}
+        {speaker.sessions.length > 0 && (
+          <div className="mb-3">
+            <p className="text-xs text-secondary uppercase tracking-wide mb-1">
+              {speaker.sessions.length === 1 ? 'Session' : 'Sessions'}
+            </p>
+            <ul className="space-y-1.5">
+              {speaker.sessions.map(session => (
+                <li key={session.id}>
+                  <Link
+                    href={`/sessions/${session.id}`}
+                    className="text-sm text-go-blue hover:text-go-blue-dark transition-colors flex items-center gap-1 group/session"
                     title={session.name}
                   >
-                    • {session.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </Link>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3.5 w-3.5 flex-shrink-0 group-hover/session:translate-x-0.5 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span className="truncate">{session.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Social Links */}
         {(twitterUrl || linkedInUrl || websiteUrl) && (
