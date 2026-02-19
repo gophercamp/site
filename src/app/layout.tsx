@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     siteName: 'Gophercamp 2026',
     images: [
       {
-        url: '/images/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/images/og-image.jpg',
+        width: 1920,
+        height: 710,
         alt: 'Gophercamp 2026',
       },
     ],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Gophercamp 2026 | The Go Conference in Czech Republic',
     description:
       'Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.jpg'],
   },
 };
 
