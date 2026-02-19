@@ -157,7 +157,7 @@ export default function TicketsSection({ background }: SectionProps) {
               price={69}
               priceDescription="Until February 28, 2026"
               features={standardFeatures}
-              href="https://luma.com/d2kgz2d8"
+              href="https://luma.com/gophercamp"
               buttonText="Buy Early Bird"
               buttonVariant="primary"
               badge="Limited time"
@@ -170,7 +170,7 @@ export default function TicketsSection({ background }: SectionProps) {
               price={89}
               priceDescription="Standard pricing"
               features={standardFeatures}
-              href="https://luma.com/d2kgz2d8"
+              href="https://luma.com/gophercamp"
               buttonText="Buy Standard"
               buttonVariant="outline"
               enabled={isStandardPeriod}
@@ -182,7 +182,7 @@ export default function TicketsSection({ background }: SectionProps) {
               price={109}
               priceDescription="Available closer to event"
               features={standardFeatures}
-              href="https://luma.com/d2kgz2d8"
+              href="https://luma.com/gophercamp"
               buttonText="Buy Last Minute"
               buttonVariant="outline"
               enabled={isLastMinutePeriod}
