@@ -151,7 +151,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 # Resend email configuration
 RESEND_API_KEY=your_resend_api_key
-EMAIL_FROM=newsletter@gophercamp.cz
+EMAIL_FROM=Gophercamp <newsletter@gophercamp.cz>
 
 # Site configuration
 NEXT_PUBLIC_SITE_URL=http://localhost:3000

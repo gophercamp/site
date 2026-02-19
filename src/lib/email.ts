@@ -12,7 +12,7 @@ import { Resend } from 'resend';
  */
 function getEmailConfig() {
   return {
-    from: process.env.EMAIL_FROM || 'newsletter@gophercamp.cz',
+    from: process.env.EMAIL_FROM || 'Gophercamp <newsletter@gophercamp.cz>',
     replyTo: 'info@gophercamp.cz',
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://gophercamp.cz',
   };
