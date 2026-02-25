@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button';
 import { trackSocialClick } from '@/lib/analytics';
 import { getPrimarySocialLink } from '@/lib/social';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function HeroSection() {
@@ -134,7 +135,10 @@ export default function HeroSection() {
             </h2>
 
             <div className="flex flex-col gap-3 mb-10">
-              <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
+              <Link
+                href="/speakers"
+                className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg transition-all duration-300 hover:shadow-xl group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-go-blue"
@@ -149,13 +153,30 @@ export default function HeroSection() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-1">
                   <span className="font-medium text-primary">April 23-24, 2026</span>
                   <span className="text-sm text-primary/80">Workshops Thu • Conference Fri</span>
                 </div>
-              </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-go-blue transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
 
-              <div className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg">
+              <Link
+                href="/location"
+                className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg transition-all duration-300 hover:shadow-xl group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-go-blue"
@@ -176,11 +197,25 @@ export default function HeroSection() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-1">
                   <span className="font-medium text-primary">Clubco, Brno</span>
                   <span className="text-sm text-primary/80">Vlněna 5, Czech Republic</span>
                 </div>
-              </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-go-blue transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
