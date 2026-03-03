@@ -31,8 +31,8 @@ interface TicketCardProps {
   buttonVariant?: 'primary' | 'secondary' | 'outline';
   /** Optional badge text */
   badge?: string;
-  /** Whether this ticket is enabled/available */
-  enabled?: boolean;
+  /** Ticket status */
+  status: 'past' | 'now' | 'future';
   /** Animation delay for stagger effect */
   delay?: number;
 }
@@ -49,11 +49,15 @@ function TicketCard({
   buttonText,
   buttonVariant = 'outline',
   badge,
-  enabled = true,
+  status,
   delay = 0,
 }: TicketCardProps) {
+  const isPast = status === 'past';
+  const isNow = status === 'now';
+  const isFuture = status === 'future';
+  const isEnabled = isNow;
+
   const borderColor = badge ? 'border-go-blue/20' : 'border-primary';
-  const opacity = enabled ? 'opacity-100' : 'opacity-50';
 
   return (
     <motion.div
@@ -61,19 +65,33 @@ function TicketCard({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true, margin: '-100px' }}
-      className={`bg-secondary rounded-lg border-2 ${borderColor} p-6 flex flex-col relative ${opacity} ${
-        enabled ? '' : 'pointer-events-none'
+      className={`bg-secondary rounded-lg border-2 ${borderColor} p-6 flex flex-col relative ${
+        isEnabled ? '' : 'opacity-60 pointer-events-none'
       }`}
     >
       <div className="mb-4">
-        {(badge || !enabled) && (
-          <div className="inline-block bg-go-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
-            {badge ? badge : 'Not Available Yet'}
+        {isPast && (
+          <div className="inline-block bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
+            Sold Out
           </div>
         )}
-        <h3 className="text-2xl font-bold text-primary mb-2">{title}</h3>
+        {isFuture && (
+          <div className="inline-block bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
+            Coming Soon
+          </div>
+        )}
+        {badge && isNow && (
+          <div className="inline-block bg-go-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
+            {badge}
+          </div>
+        )}
+        <h3 className={`text-2xl font-bold mb-2 ${isEnabled ? 'text-primary' : 'text-secondary'}`}>
+          {title}
+        </h3>
         <div className="flex items-baseline gap-2">
-          <span className={`text-4xl font-bold ${badge ? 'text-go-blue' : 'text-primary'}`}>
+          <span
+            className={`text-4xl font-bold ${badge && isNow ? 'text-go-blue' : isEnabled ? 'text-primary' : isPast ? 'text-secondary line-through decoration-2' : 'text-secondary'}`}
+          >
             €{price}
           </span>
         </div>
@@ -84,7 +102,7 @@ function TicketCard({
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-2">
             <svg
-              className="h-5 w-5 text-go-blue mt-0.5 flex-shrink-0"
+              className={`h-5 w-5 mt-0.5 flex-shrink-0 ${isEnabled ? 'text-go-blue' : 'text-gray-400'}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -96,12 +114,12 @@ function TicketCard({
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            <span className="text-secondary">{feature.text}</span>
+            <span className={isEnabled ? 'text-secondary' : 'text-gray-400'}>{feature.text}</span>
           </li>
         ))}
       </ul>
 
-      <Button href={href} variant={buttonVariant} size="lg" disabled={!enabled}>
+      <Button href={href} variant={buttonVariant} size="lg" disabled={!isEnabled}>
         {buttonText}
       </Button>
     </motion.div>
@@ -121,6 +139,13 @@ export default function TicketsSection({ background }: SectionProps) {
   const isEarlyBirdPeriod = now < EARLY_BIRD_END;
   const isStandardPeriod = now >= EARLY_BIRD_END && now < STANDARD_END;
   const isLastMinutePeriod = now >= STANDARD_END;
+
+  // Determine which ticket should be highlighted
+  const currentTicketTier = isEarlyBirdPeriod
+    ? 'early-bird'
+    : isStandardPeriod
+      ? 'standard'
+      : 'last-minute';
 
   // Common features for all tickets
   const standardFeatures: TicketFeature[] = [
@@ -159,33 +184,35 @@ export default function TicketsSection({ background }: SectionProps) {
               features={standardFeatures}
               href="https://luma.com/gophercamp"
               buttonText="Buy Early Bird"
-              buttonVariant="primary"
-              badge="Limited time"
-              enabled={isEarlyBirdPeriod}
+              buttonVariant={currentTicketTier === 'early-bird' ? 'primary' : 'outline'}
+              badge={currentTicketTier === 'early-bird' ? 'Limited time' : undefined}
+              status={isEarlyBirdPeriod ? 'now' : 'past'}
               delay={0.1}
             />
 
             <TicketCard
               title="Standard"
               price={89}
-              priceDescription="Standard pricing"
+              priceDescription="March 1 - April 20, 2026"
               features={standardFeatures}
               href="https://luma.com/gophercamp"
               buttonText="Buy Standard"
-              buttonVariant="outline"
-              enabled={isStandardPeriod}
+              buttonVariant={currentTicketTier === 'standard' ? 'primary' : 'outline'}
+              badge={currentTicketTier === 'standard' ? 'Available Now' : undefined}
+              status={now < EARLY_BIRD_END ? 'future' : isStandardPeriod ? 'now' : 'past'}
               delay={0.2}
             />
 
             <TicketCard
               title="Last Minute"
               price={109}
-              priceDescription="Available closer to event"
+              priceDescription="From April 21, 2026"
               features={standardFeatures}
               href="https://luma.com/gophercamp"
               buttonText="Buy Last Minute"
-              buttonVariant="outline"
-              enabled={isLastMinutePeriod}
+              buttonVariant={currentTicketTier === 'last-minute' ? 'primary' : 'outline'}
+              badge={currentTicketTier === 'last-minute' ? 'Available Now' : undefined}
+              status={isLastMinutePeriod ? 'now' : 'future'}
               delay={0.3}
             />
           </div>
