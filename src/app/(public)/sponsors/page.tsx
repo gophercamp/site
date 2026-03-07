@@ -25,7 +25,7 @@ type Sponsor = {
 const SPONSORS: Sponsor[] = [
   {
     name: 'Ardan Labs',
-    logo: '/images/partners/ardanlabs.png',
+    logo: '/images/partners/ardanlabs.svg',
     url: 'https://www.ardanlabs.com/',
     description:
       "Ardan Labs is a software engineering firm built by engineers, for engineers. Since 2010, we've formed into a group of passionate engineers and business professionals focused on solving our client's problems based on core engineering values and community involvement. Our team combines decades of engineering experience with a deep passion for education, empowering developers and teams to build better systems.",
@@ -36,6 +36,13 @@ const SPONSORS: Sponsor[] = [
     url: 'https://www.sentinelone.com/',
     description:
       "SentinelOne is the world's leading AI-powered cybersecurity platform. The SentinelOne Singularity platform, built on the first unified Data Lake, is revolutionizing security operations, with AI, solving use cases across Endpoint Protection, SIEM, Cloud Security, Identity Threat Detection and 24x7 Managed Threat Services.",
+  },
+  {
+    name: 'Outreach',
+    logo: '/images/partners/outreach.svg',
+    url: 'https://www.outreach.io/',
+    description:
+      'At Outreach, we build high-scale backend systems in Go, powering a platform used by global companies to run and optimize their revenue operations. Our engineers work on distributed microservices, real-time data, and AI-driven workflows that operate reliably at scale. Join our team!',
   },
 ];
 
