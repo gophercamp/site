@@ -151,7 +151,7 @@ export default function SponsorsPage() {
       </section>
 
       {/* Sponsors Listing */}
-      <section className="pb-20 bg-primary">
+      <section className="py-20 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
