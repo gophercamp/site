@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+
 import { contactInfo } from '@/lib/social';
 
 export const metadata: Metadata = {
@@ -151,102 +151,13 @@ export default function SponsorsPage() {
       </section>
 
       {/* Sponsors Listing */}
-      <section className="py-20 bg-primary">
+      <section className="pb-20 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
               {SPONSORS.map(sponsor => (
                 <SponsorCard key={sponsor.name} sponsor={sponsor} />
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Become a Sponsor CTA */}
-      <section className="py-20 bg-gradient-to-br from-go-blue/5 to-transparent">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-secondary rounded-2xl border-2 border-go-blue/20 shadow-2xl overflow-hidden">
-              <div className="bg-go-blue p-8 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Become a Sponsor</h2>
-                <p className="text-white text-lg">Join the companies supporting the Go community</p>
-              </div>
-
-              <div className="p-8 md:p-12">
-                <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🎯</div>
-                    <h3 className="font-semibold text-primary mb-2">Brand Visibility</h3>
-                    <p className="text-sm text-secondary">
-                      Reach hundreds of Go developers and tech leaders
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🤝</div>
-                    <h3 className="font-semibold text-primary mb-2">Community Impact</h3>
-                    <p className="text-sm text-secondary">Support the growth of the Go ecosystem</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">💼</div>
-                    <h3 className="font-semibold text-primary mb-2">Recruitment</h3>
-                    <p className="text-sm text-secondary">Connect with talented Go developers</p>
-                  </div>
-                </div>
-
-                <div className="bg-go-blue/5 rounded-lg p-6 mb-8">
-                  <h3 className="font-semibold text-primary mb-3">Sponsorship Benefits Include:</h3>
-                  <ul className="space-y-2 text-secondary">
-                    <li className="flex items-start gap-2">
-                      <span className="text-go-blue mt-1">✓</span>
-                      <span>
-                        Logo placement on website, promotional materials, and conference signage
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-go-blue mt-1">✓</span>
-                      <span>Social media recognition and mentions</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-go-blue mt-1">✓</span>
-                      <span>Complimentary conference tickets based on tier</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-go-blue mt-1">✓</span>
-                      <span>Booth space or table at the venue (premium tiers)</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href={`mailto:${contactInfo.email}?subject=Gophercamp%20Sponsorship%20Inquiry`}
-                    className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-go-blue focus:ring-offset-2 bg-go-blue hover:bg-go-blue-dark text-white border border-transparent px-8 py-4 text-lg shadow-lg hover:shadow-xl"
-                  >
-                    Contact Us About Sponsorship
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 ml-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </a>
-                  <Link
-                    href="/"
-                    className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-go-blue focus:ring-offset-2 border-2 border-go-blue text-go-blue hover:bg-go-blue/10 px-8 py-4 text-lg"
-                  >
-                    Learn More About Gophercamp
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>
