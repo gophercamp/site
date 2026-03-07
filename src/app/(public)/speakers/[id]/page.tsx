@@ -80,7 +80,7 @@ export default async function SpeakerPage({ params }: SpeakerPageProps) {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-20 py-12 bg-gradient-to-br from-go-blue/10 to-go-blue/5">
+      <section className="pt-20 bg-gradient-to-br from-go-blue/10 to-go-blue/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Back link */}
