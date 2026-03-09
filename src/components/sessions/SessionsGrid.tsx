@@ -1,17 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SessionizeSessionDetail } from '@/lib/sessionize';
+import { SessionizeSessionDetail, SessionizeSpeaker } from '@/lib/sessionize';
 import SessionCard from './SessionCard';
 
 interface SessionsGridProps {
   sessions: SessionizeSessionDetail[];
+  speakers: SessionizeSpeaker[];
 }
 
 /**
  * SessionsGrid component displays a responsive grid of session cards
  */
-export default function SessionsGrid({ sessions }: SessionsGridProps) {
+export default function SessionsGrid({ sessions, speakers }: SessionsGridProps) {
   if (sessions.length === 0) {
     return (
       <motion.div
@@ -45,7 +46,7 @@ export default function SessionsGrid({ sessions }: SessionsGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {sessions.map((session, index) => (
-        <SessionCard key={session.id} session={session} index={index} />
+        <SessionCard key={session.id} session={session} speakers={speakers} index={index} />
       ))}
     </div>
   );

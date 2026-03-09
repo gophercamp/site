@@ -292,3 +292,26 @@ export function getSpeakerLinkedIn(speaker: SessionizeSpeaker): string | undefin
 export function getSpeakerCompanyWebsite(speaker: SessionizeSpeaker): string | undefined {
   return getSpeakerLink(speaker, 'Company_Website');
 }
+
+/**
+ * Helper function to check if a session requires a separate ticket
+ * @param session - The session object
+ * @returns True if the session requires a separate ticket, false otherwise
+ */
+export function requiresSeparateTicket(session: SessionizeSessionDetail): boolean {
+  const answer = session.questionAnswers.find(qa => qa.id === 125954);
+  return answer !== undefined && answer.answer !== null && answer.answer.trim() !== '';
+}
+
+/**
+ * Helper function to get the separate ticket URL for a session
+ * @param session - The session object
+ * @returns The ticket URL if found, undefined otherwise
+ */
+export function getSeparateTicketUrl(session: SessionizeSessionDetail): string | undefined {
+  const answer = session.questionAnswers.find(qa => qa.id === 125954);
+  if (answer && answer.answer && answer.answer.trim() !== '') {
+    return answer.answer;
+  }
+  return undefined;
+}

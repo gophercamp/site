@@ -2,7 +2,11 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { fetchAcceptedSessions, fetchSpeakersWithAcceptedSessions } from '@/lib/sessionize';
+import {
+  fetchAcceptedSessions,
+  fetchSpeakersWithAcceptedSessions,
+  getSeparateTicketUrl,
+} from '@/lib/sessionize';
 
 interface SessionPageProps {
   params: Promise<{ id: string }>;
@@ -76,6 +80,9 @@ export default async function SessionPage({ params }: SessionPageProps) {
   const sessionFormat = getCategoryValue(session.categories, 'Session format');
   const level = getCategoryValue(session.categories, 'Level');
 
+  // Check if this session requires a separate ticket
+  const separateTicketUrl = getSeparateTicketUrl(session);
+
   return (
     <>
       {/* Hero Section */}
@@ -103,6 +110,58 @@ export default async function SessionPage({ params }: SessionPageProps) {
               </svg>
               Back to all sessions
             </Link>
+
+            {/* Separate Ticket Notice */}
+            {separateTicketUrl && (
+              <div className="mb-6 p-4 rounded-lg bg-amber-50 border-2 border-amber-400 dark:bg-amber-900/20 dark:border-amber-600">
+                <div className="flex items-start gap-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-1">
+                      Separate Ticket Required
+                    </h3>
+                    <p className="text-amber-800 dark:text-amber-300 mb-2">
+                      This session requires a separate ticket for attendance.
+                    </p>
+                    <a
+                      href={separateTicketUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors"
+                    >
+                      Get Tickets
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-4">

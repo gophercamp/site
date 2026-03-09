@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { fetchAcceptedSessions } from '@/lib/sessionize';
+import { fetchAcceptedSessions, fetchSpeakersWithAcceptedSessions } from '@/lib/sessionize';
 import SessionsGrid from '@/components/sessions/SessionsGrid';
 
 export const metadata: Metadata = {
@@ -14,7 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default async function SessionsPage() {
-  const sessions = await fetchAcceptedSessions();
+  const [sessions, speakers] = await Promise.all([
+    fetchAcceptedSessions(),
+    fetchSpeakersWithAcceptedSessions(),
+  ]);
 
   // Sort sessions alphabetically by title
   const sortedSessions = [...sessions].sort((a, b) => a.title.localeCompare(b.title));
@@ -42,7 +45,7 @@ export default async function SessionsPage() {
       {/* Sessions Grid Section */}
       <section className="py-16 bg-primary">
         <div className="container mx-auto px-4">
-          <SessionsGrid sessions={sortedSessions} />
+          <SessionsGrid sessions={sortedSessions} speakers={speakers} />
         </div>
       </section>
 

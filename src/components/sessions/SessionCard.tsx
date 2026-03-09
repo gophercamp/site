@@ -2,10 +2,16 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { SessionizeSessionDetail } from '@/lib/sessionize';
+import Image from 'next/image';
+import {
+  SessionizeSessionDetail,
+  SessionizeSpeaker,
+  requiresSeparateTicket,
+} from '@/lib/sessionize';
 
 interface SessionCardProps {
   session: SessionizeSessionDetail;
+  speakers: SessionizeSpeaker[];
   index: number;
 }
 
@@ -25,9 +31,15 @@ function getCategoryValue(
 /**
  * SessionCard component displays a session's information in a card format
  */
-export default function SessionCard({ session, index }: SessionCardProps) {
+export default function SessionCard({ session, speakers, index }: SessionCardProps) {
   const sessionFormat = getCategoryValue(session, 'Session format');
   const level = getCategoryValue(session, 'Level');
+  const hasSeparateTicket = requiresSeparateTicket(session);
+
+  // Get full speaker details for this session
+  const sessionSpeakers = speakers.filter(speaker =>
+    session.speakers.some(s => s.id === speaker.id)
+  );
 
   return (
     <motion.div
@@ -63,38 +75,73 @@ export default function SessionCard({ session, index }: SessionCardProps) {
             {session.description}
           </p>
         )}
+
+        {/* Separate Ticket Badge */}
+        {hasSeparateTicket && (
+          <div className="mt-3 inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-medium bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-600 w-fit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+              />
+            </svg>
+            Separate Ticket Required
+          </div>
+        )}
       </Link>
 
       {/* Speakers */}
-      {session.speakers.length > 0 && (
+      {sessionSpeakers.length > 0 && (
         <div className="px-5 pb-5 pt-0 mt-auto border-t border-primary">
-          <p className="text-xs text-secondary uppercase tracking-wide mb-2 pt-4">
-            {session.speakers.length === 1 ? 'Speaker' : 'Speakers'}
+          <p className="text-xs text-secondary uppercase tracking-wide mb-3 pt-4">
+            {sessionSpeakers.length === 1 ? 'Speaker' : 'Speakers'}
           </p>
-          <ul className="space-y-1.5">
-            {session.speakers.map(speaker => (
+          <ul className="space-y-3">
+            {sessionSpeakers.map(speaker => (
               <li key={speaker.id}>
                 <Link
                   href={`/speakers/${speaker.id}`}
-                  className="text-sm text-go-blue hover:text-go-blue-dark transition-colors flex items-center gap-1 group/speaker"
+                  className="flex items-start gap-3 group/speaker"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-3.5 w-3.5 flex-shrink-0 group-hover/speaker:translate-x-0.5 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                  <span>{speaker.name}</span>
+                  {/* Avatar */}
+                  <div className="relative w-10 h-10 flex-shrink-0 rounded-full overflow-hidden bg-gradient-to-br from-go-blue/20 to-go-blue/10 ring-2 ring-transparent group-hover/speaker:ring-go-blue/30 transition-all">
+                    {speaker.profilePicture ? (
+                      <Image
+                        src={speaker.profilePicture}
+                        alt={`${speaker.fullName} profile picture`}
+                        fill
+                        className="object-cover"
+                        sizes="40px"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-sm font-medium text-go-blue/50">
+                          {speaker.firstName.charAt(0)}
+                          {speaker.lastName.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Speaker Info */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-go-blue group-hover/speaker:text-go-blue-dark transition-colors">
+                      {speaker.fullName}
+                    </p>
+                    {speaker.tagLine && (
+                      <p className="text-xs text-secondary line-clamp-2 mt-0.5">
+                        {speaker.tagLine}
+                      </p>
+                    )}
+                  </div>
                 </Link>
               </li>
             ))}
