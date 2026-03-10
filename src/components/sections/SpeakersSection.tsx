@@ -61,14 +61,44 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 /**
+ * Creates a weighted speaker pool where top speakers appear more frequently
+ * Top speakers are included 3 times, regular speakers once
+ */
+function createWeightedSpeakerPool(speakers: SessionizeSpeaker[]): SessionizeSpeaker[] {
+  const pool: SessionizeSpeaker[] = [];
+
+  for (const speaker of speakers) {
+    if (speaker.isTopSpeaker) {
+      // Add top speakers 3 times to increase their probability
+      pool.push(speaker, speaker, speaker);
+    } else {
+      // Add regular speakers once
+      pool.push(speaker);
+    }
+  }
+
+  return pool;
+}
+
+/**
  * Speakers section component for the homepage
  * Displays 3 random speakers with accepted sessions
  */
 export default async function SpeakersSection({ background }: SectionProps) {
   const speakers = await fetchSpeakersWithAcceptedSessions();
 
-  // Get 3 random speakers
-  const randomSpeakers = shuffleArray(speakers).slice(0, 3);
+  // Create a weighted pool favoring top speakers, shuffle, and pick 3
+  const weightedPool = createWeightedSpeakerPool(speakers);
+  const shuffledPool = shuffleArray(weightedPool);
+
+  // Use a Set to avoid duplicate speakers in final selection
+  const selectedSpeakers = new Set<SessionizeSpeaker>();
+  for (const speaker of shuffledPool) {
+    selectedSpeakers.add(speaker);
+    if (selectedSpeakers.size === 3) break;
+  }
+
+  const randomSpeakers = Array.from(selectedSpeakers);
 
   if (speakers.length === 0) {
     return null;
