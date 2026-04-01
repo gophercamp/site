@@ -7,6 +7,7 @@ import { getPrimarySocialLink } from '@/lib/social';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
+import { siteConfig } from '@/lib/config';
 
 export default function HeroSection() {
   const primarySocial = getPrimarySocialLink();
@@ -263,15 +264,19 @@ export default function HeroSection() {
                 Get Tickets
               </Button>
 
-              <Button href="#cfp" variant="secondary" size="lg">
-                Submit Your Talk
-              </Button>
+              {siteConfig.cfpOpen && (
+                <Button href="#cfp" variant="secondary" size="lg">
+                  Submit Your Talk
+                </Button>
+              )}
             </div>
 
-            <p className="mt-6 text-white/80 text-sm drop-shadow-md">
-              <span aria-hidden="true">🎉</span> Call for Speakers is now open! Share your Go
-              expertise with the community.
-            </p>
+            {siteConfig.cfpOpen && (
+              <p className="mt-6 text-white/80 text-sm drop-shadow-md">
+                <span aria-hidden="true">🎉</span> Call for Speakers is now open! Share your Go
+                expertise with the community.
+              </p>
+            )}
           </motion.div>
 
           <motion.div
