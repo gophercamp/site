@@ -6,11 +6,13 @@ import AboutSection from '@/components/sections/AboutSection';
 import LocationSection from '@/components/sections/LocationSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 
+import { siteConfig } from '@/lib/config';
+
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <CFPSection background="primary" />
+      {siteConfig.cfpOpen && <CFPSection background="primary" />}
       <TicketsSection background="secondary" />
       <SpeakersSection background="primary" />
       <AboutSection background="secondary" />

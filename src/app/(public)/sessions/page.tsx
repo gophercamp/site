@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { fetchAcceptedSessions, fetchSpeakersWithAcceptedSessions } from '@/lib/sessionize';
 import SessionsGrid from '@/components/sessions/SessionsGrid';
+import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: 'Sessions | Gophercamp 2026',
@@ -48,32 +49,34 @@ export default async function SessionsPage() {
           <SessionsGrid sessions={sortedSessions} speakers={speakers} />
         </div>
       </section>
-
-      {/* Call for Papers Section */}
-      <section className="py-16 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
-              Want to Present at Gophercamp?
-            </h2>
-            <p className="text-secondary mb-6">
-              We&apos;re still accepting proposals! Share your Go knowledge and experiences with the
-              community.
-            </p>
-            <a
-              href="https://sessionize.com/gophercamp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-go-blue focus:ring-offset-2 bg-go-blue hover:bg-go-blue-dark text-white border border-transparent px-6 py-3 text-lg"
-            >
-              Submit Your Proposal
-            </a>
-            <p className="mt-4 text-secondary text-sm">
-              Submission deadline: <strong className="text-primary">March 31, 2026</strong>
-            </p>
+      {/* Call for Papers Section — shown only when cfpOpen is true in src/lib/config.ts */}
+      {siteConfig.cfpOpen && (
+        <section className="py-16 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+                Want to Present at Gophercamp?
+              </h2>
+              <p className="text-secondary mb-6">
+                We&apos;re still accepting proposals! Share your Go knowledge and experiences with
+                the community.
+              </p>
+              <a
+                href={siteConfig.cfpUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-go-blue focus:ring-offset-2 bg-go-blue hover:bg-go-blue-dark text-white border border-transparent px-6 py-3 text-lg"
+              >
+                Submit Your Proposal
+              </a>
+              <p className="mt-4 text-secondary text-sm">
+                Submission deadline:{' '}
+                <strong className="text-primary">{siteConfig.cfpDeadline}</strong>
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import { motion } from 'framer-motion';
+import { siteConfig } from '@/lib/config';
 import { SectionProps, getSectionBackgroundClass } from './types';
 
 export default function CFPSection({ background }: SectionProps) {
@@ -160,7 +161,7 @@ export default function CFPSection({ background }: SectionProps) {
             className="text-center"
           >
             <Button
-              href="https://sessionize.com/gophercamp"
+              href={siteConfig.cfpUrl}
               variant="primary"
               size="lg"
               className="text-lg px-8 py-4"
@@ -168,7 +169,8 @@ export default function CFPSection({ background }: SectionProps) {
               Submit Your Proposal
             </Button>
             <p className="mt-4 text-secondary text-sm">
-              Submission deadline: <strong className="text-primary">March 31, 2026</strong>
+              Submission deadline:{' '}
+              <strong className="text-primary">{siteConfig.cfpDeadline}</strong>
             </p>
           </motion.div>
         </motion.div>

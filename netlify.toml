@@ -33,10 +33,11 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[redirects]]
-  from = "/cfp"
-  to = "https://sessionize.com/gophercamp"
-  status = 301
+# Uncomment when CFP is open (also set cfpOpen = true in src/lib/config.ts)
+# [[redirects]]
+#   from = "/cfp"
+#   to = "https://sessionize.com/gophercamp"
+#   status = 301
 
 [[redirects]]
   from = "/tickets"
