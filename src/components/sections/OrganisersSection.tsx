@@ -82,7 +82,7 @@ function OrganiserCard({ organiser, index }: { organiser: Organiser; index: numb
       >
         {organiser.email}
       </a>
-      {(organiser.website || organiser.linkedin) && (
+      {(organiser.website || organiser.linkedin || organiser.github) && (
         <div className="flex items-center justify-center gap-4 mb-6">
           {organiser.website && (
             <a
