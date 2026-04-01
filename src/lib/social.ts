@@ -49,7 +49,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    url: 'https://linkedin.com/company/gophercamp',
+    url: 'https://www.linkedin.com/events/7424367633963085825?viewAsMember=true',
     icon: FaLinkedin,
     ariaLabel: 'Follow us on LinkedIn',
     hoverColor: 'social-linkedin', // Custom CSS class for LinkedIn hover
