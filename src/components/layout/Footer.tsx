@@ -32,7 +32,7 @@ export default function Footer() {
             <h3 className="font-bold text-primary text-lg mb-4">Conference</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#about" className="text-secondary hover:text-go-blue transition-colors">
+                <Link href="/about" className="text-secondary hover:text-go-blue transition-colors">
                   About
                 </Link>
               </li>
