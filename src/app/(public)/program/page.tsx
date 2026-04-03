@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import { fetchSchedule } from '@/lib/sessionize';
+import ProgramGrid from '@/components/program/ProgramGrid';
 
 export const metadata: Metadata = {
   title: 'Program | Gophercamp 2026',
@@ -11,7 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProgramPage() {
+export default async function ProgramPage() {
+  const days = await fetchSchedule();
+
   return (
     <>
       {/* Hero Section */}
@@ -26,7 +30,12 @@ export default function ProgramPage() {
         </div>
       </section>
 
-      {/* TODO: Add program/schedule content */}
+      {/* Schedule Grid */}
+      <section className="py-12 bg-primary">
+        <div className="container mx-auto px-4">
+          <ProgramGrid days={days} />
+        </div>
+      </section>
     </>
   );
 }
