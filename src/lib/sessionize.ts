@@ -1,8 +1,9 @@
 /**
  * TypeScript types for Sessionize API data
- * @see https://sessionize.com/api/v2/6cf3uokt/view/Speakers
- * @see https://sessionize.com/api/v2/6cf3uokt/view/Sessions
+ * @see https://sessionize.com/api/v2/{eventId}/view/Speakers
+ * @see https://sessionize.com/api/v2/{eventId}/view/Sessions
  */
+import { siteConfig } from '@/lib/config';
 
 // =============================================================================
 // Speaker API Types
@@ -154,12 +155,12 @@ export interface SessionizeSessionGroup {
 /**
  * Sessionize API endpoint for speakers
  */
-export const SESSIONIZE_SPEAKERS_API = 'https://sessionize.com/api/v2/6cf3uokt/view/Speakers';
+export const SESSIONIZE_SPEAKERS_API = `https://sessionize.com/api/v2/${siteConfig.sessionizeEventId}/view/Speakers`;
 
 /**
  * Sessionize API endpoint for sessions
  */
-export const SESSIONIZE_SESSIONS_API = 'https://sessionize.com/api/v2/6cf3uokt/view/Sessions';
+export const SESSIONIZE_SESSIONS_API = `https://sessionize.com/api/v2/${siteConfig.sessionizeEventId}/view/Sessions`;
 
 // =============================================================================
 // Fetch Functions

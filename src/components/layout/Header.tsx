@@ -5,11 +5,14 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { trackSocialClick } from '@/lib/analytics';
 import { getHeaderSocialLinks } from '@/lib/social';
+import { siteConfig } from '@/lib/config';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { href: '/speakers', label: 'Speakers' },
-  { href: '/sessions', label: 'Sessions' },
+  siteConfig.programReady
+    ? { href: '/program', label: 'Program' }
+    : { href: '/sessions', label: 'Sessions' },
   { href: '/location', label: 'Location' },
   { href: '/sponsors', label: 'Sponsors' },
 ];

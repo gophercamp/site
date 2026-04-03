@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { trackSocialClick, trackContactClick } from '@/lib/analytics';
 import { getFooterSocialLinks, contactInfo } from '@/lib/social';
+import { siteConfig } from '@/lib/config';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -46,10 +47,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/sessions"
+                  href={siteConfig.programReady ? '/program' : '/sessions'}
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
-                  Sessions
+                  {siteConfig.programReady ? 'Program' : 'Sessions'}
                 </Link>
               </li>
               <li>
