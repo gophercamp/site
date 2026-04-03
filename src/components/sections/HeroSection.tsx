@@ -55,7 +55,7 @@ export default function HeroSection() {
 
       {/* Slideshow controls */}
       {backgroundImages.length > 1 && (
-        <div className="absolute inset-0 z-[50] pointer-events-none">
+        <div className="absolute inset-0 z-50 pointer-events-none">
           {/* Previous/Next arrows */}
           <button
             onClick={goToPrevious}
@@ -102,7 +102,7 @@ export default function HeroSection() {
       )}
 
       {/* Grid pattern overlay for brand consistency */}
-      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5] opacity-5 pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-5 opacity-5 pointer-events-none">
         <svg
           className="w-full h-full absolute top-0 left-0"
           width="100%"
@@ -120,7 +120,7 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 py-20 z-[10] relative">
+      <div className="container mx-auto px-4 py-20 z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
