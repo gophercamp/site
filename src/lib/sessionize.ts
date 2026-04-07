@@ -1,8 +1,9 @@
 /**
  * TypeScript types for Sessionize API data
- * @see https://sessionize.com/api/v2/6cf3uokt/view/Speakers
- * @see https://sessionize.com/api/v2/6cf3uokt/view/Sessions
+ * @see https://sessionize.com/api/v2/{eventId}/view/Speakers
+ * @see https://sessionize.com/api/v2/{eventId}/view/Sessions
  */
+import { siteConfig } from '@/lib/config';
 
 // =============================================================================
 // Speaker API Types
@@ -154,12 +155,82 @@ export interface SessionizeSessionGroup {
 /**
  * Sessionize API endpoint for speakers
  */
-export const SESSIONIZE_SPEAKERS_API = 'https://sessionize.com/api/v2/6cf3uokt/view/Speakers';
+export const SESSIONIZE_SPEAKERS_API = `https://sessionize.com/api/v2/${siteConfig.sessionizeEventId}/view/Speakers`;
 
 /**
  * Sessionize API endpoint for sessions
  */
-export const SESSIONIZE_SESSIONS_API = 'https://sessionize.com/api/v2/6cf3uokt/view/Sessions';
+export const SESSIONIZE_SESSIONS_API = `https://sessionize.com/api/v2/${siteConfig.sessionizeEventId}/view/Sessions`;
+
+/**
+ * Sessionize API endpoint for GridSmart schedule
+ */
+export const SESSIONIZE_GRIDSMART_API = `https://sessionize.com/api/v2/${siteConfig.sessionizeEventId}/view/GridSmart`;
+
+// =============================================================================
+// GridSmart API Types
+// =============================================================================
+
+/**
+ * Represents a session from the GridSmart API.
+ * Identical to SessionizeSessionDetail except status can be null and there is no questionAnswers field.
+ */
+export interface GridSmartSession {
+  id: string;
+  title: string;
+  description: string | null;
+  startsAt: string | null;
+  endsAt: string | null;
+  isServiceSession: boolean;
+  isPlenumSession: boolean;
+  speakers: SessionSpeakerRef[];
+  categories: SessionizeCategory[];
+  roomId: number | null;
+  room: string | null;
+  liveUrl: string | null;
+  recordingUrl: string | null;
+  status: string | null;
+  isInformed: boolean;
+  isConfirmed: boolean;
+}
+
+/**
+ * Represents a room slot entry within a GridSmart time slot
+ */
+export interface GridSmartTimeSlotRoom {
+  id: number;
+  name: string;
+  session: GridSmartSession;
+  index: number;
+}
+
+/**
+ * Represents a time slot in the GridSmart schedule
+ */
+export interface GridSmartTimeSlot {
+  slotStart: string;
+  rooms: GridSmartTimeSlotRoom[];
+}
+
+/**
+ * Represents a room in the GridSmart schedule day
+ */
+export interface GridSmartRoom {
+  id: number;
+  name: string;
+  sessions: GridSmartSession[];
+  hasOnlyPlenumSessions: boolean;
+}
+
+/**
+ * Represents a single day in the GridSmart schedule
+ */
+export interface GridSmartDay {
+  date: string;
+  isDefault: boolean;
+  rooms: GridSmartRoom[];
+  timeSlots: GridSmartTimeSlot[];
+}
 
 // =============================================================================
 // Fetch Functions
@@ -198,6 +269,25 @@ export async function fetchSessions(): Promise<SessionizeSessionGroup[]> {
 
   if (!response.ok) {
     throw new Error(`Failed to fetch sessions: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Fetches the GridSmart schedule from the Sessionize API
+ * @returns Promise resolving to an array of schedule days
+ */
+export async function fetchSchedule(): Promise<GridSmartDay[]> {
+  const response = await fetch(SESSIONIZE_GRIDSMART_API, {
+    next: {
+      // Revalidate every hour to keep schedule data fresh
+      revalidate: 3600,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch schedule: ${response.statusText}`);
   }
 
   return response.json();

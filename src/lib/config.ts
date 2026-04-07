@@ -6,6 +6,14 @@
 
 export const siteConfig = {
   /**
+   * The Sessionize event ID — the slug found in the API URLs.
+   * Update this for each new conference edition.
+   *
+   * Example URL: https://sessionize.com/api/v2/{eventId}/view/Speakers
+   */
+  sessionizeEventId: '6cf3uokt',
+
+  /**
    * Set to `true` when the Call for Speakers is open.
    *
    * Enabling this will:
@@ -17,6 +25,16 @@ export const siteConfig = {
    * Also remember to re-enable the /cfp redirect in netlify.toml.
    */
   cfpOpen: false,
+
+  /**
+   * Set to `true` when the conference program is ready to be published.
+   *
+   * Enabling this will:
+   * - Replace the "Sessions" link in the header and footer with "Program" → /program
+   *
+   * Also make sure the /program page has its content filled in before enabling.
+   */
+  programReady: false,
 
   /** URL to the CFP submission form */
   cfpUrl: 'https://sessionize.com/gophercamp',
