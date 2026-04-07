@@ -53,7 +53,7 @@ function formatDayHeader(dateString: string): string {
  * Extracts the value of the "Level" category from a session's categories array.
  */
 function getLevelCategory(categories: SessionizeCategory[]): string | undefined {
-  return categories.find(c => c.name === 'Level')?.categoryItems[0]?.name;
+  return categories.find(c => c.name.toLowerCase() === 'level')?.categoryItems[0]?.name;
 }
 
 // ---------------------------------------------------------------------------

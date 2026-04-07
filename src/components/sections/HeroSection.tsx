@@ -102,7 +102,7 @@ export default function HeroSection() {
       )}
 
       {/* Grid pattern overlay for brand consistency */}
-      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-5 opacity-5 pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5] opacity-5 pointer-events-none">
         <svg
           className="w-full h-full absolute top-0 left-0"
           width="100%"
