@@ -145,10 +145,7 @@ function RegularSessionCard({ session }: { session: GridSmartSession }) {
  * @param days - Array of GridSmartDay objects from the Sessionize GridSmart API
  */
 export default function ProgramGrid({ days }: Props) {
-  const defaultIndex = Math.max(
-    0,
-    days.findIndex(d => d.isDefault)
-  );
+  const defaultIndex = Math.max(0, days.length - 1);
   const [activeDay, setActiveDay] = useState(defaultIndex);
 
   const currentDay = days[activeDay] ?? days[0];
