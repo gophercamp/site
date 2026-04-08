@@ -23,8 +23,11 @@ export default async function ProgramPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Program</h1>
-            <p className="text-lg text-secondary">
+            <p className="text-lg text-secondary mb-2">
               The full schedule for Gophercamp 2026 — April 23–24, Brno
+            </p>
+            <p className="text-xs text-secondary italic">
+              This program is not final and subject to change.
             </p>
           </div>
         </div>

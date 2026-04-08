@@ -34,7 +34,7 @@ export const siteConfig = {
    *
    * Also make sure the /program page has its content filled in before enabling.
    */
-  programReady: false,
+  programReady: true,
 
   /** URL to the CFP submission form */
   cfpUrl: 'https://sessionize.com/gophercamp',
