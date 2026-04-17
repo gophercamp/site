@@ -41,4 +41,19 @@ export const siteConfig = {
 
   /** Human-readable submission deadline shown in the UI */
   cfpDeadline: 'March 31, 2026',
+
+  /**
+   * ISO date-time string for the start of the conference (Europe/Prague time).
+   * Used by the hero section countdown timer.
+   * Update this for each new edition.
+   */
+  conferenceDate: '2026-04-24T08:30:00+02:00',
+
+  /**
+   * Set to `true` to show a live countdown to the conference in the hero section.
+   * Set to `false` to show the past-event memories badge instead.
+   *
+   * Switch this to `false` once the conference has passed.
+   */
+  showCountdown: true,
 };
