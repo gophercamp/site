@@ -33,9 +33,9 @@ const SPONSORS: Sponsor[] = [
   {
     name: 'SentinelOne',
     logo: '/images/partners/sentinelone.svg',
-    url: 'https://www.sentinelone.com/',
+    url: 'https://www.sentinelone.com/careers/',
     description:
-      "SentinelOne is the world's leading AI-powered cybersecurity platform. The SentinelOne Singularity platform, built on the first unified Data Lake, is revolutionizing security operations, with AI, solving use cases across Endpoint Protection, SIEM, Cloud Security, Identity Threat Detection and 24x7 Managed Threat Services.",
+      'S1 is a company at the intersection of AI & security, pioneering a new operating model for cybersecurity; and building its biggest global R&D in CZ/SK. Our AI-native platform relies heavily on Go services (handling daily hundreds of billions of events and Petabytes of data), and unifies protection across endpoint, cloud, identity, data, and AI systems to deliver autonomous detection & response with clarity and speed. Leading organizations, incl. 4 of Fortune 10 or prominent governments, trust us to Secure Tomorrow™.',
   },
   {
     name: 'Outreach',
