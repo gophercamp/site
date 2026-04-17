@@ -4,6 +4,26 @@
  * This is the single place to toggle site-wide features between editions.
  */
 
+/**
+ * A single dismissable alert shown in the top banner.
+ */
+export interface SiteAlert {
+  /** Unique string ID — used as the localStorage dismiss key. */
+  id: string;
+  /** The message text shown in the banner. */
+  message: string;
+  /**
+   * Visual variant controlling the banner colour.
+   * @default 'info'
+   */
+  variant?: 'info' | 'success' | 'warning' | 'error';
+  /** Optional inline call-to-action link rendered after the message. */
+  link?: {
+    href: string;
+    label: string;
+  };
+}
+
 export const siteConfig = {
   /**
    * The Sessionize event ID — the slug found in the API URLs.
@@ -56,4 +76,25 @@ export const siteConfig = {
    * Switch this to `false` once the conference has passed.
    */
   showCountdown: true,
+
+  /**
+   * List of dismissable alert banners shown at the top of every page.
+   * Each alert is individually dismissable and the dismissal is persisted
+   * in localStorage using the alert's `id`.
+   *
+   * Add an object here to show a new alert. Remove it (or clear the array)
+   * to stop showing it for everyone, including users who haven't dismissed it.
+   *
+   * Example:
+   *   { id: 'tickets-live', message: 'Tickets are now on sale!', variant: 'info', link: { href: '/tickets', label: 'Get yours' } }
+   */
+  alerts: [
+    {
+      id: 'workshop-venue-change-2026',
+      variant: 'info',
+      message:
+        '📍 Venue update: The Ultimate Private AI hands-on workshop has moved to JIC INTECH 2, U Vodárny 2, Brno (larger venue).',
+      link: { href: 'https://luma.com/ultimateai', label: 'Event details' },
+    },
+  ] as SiteAlert[],
 };
