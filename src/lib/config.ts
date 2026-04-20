@@ -88,6 +88,49 @@ export const siteConfig = {
    * Example:
    *   { id: 'tickets-live', message: 'Tickets are now on sale!', variant: 'info', link: { href: '/tickets', label: 'Get yours' } }
    */
+  /**
+   * Ticket sale period configuration.
+   *
+   * - Early Bird runs until `earlyBirdEnd` (exclusive).
+   * - Standard runs from `earlyBirdEnd` until `standardEnd` (exclusive).
+   * - Last Minute runs from `standardEnd` onwards.
+   *
+   * Update these values for each new conference edition.
+   */
+  ticketPeriods: {
+    /** Start of the Standard tier — also the end of the Early Bird tier. */
+    earlyBirdEnd: new Date('2026-03-01'),
+    /** Start of the Last Minute tier — also the end of the Standard tier. */
+    standardEnd: new Date('2026-04-22'),
+
+    tiers: {
+      earlyBird: {
+        title: 'Early Bird',
+        price: 69,
+        priceDescription: 'Until February 28, 2026',
+        href: 'https://luma.com/gophercamp',
+        buttonText: 'Buy Early Bird',
+        badge: 'Limited time',
+      },
+      standard: {
+        title: 'Standard',
+        price: 89,
+        priceDescription: 'March 1 - April 21, 2026',
+        href: 'https://luma.com/gophercamp',
+        buttonText: 'Buy Standard',
+        badge: 'Available Now',
+      },
+      lastMinute: {
+        title: 'Last Minute',
+        price: 109,
+        priceDescription: 'From April 22, 2026',
+        href: 'https://luma.com/gophercamp',
+        buttonText: 'Buy Last Minute',
+        badge: 'Available Now',
+      },
+    },
+  },
+
   alerts: [
     {
       id: 'workshop-venue-change-2026',

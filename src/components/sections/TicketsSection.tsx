@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/ui/Button';
+import { siteConfig } from '@/lib/config';
 import { motion } from 'framer-motion';
 import { SectionProps, getSectionBackgroundClass } from './types';
 
@@ -131,14 +132,13 @@ function TicketCard({
  */
 export default function TicketsSection({ background }: SectionProps) {
   // Define ticket availability periods
-  const EARLY_BIRD_END = new Date('2026-03-01'); // End of Feb 28, 2026
-  const STANDARD_END = new Date('2026-04-21'); // April 21, 2026
+  const { earlyBirdEnd, standardEnd, tiers } = siteConfig.ticketPeriods;
 
   // Helper function to check if current date is within a period
   const now = new Date();
-  const isEarlyBirdPeriod = now < EARLY_BIRD_END;
-  const isStandardPeriod = now >= EARLY_BIRD_END && now < STANDARD_END;
-  const isLastMinutePeriod = now >= STANDARD_END;
+  const isEarlyBirdPeriod = now < earlyBirdEnd;
+  const isStandardPeriod = now >= earlyBirdEnd && now < standardEnd;
+  const isLastMinutePeriod = now >= standardEnd;
 
   // Determine which ticket should be highlighted
   const currentTicketTier = isEarlyBirdPeriod
@@ -178,40 +178,28 @@ export default function TicketsSection({ background }: SectionProps) {
           {/* Ticket Options */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <TicketCard
-              title="Early Bird"
-              price={69}
-              priceDescription="Until February 28, 2026"
+              {...tiers.earlyBird}
               features={standardFeatures}
-              href="https://luma.com/gophercamp"
-              buttonText="Buy Early Bird"
               buttonVariant={currentTicketTier === 'early-bird' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'early-bird' ? 'Limited time' : undefined}
+              badge={currentTicketTier === 'early-bird' ? tiers.earlyBird.badge : undefined}
               status={isEarlyBirdPeriod ? 'now' : 'past'}
               delay={0.1}
             />
 
             <TicketCard
-              title="Standard"
-              price={89}
-              priceDescription="March 1 - April 20, 2026"
+              {...tiers.standard}
               features={standardFeatures}
-              href="https://luma.com/gophercamp"
-              buttonText="Buy Standard"
               buttonVariant={currentTicketTier === 'standard' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'standard' ? 'Available Now' : undefined}
-              status={now < EARLY_BIRD_END ? 'future' : isStandardPeriod ? 'now' : 'past'}
+              badge={currentTicketTier === 'standard' ? tiers.standard.badge : undefined}
+              status={now < earlyBirdEnd ? 'future' : isStandardPeriod ? 'now' : 'past'}
               delay={0.2}
             />
 
             <TicketCard
-              title="Last Minute"
-              price={109}
-              priceDescription="From April 21, 2026"
+              {...tiers.lastMinute}
               features={standardFeatures}
-              href="https://luma.com/gophercamp"
-              buttonText="Buy Last Minute"
               buttonVariant={currentTicketTier === 'last-minute' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'last-minute' ? 'Available Now' : undefined}
+              badge={currentTicketTier === 'last-minute' ? tiers.lastMinute.badge : undefined}
               status={isLastMinutePeriod ? 'now' : 'future'}
               delay={0.3}
             />
