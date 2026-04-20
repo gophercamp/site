@@ -36,9 +36,11 @@ export default async function SessionsPage() {
             <p className="text-sm text-secondary mb-2">
               {sessions.length} session{sessions.length !== 1 ? 's' : ''} confirmed
             </p>
-            <p className="text-xs text-secondary italic">
-              This list is not final and subject to change.
-            </p>
+            {!siteConfig.programFinal && (
+              <p className="text-xs text-secondary italic">
+                This list is not final and subject to change.
+              </p>
+            )}
           </div>
         </div>
       </section>

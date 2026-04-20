@@ -1,5 +1,6 @@
 import { Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 import { GridSmartDay, GridSmartSession } from '@/lib/sessionize';
+import { siteConfig } from '@/lib/config';
 
 // ---------------------------------------------------------------------------
 // Fonts
@@ -377,9 +378,11 @@ export default function ProgramPdf({ days, generatedAt }: ProgramPdfProps) {
 
         {/* Footer */}
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>
-            Program is subject to change · This program is not final
-          </Text>
+          {!siteConfig.programFinal && (
+            <Text style={styles.footerText}>
+              Program is subject to change · This program is not final
+            </Text>
+          )}
           <Text style={styles.footerBlue}>gophercamp.cz</Text>
         </View>
       </Page>

@@ -56,6 +56,16 @@ export const siteConfig = {
    */
   programReady: true,
 
+  /**
+   * Set to `true` once the conference program, sessions, and speakers are
+   * finalised and no further changes are expected.
+   *
+   * Enabling this will remove all "subject to change" / "not final" notices
+   * from the Program, Sessions, and Speakers pages, as well as from the
+   * generated program PDF.
+   */
+  programFinal: true,
+
   /** URL to the CFP submission form */
   cfpUrl: 'https://sessionize.com/gophercamp',
 

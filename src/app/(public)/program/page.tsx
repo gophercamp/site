@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { fetchSchedule } from '@/lib/sessionize';
 import ProgramGrid from '@/components/program/ProgramGrid';
+import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: 'Program | Gophercamp 2026',
@@ -42,9 +43,11 @@ export default async function ProgramPage() {
                 <p className="text-sm text-secondary">Talks, lightning talks &amp; networking</p>
               </div>
             </div>
-            <p className="text-xs text-secondary italic">
-              This program is not final and subject to change.
-            </p>
+            {!siteConfig.programFinal && (
+              <p className="text-xs text-secondary italic">
+                This program is not final and subject to change.
+              </p>
+            )}
           </div>
         </div>
       </section>
