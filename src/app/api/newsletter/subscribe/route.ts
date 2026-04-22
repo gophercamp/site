@@ -1,5 +1,5 @@
 import { sendConfirmationEmail } from '@/lib/email';
-import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { getSubscriber, saveSubscriber } from '@/lib/newsletter-store';
 import { createExpirationDate, generateToken } from '@/lib/token';
 import { validateEmail } from '@/lib/validation';
 import { NextRequest, NextResponse } from 'next/server';
@@ -7,7 +7,6 @@ import { randomBytes } from 'crypto';
 
 export async function POST(request: NextRequest) {
   try {
-    // Parse the request body
     const body = await request.json();
     const { email } = body;
 
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
-    // Validate the email format
     if (!validateEmail(email)) {
       return NextResponse.json(
         { success: false, message: 'Invalid email format' },
@@ -23,23 +21,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if the email already exists in the database
-    const { data: existingUser, error: checkError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .select('email')
-      .eq('email', email.toLowerCase())
-      .single();
+    // Check if the email already exists
+    const existingSubscriber = await getSubscriber(email);
 
-    if (checkError && checkError.code !== 'PGRST116') {
-      console.error('Error checking existing user:', checkError);
-      return NextResponse.json(
-        { success: false, message: 'Error checking subscription status' },
-        { status: 500 }
-      );
-    }
-
-    if (existingUser) {
-      // Return success even if already subscribed to avoid revealing email existence
+    if (existingSubscriber) {
       return NextResponse.json({
         success: false,
         message: 'You are already subscribed to our newsletter!',
@@ -59,8 +44,8 @@ export async function POST(request: NextRequest) {
     // Generate unsubscribe token (permanent, doesn't expire)
     const unsubscribeToken = randomBytes(32).toString('hex');
 
-    // Insert the new subscriber
-    const { error: insertError } = await getSupabaseClient().from(SUBSCRIBERS_TABLE).insert({
+    // Save the new subscriber
+    await saveSubscriber({
       email: email.toLowerCase(),
       subscribed_at: new Date().toISOString(),
       confirmed: false,
@@ -70,14 +55,6 @@ export async function POST(request: NextRequest) {
       ip_address: ip,
       user_agent: userAgent,
     });
-
-    if (insertError) {
-      console.error('Error saving subscriber:', insertError);
-      return NextResponse.json(
-        { success: false, message: 'Error saving your subscription. Please try again.' },
-        { status: 500 }
-      );
-    }
 
     // Send confirmation email
     const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
