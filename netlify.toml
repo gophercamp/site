@@ -44,5 +44,10 @@
   to = "https://luma.com/gophercamp"
   status = 301
 
+[[redirects]]
+  from = "/app"
+  to = "https://gophercamp.sessionize.com"
+  status = 301
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
