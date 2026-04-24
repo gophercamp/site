@@ -142,12 +142,19 @@ export const siteConfig = {
   },
 
   alerts: [
+    // {
+    //   id: 'workshop-venue-change-2026',
+    //   variant: 'info',
+    //   message:
+    //     '📍 Venue update: The Ultimate Private AI hands-on workshop has moved to JIC INTECH 2, U Vodárny 2, Brno (larger venue).',
+    //   link: { href: 'https://luma.com/ultimateai', label: 'Event details' },
+    // },
     {
-      id: 'workshop-venue-change-2026',
-      variant: 'info',
+      id: 'download-app-2026',
+      variant: 'success',
       message:
-        '📍 Venue update: The Ultimate Private AI hands-on workshop has moved to JIC INTECH 2, U Vodárny 2, Brno (larger venue).',
-      link: { href: 'https://luma.com/ultimateai', label: 'Event details' },
+        'Download the official Gophercamp 2026 app for the full schedule, speaker info, and more!',
+      link: { href: '/app', label: 'App' },
     },
   ] as SiteAlert[],
 };
