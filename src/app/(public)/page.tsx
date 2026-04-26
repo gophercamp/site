@@ -1,6 +1,7 @@
 import HeroSection from '@/components/sections/HeroSection';
 import CFPSection from '@/components/sections/CFPSection';
 import TicketsSection from '@/components/sections/TicketsSection';
+import ThankYouSection from '@/components/sections/ThankYouSection';
 import SpeakersSection from '@/components/sections/SpeakersSection';
 import AboutSection from '@/components/sections/AboutSection';
 import LocationSection from '@/components/sections/LocationSection';
@@ -13,7 +14,11 @@ export default function Home() {
     <>
       <HeroSection />
       {siteConfig.cfpOpen && <CFPSection background="primary" />}
-      <TicketsSection background="secondary" />
+      {siteConfig.eventOver ? (
+        <ThankYouSection background="secondary" />
+      ) : (
+        <TicketsSection background="secondary" />
+      )}
       <SpeakersSection background="primary" />
       <AboutSection background="secondary" />
       <LocationSection background="primary" />

@@ -261,9 +261,11 @@ export default function HeroSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button href="#tickets" variant="primary" size="lg">
-                Get Tickets
-              </Button>
+              {!siteConfig.eventOver && (
+                <Button href="#tickets" variant="primary" size="lg">
+                  Get Tickets
+                </Button>
+              )}
 
               {siteConfig.cfpOpen && (
                 <Button href="#cfp" variant="secondary" size="lg">
@@ -287,7 +289,7 @@ export default function HeroSection() {
             className="flex justify-center"
           >
             <div className="relative w-full max-w-xs aspect-square">
-              {siteConfig.showCountdown ? (
+              {siteConfig.showCountdown && !siteConfig.eventOver ? (
                 <CountdownBadge targetDate={siteConfig.conferenceDate} />
               ) : (
                 <a
