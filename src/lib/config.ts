@@ -85,7 +85,19 @@ export const siteConfig = {
    *
    * Switch this to `false` once the conference has passed.
    */
-  showCountdown: true,
+  showCountdown: false,
+
+  /**
+   * Set to `true` once the conference has finished.
+   *
+   * Enabling this will:
+   * - Hide the Tickets section on the home page
+   * - Hide the "Get Tickets" button in the hero section
+   * - Show a "Thank You" section on the home page in place of tickets
+   * - Replace the countdown circle in the hero with the YouTube memories link
+   *   (overrides `showCountdown` even if it is still set to `true`)
+   */
+  eventOver: true,
 
   /**
    * List of dismissable alert banners shown at the top of every page.
@@ -149,12 +161,12 @@ export const siteConfig = {
     //     '📍 Venue update: The Ultimate Private AI hands-on workshop has moved to JIC INTECH 2, U Vodárny 2, Brno (larger venue).',
     //   link: { href: 'https://luma.com/ultimateai', label: 'Event details' },
     // },
-    {
-      id: 'download-app-2026',
-      variant: 'success',
-      message:
-        'Download the official Gophercamp 2026 app for the full schedule, speaker info, and more!',
-      link: { href: '/app', label: 'App' },
-    },
+    // {
+    //   id: 'download-app-2026',
+    //   variant: 'success',
+    //   message:
+    //     'Download the official Gophercamp 2026 app for the full schedule, speaker info, and more!',
+    //   link: { href: '/app', label: 'App' },
+    // },
   ] as SiteAlert[],
 };
