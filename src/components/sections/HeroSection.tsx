@@ -10,6 +10,167 @@ import { useState } from 'react';
 import { siteConfig } from '@/lib/config';
 import CountdownBadge from '@/components/ui/CountdownBadge';
 
+/**
+ * Builds a Google Calendar "Add to Calendar" URL for a multi-day all-day event.
+ */
+function buildGoogleCalendarUrl(
+  title: string,
+  dateStart: string,
+  dateEnd: string,
+  location: string
+): string {
+  const start = dateStart.replace(/-/g, '');
+  const endDate = new Date(dateEnd);
+  endDate.setDate(endDate.getDate() + 1);
+  const end = endDate.toISOString().slice(0, 10).replace(/-/g, '');
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: `${start}/${end}`,
+    location,
+    details: `Join us for ${title} in ${location}. More details coming soon at gophercamp.cz`,
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+/**
+ * Builds a data URI for an .ics calendar file.
+ */
+function buildIcsDataUri(
+  title: string,
+  dateStart: string,
+  dateEnd: string,
+  location: string
+): string {
+  const start = dateStart.replace(/-/g, '');
+  const endDate = new Date(dateEnd);
+  endDate.setDate(endDate.getDate() + 1);
+  const end = endDate.toISOString().slice(0, 10).replace(/-/g, '');
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Gophercamp//SaveTheDate//EN',
+    'BEGIN:VEVENT',
+    `SUMMARY:${title}`,
+    `DTSTART;VALUE=DATE:${start}`,
+    `DTEND;VALUE=DATE:${end}`,
+    `LOCATION:${location}`,
+    `DESCRIPTION:Join us for ${title} in ${location}. More details at gophercamp.cz`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+}
+
+/**
+ * Circular save-the-date badge rendered in the hero right column.
+ */
+function SaveTheDateBadge() {
+  const { year, dates, dateStart, dateEnd, venue } = siteConfig.nextEdition;
+  const title = `Gophercamp ${year}`;
+  const googleCalUrl = buildGoogleCalendarUrl(title, dateStart, dateEnd, venue);
+  const icsUri = buildIcsDataUri(title, dateStart, dateEnd, venue);
+
+  return (
+    <div className="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-xl">
+      <div className="text-center px-6">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-1.5 bg-go-blue/90 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          Save the Date
+        </div>
+
+        {/* Title */}
+        <div className="text-white text-lg font-bold drop-shadow-md leading-tight mb-1">
+          {title}
+        </div>
+
+        {/* Date */}
+        <div className="text-go-blue text-base font-bold drop-shadow-md mb-1">{dates}</div>
+
+        {/* Venue */}
+        <div className="text-white/70 text-xs mb-4">{venue}</div>
+
+        {/* Calendar links */}
+        <div className="flex flex-col gap-1.5 items-center">
+          <a
+            href={googleCalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 bg-go-blue hover:bg-go-blue-dark text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors duration-200"
+          >
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            Google Calendar
+          </a>
+          <a
+            href={icsUri}
+            download={`gophercamp-${year}.ics`}
+            className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors duration-200"
+          >
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+            Download .ics
+          </a>
+          <a
+            href="#newsletter"
+            className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors duration-200"
+          >
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            Newsletter
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const primarySocial = getPrimarySocialLink();
 
@@ -291,6 +452,8 @@ export default function HeroSection() {
             <div className="relative w-full max-w-xs aspect-square">
               {siteConfig.showCountdown && !siteConfig.eventOver ? (
                 <CountdownBadge targetDate={siteConfig.conferenceDate} />
+              ) : siteConfig.eventOver && siteConfig.nextEdition.show ? (
+                <SaveTheDateBadge />
               ) : (
                 <a
                   href={primarySocial.url}
