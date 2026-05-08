@@ -11,6 +11,12 @@ type ButtonProps = {
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  /** Opens the link in a new tab. Sets rel="noopener noreferrer" by default. */
+  target?: string;
+  /** Overrides the default rel attribute on link buttons. */
+  rel?: string;
+  /** When set, the linked URL will be downloaded with this filename. */
+  download?: string | boolean;
 };
 
 export default function Button({
@@ -22,6 +28,9 @@ export default function Button({
   className = '',
   type = 'button',
   disabled = false,
+  target,
+  rel,
+  download,
 }: ButtonProps) {
   // Define base classes
   const baseClasses =
@@ -54,9 +63,17 @@ export default function Button({
 
   // If it's a link button
   if (href && !disabled) {
+    // Derive safe rel for external links opening in a new tab
+    const resolvedRel = rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
     return (
       <motion.div whileTap="tap" variants={buttonAnimation}>
-        <Link href={href} className={buttonClasses}>
+        <Link
+          href={href}
+          className={buttonClasses}
+          target={target}
+          rel={resolvedRel}
+          download={download}
+        >
           {children}
         </Link>
       </motion.div>

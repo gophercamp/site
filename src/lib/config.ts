@@ -100,6 +100,30 @@ export const siteConfig = {
   eventOver: true,
 
   /**
+   * Next edition "Save the Date" configuration.
+   *
+   * Set `show` to `true` to display a Save the Date section on the home page.
+   * This appears below the Thank You section when the current event is over.
+   *
+   * Update `year`, `dates`, and `dateRange` for each new edition.
+   * `dateRange` is the machine-readable ISO date range (used for calendar links).
+   */
+  nextEdition: {
+    /** Set to `true` to show the Save the Date section on the home page. */
+    show: true,
+    /** The edition year shown in the heading. */
+    year: 2027,
+    /** Human-readable date range shown on the page. */
+    dates: 'April 22–23, 2027',
+    /** ISO start date (used for Google Calendar / .ics links). */
+    dateStart: '2027-04-22',
+    /** ISO end date (exclusive for Google Calendar, inclusive for display). */
+    dateEnd: '2027-04-23',
+    /** Venue name */
+    venue: 'Brno, Czech Republic',
+  },
+
+  /**
    * List of dismissable alert banners shown at the top of every page.
    * Each alert is individually dismissable and the dismissal is persisted
    * in localStorage using the alert's `id`.
