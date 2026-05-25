@@ -32,6 +32,14 @@ function emailToKey(email: string): string {
 }
 
 /**
+ * Returns the blob key used to map an unsubscribe token → email (O(1) lookup).
+ * These keys are prefixed with '_' so they are excluded from subscriber listings.
+ */
+function tokenKey(token: string): string {
+  return `_token:${token}`;
+}
+
+/**
  * Retrieves a subscriber by email
  */
 export async function getSubscriber(email: string): Promise<NewsletterSubscriber | null> {
@@ -41,24 +49,17 @@ export async function getSubscriber(email: string): Promise<NewsletterSubscriber
 }
 
 /**
- * Retrieves a subscriber by their unsubscribe token
+ * Retrieves a subscriber by their unsubscribe token in O(1).
+ * A dedicated `_token:{token}` blob maps the token to the subscriber's email,
+ * avoiding a full index scan.
  */
 export async function getSubscriberByUnsubscribeToken(
   token: string
 ): Promise<NewsletterSubscriber | null> {
   const store = getSubscribersStore();
-  const index = await getSubscriberIndex();
-
-  for (const email of index) {
-    const subscriber = (await store.get(emailToKey(email), {
-      type: 'json',
-    })) as NewsletterSubscriber | null;
-    if (subscriber && subscriber.unsubscribe_token === token) {
-      return subscriber;
-    }
-  }
-
-  return null;
+  const email = await store.get(tokenKey(token), { type: 'text' });
+  if (!email) return null;
+  return getSubscriber(email as string);
 }
 
 /**
@@ -76,21 +77,27 @@ export async function getSubscriberByConfirmationToken(
 }
 
 /**
- * Saves (creates or updates) a subscriber
+ * Saves (creates or updates) a subscriber.
+ * Also persists a `_token:{token}` → email blob for O(1) unsubscribe-token lookup.
  */
 export async function saveSubscriber(subscriber: NewsletterSubscriber): Promise<void> {
   const store = getSubscribersStore();
   const key = emailToKey(subscriber.email);
   await store.setJSON(key, subscriber);
-  await addToIndex(subscriber.email);
+  if (subscriber.unsubscribe_token) {
+    await store.set(tokenKey(subscriber.unsubscribe_token), subscriber.email);
+  }
 }
 
 /**
- * Updates fields on an existing subscriber
+ * Updates fields on an existing subscriber.
+ * The `email` field is intentionally excluded from `updates` — changing a
+ * subscriber's email would orphan the old blob and index entry. Use a
+ * dedicated migration flow if email changes are ever needed.
  */
 export async function updateSubscriber(
   email: string,
-  updates: Partial<NewsletterSubscriber>
+  updates: Partial<Omit<NewsletterSubscriber, 'email'>>
 ): Promise<NewsletterSubscriber | null> {
   const existing = await getSubscriber(email);
   if (!existing) return null;
@@ -101,25 +108,15 @@ export async function updateSubscriber(
 }
 
 /**
- * Returns the index of all subscriber emails
+ * Returns the list of all subscriber email keys.
+ * Uses `store.list()` instead of a shared mutable `_index` blob, which avoids
+ * lost-update race conditions under concurrent subscriptions.
+ * Internal metadata keys (prefixed with `_`) are filtered out.
  */
 export async function getSubscriberIndex(): Promise<string[]> {
   const store = getSubscribersStore();
-  const data = await store.get('_index', { type: 'json' });
-  return (data as string[] | null) ?? [];
-}
-
-/**
- * Adds an email to the subscriber index (if not already present)
- */
-async function addToIndex(email: string): Promise<void> {
-  const store = getSubscribersStore();
-  const normalized = emailToKey(email);
-  const index = await getSubscriberIndex();
-
-  if (!index.includes(normalized)) {
-    await store.setJSON('_index', [...index, normalized]);
-  }
+  const { blobs } = await store.list();
+  return blobs.map(b => b.key).filter(k => !k.startsWith('_'));
 }
 
 /**

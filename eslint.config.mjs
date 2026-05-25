@@ -16,7 +16,7 @@ const eslintConfig = [
   ...nextTypescript,
   ...compat.extends('prettier'),
   {
-    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
+    ignores: ['node_modules/**', '.next/**', '.netlify/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
 ];
 

@@ -25,10 +25,11 @@ export async function POST(request: NextRequest) {
     const existingSubscriber = await getSubscriber(email);
 
     if (existingSubscriber) {
+      // Return the same generic success response as a new subscription to
+      // avoid leaking whether an email address is already in our list.
       return NextResponse.json({
-        success: false,
-        message: 'You are already subscribed to our newsletter!',
-        alreadySubscribed: true,
+        success: true,
+        message: 'Thank you for subscribing! Please check your email to confirm your subscription.',
       });
     }
 

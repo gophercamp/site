@@ -3,6 +3,7 @@ import { getSubscriber, updateSubscriber } from '@/lib/newsletter-store';
 import { createExpirationDate, generateToken } from '@/lib/token';
 import { validateEmail } from '@/lib/validation';
 import { NextRequest, NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 
 /**
  * API handler for resending newsletter subscription confirmation
@@ -47,9 +48,17 @@ export async function POST(request: NextRequest) {
     const confirmationToken = generateToken();
     const tokenExpiresAt = createExpirationDate(48);
 
+    // If the subscriber has no unsubscribe token (e.g. legacy record), generate
+    // and persist one now so the confirmation email has a working unsubscribe link.
+    let unsubscribeToken = existingSubscriber.unsubscribe_token;
+    if (!unsubscribeToken) {
+      unsubscribeToken = randomBytes(32).toString('hex');
+    }
+
     const updated = await updateSubscriber(email, {
       confirmation_token: confirmationToken,
       token_expires_at: tokenExpiresAt,
+      unsubscribe_token: unsubscribeToken,
     });
 
     if (!updated) {
@@ -60,11 +69,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const emailResult = await sendConfirmationEmail(
-      email,
-      confirmationToken,
-      existingSubscriber.unsubscribe_token || ''
-    );
+    const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
 
     if (!emailResult.success) {
       console.error('Failed to send confirmation email:', emailResult.error);
