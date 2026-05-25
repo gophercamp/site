@@ -3,7 +3,9 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 function getSecret(): Uint8Array {
-  return new TextEncoder().encode(process.env.SESSION_SECRET ?? '');
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) throw new Error('SESSION_SECRET environment variable is not set');
+  return new TextEncoder().encode(secret);
 }
 
 async function isAuthenticated(request: NextRequest): Promise<boolean> {
@@ -20,15 +22,18 @@ async function isAuthenticated(request: NextRequest): Promise<boolean> {
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Resolve auth once and reuse for both checks below.
+  const authenticated = await isAuthenticated(request);
+
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
-    if (!(await isAuthenticated(request))) {
+    if (!authenticated) {
       const redirectUrl = new URL('/admin/login', request.url);
       redirectUrl.searchParams.set('returnUrl', pathname);
       return NextResponse.redirect(redirectUrl);
     }
   }
 
-  if (pathname === '/admin/login' && (await isAuthenticated(request))) {
+  if (pathname === '/admin/login' && authenticated) {
     return NextResponse.redirect(new URL('/admin', request.url));
   }
 

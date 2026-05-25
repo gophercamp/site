@@ -25,7 +25,11 @@ export async function sendTestNewsletter(
     return { success: false, message: 'Unauthorized' };
   }
 
-  const subscriber = await getSubscriber(testEmail);
+  if (!subject?.trim()) return { success: false, message: 'Subject is required' };
+  if (!content?.trim()) return { success: false, message: 'Content is required' };
+  if (!testEmail?.trim()) return { success: false, message: 'Test email address is required' };
+
+  const subscriber = await getSubscriber(testEmail.trim());
   if (!subscriber) {
     return {
       success: false,
@@ -34,9 +38,9 @@ export async function sendTestNewsletter(
   }
 
   const result = await sendNewsletterEmail(
-    testEmail,
-    `[TEST] ${subject}`,
-    content,
+    testEmail.trim(),
+    `[TEST] ${subject.trim()}`,
+    content.trim(),
     subscriber.unsubscribe_token || ''
   );
 
@@ -58,6 +62,9 @@ export async function sendNewsletter(
     return { success: false, message: 'Unauthorized' };
   }
 
+  if (!subject?.trim()) return { success: false, message: 'Subject is required' };
+  if (!content?.trim()) return { success: false, message: 'Content is required' };
+
   const subscribers = await getActiveSubscribers();
   if (!subscribers || subscribers.length === 0) {
     return { success: false, message: 'No active subscribers found' };
@@ -68,7 +75,7 @@ export async function sendNewsletter(
     unsubscribeToken: s.unsubscribe_token || '',
   }));
 
-  const result = await sendNewsletterBatch(batch, subject, content);
+  const result = await sendNewsletterBatch(batch, subject.trim(), content.trim());
 
   if (result.failed > 0) {
     console.warn(

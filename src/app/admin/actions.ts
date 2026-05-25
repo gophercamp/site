@@ -8,14 +8,13 @@ import { promisify } from 'util';
 const pbkdf2 = promisify(pbkdf2Cb);
 
 /**
- * Derives a hex hash for a password. Uses the lowercased email as salt so
- * the same password produces different hashes for different admins.
- * Output is plain hex — no special characters, safe in env files without quoting.
+ * Derives a 32-byte PBKDF2 key for a password using the lowercased email as
+ * salt. Returns the raw key buffer (not hex) so callers can compare bytes
+ * directly via timingSafeEqual.
  */
-async function hashPassword(password: string, email: string): Promise<string> {
+async function hashPassword(password: string, email: string): Promise<Buffer> {
   const salt = Buffer.from(email.toLowerCase().trim());
-  const key = await pbkdf2(password, salt, 100_000, 32, 'sha256');
-  return key.toString('hex');
+  return pbkdf2(password, salt, 100_000, 32, 'sha256');
 }
 
 /**
@@ -26,19 +25,23 @@ async function hashPassword(password: string, email: string): Promise<string> {
  * Generate a hash: node -e "require('crypto').pbkdf2('yourpassword','your@email.com',100000,32,'sha256',(e,k)=>console.log(k.toString('hex')))"
  */
 export async function loginAction(email: string, password: string): Promise<{ error?: string }> {
+  const normalizedEmail = email.trim().toLowerCase();
   const credentials = process.env.ADMIN_CREDENTIALS ?? '';
 
   for (const pair of credentials.split(',')) {
     const colonIndex = pair.indexOf(':');
     if (colonIndex === -1) continue;
-    const credEmail = pair.slice(0, colonIndex).trim();
-    const credHash = pair.slice(colonIndex + 1).trim();
+    const credEmail = pair.slice(0, colonIndex).trim().toLowerCase();
+    const credHashHex = pair.slice(colonIndex + 1).trim();
 
-    const hash = await hashPassword(password, credEmail);
-    const hashMatches =
-      credHash.length === hash.length && timingSafeEqual(Buffer.from(credHash), Buffer.from(hash));
+    if (credEmail !== normalizedEmail) continue;
 
-    if (credEmail === email.trim() && hashMatches) {
+    // Decode the stored hex hash and the derived hash to raw bytes before
+    // comparing, so timingSafeEqual operates on the actual key material.
+    const derivedKey = await hashPassword(password, credEmail);
+    const storedKey = Buffer.from(credHashHex, 'hex');
+
+    if (storedKey.length === derivedKey.length && timingSafeEqual(storedKey, derivedKey)) {
       await createSession(credEmail);
       return {};
     }

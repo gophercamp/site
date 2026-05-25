@@ -1,6 +1,7 @@
 'use server';
 
 import { getSubscriber, getSubscriberIndex, NewsletterSubscriber } from '@/lib/newsletter-store';
+import { getSessionUser } from '@/lib/session';
 import { getStore } from '@netlify/blobs';
 import { revalidatePath } from 'next/cache';
 
@@ -11,6 +12,8 @@ export async function getSubscribers(): Promise<{
   subscribers: NewsletterSubscriber[] | null;
   error: string | null;
 }> {
+  if (!(await getSessionUser())) return { subscribers: null, error: 'Unauthorized' };
+
   try {
     const index = await getSubscriberIndex();
     const subscribers: NewsletterSubscriber[] = [];
@@ -38,6 +41,8 @@ export async function getSubscribers(): Promise<{
 export async function deleteSubscriber(
   email: string
 ): Promise<{ success: boolean; error: string | null }> {
+  if (!(await getSessionUser())) return { success: false, error: 'Unauthorized' };
+
   try {
     const store = getStore('newsletter-subscribers');
     const key = email.toLowerCase().trim();
@@ -70,6 +75,13 @@ export async function getSubscriberStats(): Promise<{
   };
   error: string | null;
 }> {
+  if (!(await getSessionUser())) {
+    return {
+      stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
+      error: 'Unauthorized',
+    };
+  }
+
   try {
     const index = await getSubscriberIndex();
     let confirmed = 0;
