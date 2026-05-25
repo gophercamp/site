@@ -1,15 +1,15 @@
 import { sendConfirmationEmail } from '@/lib/email';
-import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { getSubscriber, updateSubscriber } from '@/lib/newsletter-store';
 import { createExpirationDate, generateToken } from '@/lib/token';
 import { validateEmail } from '@/lib/validation';
 import { NextRequest, NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 
 /**
  * API handler for resending newsletter subscription confirmation
  */
 export async function POST(request: NextRequest) {
   try {
-    // Parse the request body
     const body = await request.json();
     const { email } = body;
 
@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
-    // Validate the email format
     if (!validateEmail(email)) {
       return NextResponse.json(
         { success: false, message: 'Invalid email format' },
@@ -25,34 +24,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if the email exists in the database
-    const { data: existingUser, error: checkError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .select('*, unsubscribe_token')
-      .eq('email', email.toLowerCase())
-      .single();
+    const existingSubscriber = await getSubscriber(email);
 
-    if (checkError) {
-      if (checkError.code === 'PGRST116') {
-        // not found
-        return NextResponse.json(
-          {
-            success: false,
-            message: 'This email is not registered for our newsletter. Please subscribe first.',
-          },
-          { status: 404 }
-        );
-      }
-
-      console.error('Error checking subscriber:', checkError);
+    if (!existingSubscriber) {
       return NextResponse.json(
-        { success: false, message: 'Error checking subscription status' },
-        { status: 500 }
+        {
+          success: false,
+          message: 'This email is not registered for our newsletter. Please subscribe first.',
+        },
+        { status: 404 }
       );
     }
 
-    // If already confirmed, no need to resend
-    if (existingUser.confirmed) {
+    if (existingSubscriber.confirmed) {
       return NextResponse.json({
         success: true,
         message: 'Your subscription is already confirmed. No need to confirm again.',
@@ -62,31 +46,30 @@ export async function POST(request: NextRequest) {
 
     // Generate new confirmation token
     const confirmationToken = generateToken();
-    const tokenExpiresAt = createExpirationDate(48); // Token expires in 48 hours
+    const tokenExpiresAt = createExpirationDate(48);
 
-    // Update with new confirmation token
-    const { error: updateError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .update({
-        confirmation_token: confirmationToken,
-        token_expires_at: tokenExpiresAt,
-      })
-      .eq('id', existingUser.id);
+    // If the subscriber has no unsubscribe token (e.g. legacy record), generate
+    // and persist one now so the confirmation email has a working unsubscribe link.
+    let unsubscribeToken = existingSubscriber.unsubscribe_token;
+    if (!unsubscribeToken) {
+      unsubscribeToken = randomBytes(32).toString('hex');
+    }
 
-    if (updateError) {
-      console.error('Error updating subscriber token:', updateError);
+    const updated = await updateSubscriber(email, {
+      confirmation_token: confirmationToken,
+      token_expires_at: tokenExpiresAt,
+      unsubscribe_token: unsubscribeToken,
+    });
+
+    if (!updated) {
+      console.error('Error updating subscriber token for:', email);
       return NextResponse.json(
         { success: false, message: 'Error updating your subscription details. Please try again.' },
         { status: 500 }
       );
     }
 
-    // Send confirmation email with unsubscribe token
-    const emailResult = await sendConfirmationEmail(
-      email,
-      confirmationToken,
-      existingUser.unsubscribe_token || ''
-    );
+    const emailResult = await sendConfirmationEmail(email, confirmationToken, unsubscribeToken);
 
     if (!emailResult.success) {
       console.error('Failed to send confirmation email:', emailResult.error);

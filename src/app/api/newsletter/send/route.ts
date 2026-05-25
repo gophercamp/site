@@ -1,5 +1,5 @@
 import { sendNewsletterEmail, sendNewsletterBatch } from '@/lib/email';
-import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { getActiveSubscribers, getSubscriber } from '@/lib/newsletter-store';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -21,8 +21,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'Content is required' }, { status: 400 });
     }
 
-    const supabase = getSupabaseClient();
-
     // If test mode, send only to the specified test email
     if (testMode) {
       if (!testEmail) {
@@ -33,13 +31,9 @@ export async function POST(request: NextRequest) {
       }
 
       // Fetch the test subscriber to get their unsubscribe token
-      const { data: testSubscriber, error: testError } = await supabase
-        .from(SUBSCRIBERS_TABLE)
-        .select('unsubscribe_token')
-        .eq('email', testEmail.toLowerCase())
-        .single();
+      const testSubscriber = await getSubscriber(testEmail);
 
-      if (testError || !testSubscriber) {
+      if (!testSubscriber) {
         return NextResponse.json(
           {
             success: false,
@@ -76,19 +70,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Production mode: Get all confirmed and non-unsubscribed subscribers
-    const { data: subscribers, error: fetchError } = await supabase
-      .from(SUBSCRIBERS_TABLE)
-      .select('email, unsubscribe_token')
-      .eq('confirmed', true)
-      .neq('unsubscribed', true);
-
-    if (fetchError) {
-      console.error('Error fetching subscribers:', fetchError);
-      return NextResponse.json(
-        { success: false, message: 'Error fetching subscribers' },
-        { status: 500 }
-      );
-    }
+    const subscribers = await getActiveSubscribers();
 
     if (!subscribers || subscribers.length === 0) {
       return NextResponse.json(

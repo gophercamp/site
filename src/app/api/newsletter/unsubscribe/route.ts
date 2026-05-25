@@ -1,4 +1,8 @@
-import { SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import {
+  getSubscriber,
+  getSubscriberByUnsubscribeToken,
+  updateSubscriber,
+} from '@/lib/newsletter-store';
 import { validateEmail } from '@/lib/validation';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -22,22 +26,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Find the subscriber with the matching unsubscribe token
-    const { data: subscriber, error: fetchError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .select('id, email, unsubscribed')
-      .eq('unsubscribe_token', token)
-      .single();
+    const subscriber = await getSubscriberByUnsubscribeToken(token);
 
-    if (fetchError || !subscriber) {
-      console.error('Error finding subscriber:', fetchError);
+    if (!subscriber) {
       return NextResponse.json(
         { success: false, message: 'Invalid or expired unsubscribe link' },
         { status: 404 }
       );
     }
 
-    // Check if already unsubscribed
     if (subscriber.unsubscribed) {
       return NextResponse.json({
         success: true,
@@ -46,17 +43,12 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Update the subscriber to mark as unsubscribed
-    const { error: updateError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .update({
-        unsubscribed: true,
-        unsubscribed_at: new Date().toISOString(),
-      })
-      .eq('id', subscriber.id);
+    const updated = await updateSubscriber(subscriber.email, {
+      unsubscribed: true,
+      unsubscribed_at: new Date().toISOString(),
+    });
 
-    if (updateError) {
-      console.error('Error unsubscribing:', updateError);
+    if (!updated) {
       return NextResponse.json(
         { success: false, message: 'Error processing your unsubscribe request' },
         { status: 500 }
@@ -88,7 +80,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
-    // Validate the email format
     if (!validateEmail(email)) {
       return NextResponse.json(
         { success: false, message: 'Invalid email format' },
@@ -96,29 +87,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find the subscriber
-    const { data: subscriber, error: fetchError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .select('id, email, unsubscribed')
-      .eq('email', email.toLowerCase())
-      .single();
+    const subscriber = await getSubscriber(email);
 
-    if (fetchError) {
-      if (fetchError.code === 'PGRST116') {
-        // No subscriber found - return success to avoid revealing email existence
-        return NextResponse.json({
-          success: true,
-          message: 'If you were subscribed, you have been removed from our newsletter',
-        });
-      }
-      console.error('Error finding subscriber:', fetchError);
-      return NextResponse.json(
-        { success: false, message: 'Error processing your request' },
-        { status: 500 }
-      );
+    if (!subscriber) {
+      // Return success to avoid revealing email existence
+      return NextResponse.json({
+        success: true,
+        message: 'If you were subscribed, you have been removed from our newsletter',
+      });
     }
 
-    // Check if already unsubscribed
     if (subscriber.unsubscribed) {
       return NextResponse.json({
         success: true,
@@ -127,17 +105,12 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Update the subscriber to mark as unsubscribed
-    const { error: updateError } = await getSupabaseClient()
-      .from(SUBSCRIBERS_TABLE)
-      .update({
-        unsubscribed: true,
-        unsubscribed_at: new Date().toISOString(),
-      })
-      .eq('id', subscriber.id);
+    const updated = await updateSubscriber(email, {
+      unsubscribed: true,
+      unsubscribed_at: new Date().toISOString(),
+    });
 
-    if (updateError) {
-      console.error('Error unsubscribing:', updateError);
+    if (!updated) {
       return NextResponse.json(
         { success: false, message: 'Error processing your unsubscribe request' },
         { status: 500 }
