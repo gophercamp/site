@@ -1,8 +1,7 @@
-'use client';
-
 import AdminNavbar from '@/components/admin/AdminNavbar';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { AuthProvider } from '@/components/providers/AuthProvider';
+import { getSessionUser } from '@/lib/session';
 import React from 'react';
 
 interface PrivateLayoutProps {
@@ -10,11 +9,14 @@ interface PrivateLayoutProps {
 }
 
 /**
- * Layout component for the admin section
+ * Layout component for the admin section.
+ * Reads the session server-side and passes the user email into the AuthProvider.
  */
-export default function PrivateLayout({ children }: PrivateLayoutProps) {
+export default async function PrivateLayout({ children }: PrivateLayoutProps) {
+  const userEmail = await getSessionUser();
+
   return (
-    <AuthProvider>
+    <AuthProvider userEmail={userEmail}>
       {/* Top navigation */}
       <AdminNavbar />
 

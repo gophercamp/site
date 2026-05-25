@@ -1,11 +1,12 @@
-import { FaCalendarAlt, FaEnvelope, FaHome, FaMicrophone, FaPaperPlane } from 'react-icons/fa';
+'use client';
+
+import { FaEnvelope, FaHome, FaPaperPlane } from 'react-icons/fa';
 import AdminNavIcon from './AdminNavIcon';
 import AdminNavLink from './AdminNavLink';
 import AdminSidebarDate from './AdminSidebarDate';
 
 /**
  * Sidebar navigation for the admin section (desktop only)
- * This is a server component that uses client components for interactive parts
  */
 export default function AdminSidebar() {
   return (
@@ -14,14 +15,6 @@ export default function AdminSidebar() {
         <nav className="space-y-2">
           <AdminNavLink href="/admin" label="Dashboard">
             <AdminNavIcon path="/admin" icon={FaHome} />
-          </AdminNavLink>
-
-          <AdminNavLink href="/admin/speakers" label="Speakers">
-            <AdminNavIcon path="/admin/speakers" icon={FaMicrophone} />
-          </AdminNavLink>
-
-          <AdminNavLink href="/admin/sessions" label="Sessions">
-            <AdminNavIcon path="/admin/sessions" icon={FaCalendarAlt} />
           </AdminNavLink>
 
           <AdminNavLink href="/admin/subscribers" label="Subscribers">

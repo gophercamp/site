@@ -1,8 +1,8 @@
 'use client';
 
 import Button from '@/components/ui/Button';
-import { NewsletterSubscriber } from '@/lib/supabase';
 import Link from 'next/link';
+import { NewsletterSubscriber } from '@/lib/newsletter-store';
 import { useState } from 'react';
 import { FaCheck, FaDownload } from 'react-icons/fa';
 import { getSubscribers } from '../actions';
@@ -12,7 +12,6 @@ export default function ExportPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  // Function to export subscribers as CSV
   async function handleExportCSV() {
     try {
       setLoading(true);
@@ -20,39 +19,25 @@ export default function ExportPage() {
       setSuccess(false);
 
       const result = await getSubscribers();
-
-      if (result.error) {
-        throw new Error(result.error);
-      }
-
+      if (result.error) throw new Error(result.error);
       if (!result.subscribers || result.subscribers.length === 0) {
         throw new Error('No subscribers to export');
       }
 
-      // Create CSV content
       const csvContent = generateCSV(result.subscribers);
-
-      // Create a downloadable blob
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
-
-      // Create a temporary download link
       const link = document.createElement('a');
-      const dateStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+      const dateStr = new Date().toISOString().split('T')[0];
       link.href = url;
       link.setAttribute('download', `gophercamp-newsletter-subscribers-${dateStr}.csv`);
       document.body.appendChild(link);
-
-      // Trigger the download
       link.click();
-
-      // Clean up
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
       setSuccess(true);
-    } catch (err: Error | unknown) {
-      console.error('Error exporting subscribers:', err);
+    } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Please try again.';
       setError('Failed to export subscribers. ' + errorMessage);
     } finally {
@@ -60,37 +45,22 @@ export default function ExportPage() {
     }
   }
 
-  // Generate CSV content from subscribers data
   function generateCSV(subscribers: NewsletterSubscriber[]): string {
-    // CSV header
     const header = ['Email', 'Status', 'Subscribed Date', 'Confirmed Date', 'Unsubscribed Date'];
-
-    // Format each row
     const rows = subscribers.map(subscriber => {
       let status = 'Pending';
-      if (subscriber.unsubscribed) {
-        status = 'Unsubscribed';
-      } else if (subscriber.confirmed) {
-        status = 'Confirmed';
-      }
+      if (subscriber.unsubscribed) status = 'Unsubscribed';
+      else if (subscriber.confirmed) status = 'Confirmed';
 
-      const subscribedDate = subscriber.subscribed_at
-        ? new Date(subscriber.subscribed_at).toISOString()
-        : '';
-      const confirmedDate = subscriber.confirmed_at
-        ? new Date(subscriber.confirmed_at).toISOString()
-        : '';
-      const unsubscribedDate = subscriber.unsubscribed_at
-        ? new Date(subscriber.unsubscribed_at).toISOString()
-        : '';
-
-      return [subscriber.email, status, subscribedDate, confirmedDate, unsubscribedDate];
+      return [
+        subscriber.email,
+        status,
+        subscriber.subscribed_at ? new Date(subscriber.subscribed_at).toISOString() : '',
+        subscriber.confirmed_at ? new Date(subscriber.confirmed_at).toISOString() : '',
+        subscriber.unsubscribed_at ? new Date(subscriber.unsubscribed_at).toISOString() : '',
+      ];
     });
-
-    // Combine header and rows
-    const csvContent = [header.join(','), ...rows.map(row => row.join(','))].join('\n');
-
-    return csvContent;
+    return [header.join(','), ...rows.map(row => row.join(','))].join('\n');
   }
 
   return (

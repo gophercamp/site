@@ -4,7 +4,6 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -13,15 +12,9 @@ import { FiLogOut } from 'react-icons/fi';
  */
 export default function AdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, signOut } = useAuth();
-  const router = useRouter();
+  const { userEmail, signOut } = useAuth();
 
-  const handleSignOut = async () => {
-    await signOut();
-    router.push('/admin/login');
-  };
-
-  const isLoggedIn = !!user;
+  const isLoggedIn = !!userEmail;
 
   return (
     <nav className="bg-primary shadow-sm border-b border-primary w-full fixed top-0 z-10">
@@ -41,7 +34,7 @@ export default function AdminNavbar() {
             {isLoggedIn && (
               <div className="ml-4 flex items-center md:ml-6">
                 <Button
-                  onClick={handleSignOut}
+                  onClick={signOut}
                   variant="outline"
                   size="sm"
                   className="flex items-center gap-2 hover:bg-secondary"
@@ -53,7 +46,6 @@ export default function AdminNavbar() {
             )}
             {isLoggedIn && (
               <div className="-mr-2 flex md:hidden">
-                {/* Mobile menu button */}
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-go-blue transition-colors"
@@ -99,7 +91,6 @@ export default function AdminNavbar() {
         </div>
       </div>
 
-      {/* Mobile menu, toggle classes based on menu state */}
       {isLoggedIn && (
         <div
           className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden absolute w-full bg-primary shadow-md z-20`}
@@ -111,20 +102,6 @@ export default function AdminNavbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Dashboard
-            </Link>
-            <Link
-              href="/admin/speakers"
-              className="block px-3 py-2 text-base font-medium text-secondary hover:bg-secondary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Speakers
-            </Link>
-            <Link
-              href="/admin/sessions"
-              className="block px-3 py-2 text-base font-medium text-secondary hover:bg-secondary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Sessions
             </Link>
             <Link
               href="/admin/subscribers"
@@ -142,11 +119,11 @@ export default function AdminNavbar() {
             </Link>
             <div className="pt-4 pb-3 border-t border-primary">
               <div className="px-3">
-                <p className="text-sm font-medium text-secondary">{user.email}</p>
+                <p className="text-sm font-medium text-secondary">{userEmail}</p>
               </div>
               <div className="mt-3 px-2 space-y-1">
                 <Button
-                  onClick={handleSignOut}
+                  onClick={signOut}
                   variant="outline"
                   size="sm"
                   className="flex items-center gap-2 w-full justify-start hover:bg-secondary"

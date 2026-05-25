@@ -3,22 +3,14 @@
 import Button from '@/components/ui/Button';
 import { useState } from 'react';
 import { FaPaperPlane, FaEnvelope, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-
-interface SendResult {
-  success: boolean;
-  message: string;
-  sent?: number;
-  failed?: number;
-  total?: number;
-  testMode?: boolean;
-}
+import { sendNewsletter, sendTestNewsletter, SendNewsletterResult } from './actions';
 
 export default function NewsletterPage() {
   const [subject, setSubject] = useState('');
   const [content, setContent] = useState('');
   const [testEmail, setTestEmail] = useState('');
   const [isSending, setIsSending] = useState(false);
-  const [result, setResult] = useState<SendResult | null>(null);
+  const [result, setResult] = useState<SendNewsletterResult | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const validateForm = (): string | null => {
@@ -56,26 +48,10 @@ export default function NewsletterPage() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/newsletter/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          subject,
-          content,
-          testMode: true,
-          testEmail,
-        }),
-      });
-
-      const data = await response.json();
+      const data = await sendTestNewsletter(subject, content, testEmail);
       setResult(data);
     } catch {
-      setResult({
-        success: false,
-        message: 'Failed to send test email. Please try again.',
-      });
+      setResult({ success: false, message: 'Failed to send test email. Please try again.' });
     } finally {
       setIsSending(false);
     }
@@ -93,31 +69,14 @@ export default function NewsletterPage() {
     setShowConfirmation(false);
 
     try {
-      const response = await fetch('/api/newsletter/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          subject,
-          content,
-          testMode: false,
-        }),
-      });
-
-      const data = await response.json();
+      const data = await sendNewsletter(subject, content);
       setResult(data);
-
-      // Clear form on success
       if (data.success) {
         setSubject('');
         setContent('');
       }
     } catch {
-      setResult({
-        success: false,
-        message: 'Failed to send newsletter. Please try again.',
-      });
+      setResult({ success: false, message: 'Failed to send newsletter. Please try again.' });
     } finally {
       setIsSending(false);
     }

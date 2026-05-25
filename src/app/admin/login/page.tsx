@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from '@/components/providers/AuthProvider';
+import { loginAction } from '@/app/admin/actions';
 import Button from '@/components/ui/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
@@ -12,8 +12,6 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { signIn } = useAuth();
-
   const returnUrl = searchParams.get('returnUrl') || '/admin';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,17 +20,14 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { error } = await signIn(email, password);
-
-      if (error) {
-        setError(error.message);
+      const result = await loginAction(email, password);
+      if (result.error) {
+        setError(result.error);
       } else {
-        // Redirect to return URL or admin dashboard
         router.push(returnUrl);
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
-      console.error('Login error:', err);
     } finally {
       setLoading(false);
     }
