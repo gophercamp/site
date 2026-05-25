@@ -1,61 +1,69 @@
 'use server';
 
-import { NewsletterSubscriber, SUBSCRIBERS_TABLE, getSupabaseClient } from '@/lib/supabase';
+import { getSubscriber, getSubscriberIndex, NewsletterSubscriber } from '@/lib/newsletter-store';
+import { getSessionUser } from '@/lib/session';
+import { getStore } from '@netlify/blobs';
 import { revalidatePath } from 'next/cache';
 
 /**
- * Get all newsletter subscribers
+ * Get all newsletter subscribers ordered by subscribed_at descending.
  */
 export async function getSubscribers(): Promise<{
   subscribers: NewsletterSubscriber[] | null;
   error: string | null;
 }> {
+  if (!(await getSessionUser())) return { subscribers: null, error: 'Unauthorized' };
+
   try {
-    const supabase = getSupabaseClient();
+    const index = await getSubscriberIndex();
+    const subscribers: NewsletterSubscriber[] = [];
 
-    const { data, error } = await supabase
-      .from(SUBSCRIBERS_TABLE)
-      .select('*')
-      .order('subscribed_at', { ascending: false });
-
-    if (error) {
-      return { subscribers: null, error: error.message };
+    for (const email of index) {
+      const sub = await getSubscriber(email);
+      if (sub) subscribers.push(sub);
     }
 
-    return { subscribers: data, error: null };
-  } catch (error: Error | unknown) {
+    subscribers.sort(
+      (a, b) => new Date(b.subscribed_at).getTime() - new Date(a.subscribed_at).getTime()
+    );
+
+    return { subscribers, error: null };
+  } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return { subscribers: null, error: errorMessage };
   }
 }
 
 /**
- * Delete a newsletter subscriber
+ * Delete a newsletter subscriber by email address.
+ * Also removes the associated unsubscribe-token lookup blob.
  */
 export async function deleteSubscriber(
-  id: number
+  email: string
 ): Promise<{ success: boolean; error: string | null }> {
+  if (!(await getSessionUser())) return { success: false, error: 'Unauthorized' };
+
   try {
-    const supabase = getSupabaseClient();
+    const store = getStore('newsletter-subscribers');
+    const key = email.toLowerCase().trim();
 
-    const { error } = await supabase.from(SUBSCRIBERS_TABLE).delete().eq('id', id);
-
-    if (error) {
-      return { success: false, error: error.message };
+    const subscriber = await getSubscriber(email);
+    if (subscriber?.unsubscribe_token) {
+      await store.delete(`_token:${subscriber.unsubscribe_token}`);
     }
 
-    // Revalidate the subscribers list page
+    await store.delete(key);
     revalidatePath('/admin/subscribers');
 
     return { success: true, error: null };
-  } catch (error: Error | unknown) {
+  } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return { success: false, error: errorMessage };
   }
 }
 
 /**
- * Get subscriber statistics
+ * Get subscriber statistics derived from the full subscriber list.
  */
 export async function getSubscriberStats(): Promise<{
   stats: {
@@ -67,71 +75,34 @@ export async function getSubscriberStats(): Promise<{
   };
   error: string | null;
 }> {
+  if (!(await getSessionUser())) {
+    return {
+      stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
+      error: 'Unauthorized',
+    };
+  }
+
   try {
-    const supabase = getSupabaseClient();
+    const index = await getSubscriberIndex();
+    let confirmed = 0;
+    let unsubscribed = 0;
 
-    // Get all subscribers count
-    const { count: totalCount, error: totalError } = await supabase
-      .from(SUBSCRIBERS_TABLE)
-      .select('*', { count: 'exact', head: true });
-
-    if (totalError) {
-      return {
-        stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
-        error: totalError.message,
-      };
+    for (const email of index) {
+      const sub = await getSubscriber(email);
+      if (!sub) continue;
+      if (sub.unsubscribed) unsubscribed++;
+      else if (sub.confirmed) confirmed++;
     }
 
-    // Get confirmed subscribers count
-    const { count: confirmedCount, error: confirmedError } = await supabase
-      .from(SUBSCRIBERS_TABLE)
-      .select('*', { count: 'exact', head: true })
-      .eq('confirmed', true)
-      .eq('unsubscribed', false);
-
-    if (confirmedError) {
-      return {
-        stats: { total: totalCount || 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
-        error: confirmedError.message,
-      };
-    }
-
-    // Get unsubscribed count
-    const { count: unsubscribedCount, error: unsubscribedError } = await supabase
-      .from(SUBSCRIBERS_TABLE)
-      .select('*', { count: 'exact', head: true })
-      .eq('unsubscribed', true);
-
-    if (unsubscribedError) {
-      return {
-        stats: {
-          total: totalCount || 0,
-          confirmed: confirmedCount || 0,
-          unconfirmed: 0,
-          unsubscribed: 0,
-          active: 0,
-        },
-        error: unsubscribedError.message,
-      };
-    }
-
-    // Calculate unconfirmed count (not confirmed and not unsubscribed)
-    const unconfirmedCount = (totalCount || 0) - (confirmedCount || 0) - (unsubscribedCount || 0);
-
-    // Calculate active subscribers (confirmed and not unsubscribed)
-    const activeCount = Math.max(0, (confirmedCount || 0) - (unsubscribedCount || 0));
+    const total = index.length;
+    const unconfirmed = total - confirmed - unsubscribed;
+    const active = confirmed;
 
     return {
-      stats: {
-        total: totalCount || 0,
-        confirmed: confirmedCount || 0,
-        unconfirmed: unconfirmedCount,
-        unsubscribed: unsubscribedCount || 0,
-        active: activeCount,
-      },
+      stats: { total, confirmed, unconfirmed, unsubscribed, active },
       error: null,
     };
-  } catch (error: Error | unknown) {
+  } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return {
       stats: { total: 0, confirmed: 0, unconfirmed: 0, unsubscribed: 0, active: 0 },
