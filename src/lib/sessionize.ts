@@ -21,13 +21,7 @@ export interface SessionizeSpeakerSession {
  * Link types supported by Sessionize
  */
 export type SessionizeLinkType =
-  | 'Twitter'
-  | 'LinkedIn'
-  | 'Company_Website'
-  | 'Blog'
-  | 'Facebook'
-  | 'Instagram'
-  | 'Other';
+  'Twitter' | 'LinkedIn' | 'Company_Website' | 'Blog' | 'Facebook' | 'Instagram' | 'Other';
 
 /**
  * Represents a social or professional link for a speaker
