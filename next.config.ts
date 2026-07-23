@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/image/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sessionize.com',
+        port: '',
+        pathname: '/image/**',
+      },
     ],
   },
 };
