@@ -50,7 +50,7 @@ export default function ThankYouSection({ background }: SectionProps) {
             viewport={{ once: true }}
             className="text-lg text-secondary mb-4"
           >
-            Gophercamp 2026 is a wrap. It was an incredible day of talks, workshops, and connecting
+            Gophercamp 2027 is a wrap. It was an incredible day of talks, workshops, and connecting
             with the Go community in Brno. We are grateful to every attendee, speaker, and sponsor
             who made it happen.
           </motion.p>

@@ -100,7 +100,7 @@ export async function sendConfirmationEmail(
 
   return sendEmail({
     to: email,
-    subject: 'Confirm your Gophercamp 2026 newsletter subscription',
+    subject: 'Confirm your Gophercamp 2027 newsletter subscription',
     email: ConfirmationEmail({ confirmUrl, unsubscribeUrl }),
   });
 }
@@ -121,7 +121,7 @@ export async function sendWelcomeEmail(
 
   return sendEmail({
     to: email,
-    subject: 'Welcome to Gophercamp 2026 Newsletter!',
+    subject: 'Welcome to Gophercamp 2027 Newsletter!',
     email: WelcomeEmail({ unsubscribeUrl }),
   });
 }

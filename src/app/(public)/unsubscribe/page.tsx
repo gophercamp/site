@@ -146,7 +146,7 @@ function UnsubscribeContent() {
             <>
               <p className="text-secondary mb-6">
                 We&apos;re sorry to see you go! Enter your email address below to unsubscribe from
-                the Gophercamp 2026 newsletter.
+                the Gophercamp newsletter.
               </p>
 
               <form onSubmit={handleEmailUnsubscribe} className="space-y-6">
@@ -178,7 +178,7 @@ function UnsubscribeContent() {
               <div className="mt-8 pt-6 border-t border-primary">
                 <h3 className="text-lg font-semibold text-primary mb-3">Changed your mind?</h3>
                 <p className="text-secondary mb-4">
-                  If you still want to receive updates about Gophercamp 2026, you can close this
+                  If you still want to receive updates about Gophercamp 2027, you can close this
                   page without submitting the form.
                 </p>
                 <Link

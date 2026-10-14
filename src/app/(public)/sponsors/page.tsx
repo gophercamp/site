@@ -4,11 +4,13 @@ import Image from 'next/image';
 import { contactInfo } from '@/lib/social';
 
 export const metadata: Metadata = {
-  title: 'Sponsors | Gophercamp 2026',
-  description: 'Meet the organizations that support Gophercamp 2026. Thank you to our sponsors!',
+  title: 'Past Sponsors | Gophercamp 2027',
+  description:
+    'Thank you to the organizations that supported Gophercamp 2026. Sponsor the 2027 edition!',
   openGraph: {
-    title: 'Sponsors | Gophercamp 2026',
-    description: 'Meet the organizations that support Gophercamp 2026. Thank you to our sponsors!',
+    title: 'Past Sponsors | Gophercamp 2027',
+    description:
+      'Thank you to the organizations that supported Gophercamp 2026. Sponsor the 2027 edition!',
   },
 };
 
@@ -20,7 +22,7 @@ type Sponsor = {
 };
 
 /**
- * Official sponsors list.
+ * Sponsors of the 2026 edition, not confirmed sponsors for 2027.
  */
 const SPONSORS: Sponsor[] = [
   {
@@ -126,19 +128,18 @@ export default function SponsorsPage() {
       <section className="pt-24 pb-16 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">Our Sponsors</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">Past Sponsors</h1>
             <p className="text-xl md:text-2xl text-secondary mb-4 leading-relaxed">
-              We&apos;re incredibly grateful to the organizations and partners who make Gophercamp
-              possible.
+              Thank you to the organizations and partners who supported Gophercamp 2026.
             </p>
             <p className="text-lg text-secondary mb-8">
-              Their support helps us keep ticket prices accessible and enables us to create an
-              exceptional experience for the Go community.
+              Their support helped us create an exceptional experience for the Go community.
+              We&apos;ll announce the 2027 sponsors here as they join us.
             </p>
 
             {/* Quick CTA */}
             <div className="inline-flex items-center gap-2 bg-go-blue/10 border-2 border-go-blue/30 rounded-full px-6 py-3">
-              <span className="text-secondary">Interested in sponsoring?</span>
+              <span className="text-secondary">Interested in sponsoring 2027?</span>
               <a
                 href={`mailto:${contactInfo.email}?subject=Gophercamp%20Sponsorship%20Inquiry`}
                 className="text-go-blue font-semibold hover:text-go-blue-dark underline"
@@ -154,6 +155,7 @@ export default function SponsorsPage() {
       <section className="py-20 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-primary mb-8">Gophercamp 2026 Sponsors</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
               {SPONSORS.map(sponsor => (
                 <SponsorCard key={sponsor.name} sponsor={sponsor} />

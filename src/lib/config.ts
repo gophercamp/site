@@ -47,14 +47,15 @@ export const siteConfig = {
   cfpOpen: false,
 
   /**
-   * Set to `true` when the conference program is ready to be published.
+   * Set to `true` when the new edition's speakers, sessions, and program are ready.
    *
    * Enabling this will:
-   * - Replace the "Sessions" link in the header and footer with "Program" → /program
+   * - Show speakers on the home page and speakers/program navigation
+   * - Enable speaker, session, program, and program PDF routes
    *
-   * Also make sure the /program page has its content filled in before enabling.
+   * Update sessionizeEventId and the /program page before enabling.
    */
-  programReady: true,
+  programReady: false,
 
   /**
    * Set to `true` once the conference program, sessions, and speakers are
@@ -64,20 +65,20 @@ export const siteConfig = {
    * from the Program, Sessions, and Speakers pages, as well as from the
    * generated program PDF.
    */
-  programFinal: true,
+  programFinal: false,
 
   /** URL to the CFP submission form */
-  cfpUrl: 'https://sessionize.com/gophercamp',
+  cfpUrl: 'https://sessionize.com/gophercamp27',
 
   /** Human-readable submission deadline shown in the UI */
-  cfpDeadline: 'March 31, 2026',
+  cfpDeadline: 'March 14, 2027',
 
   /**
    * ISO date-time string for the start of the conference (Europe/Prague time).
    * Used by the hero section countdown timer.
    * Update this for each new edition.
    */
-  conferenceDate: '2026-04-24T08:30:00+02:00',
+  conferenceDate: '2027-04-22T08:30:00+02:00',
 
   /**
    * Set to `true` to show a live countdown to the conference in the hero section.
@@ -85,7 +86,7 @@ export const siteConfig = {
    *
    * Switch this to `false` once the conference has passed.
    */
-  showCountdown: false,
+  showCountdown: true,
 
   /**
    * Set to `true` once the conference has finished.
@@ -97,7 +98,7 @@ export const siteConfig = {
    * - Replace the countdown circle in the hero with the YouTube memories link
    *   (overrides `showCountdown` even if it is still set to `true`)
    */
-  eventOver: true,
+  eventOver: false,
 
   /**
    * Next edition "Save the Date" configuration.
@@ -135,47 +136,44 @@ export const siteConfig = {
    *   { id: 'tickets-live', message: 'Tickets are now on sale!', variant: 'info', link: { href: '/tickets', label: 'Get yours' } }
    */
   /**
-   * Ticket sale period configuration.
-   *
-   * - Early Bird runs until `earlyBirdEnd` (exclusive).
-   * - Standard runs from `earlyBirdEnd` until `standardEnd` (exclusive).
-   * - Last Minute runs from `standardEnd` onwards.
-   *
-   * Update these values for each new conference edition.
+   * Ticket prices and independent sale windows from https://luma.com/gophercamp27.
+   * Windows can overlap; keep them aligned with Luma when prices or dates change.
    */
-  ticketPeriods: {
-    /** Start of the Standard tier — also the end of the Early Bird tier. */
-    earlyBirdEnd: new Date('2026-03-01'),
-    /** Start of the Last Minute tier — also the end of the Standard tier. */
-    standardEnd: new Date('2026-04-22'),
-
-    tiers: {
-      earlyBird: {
-        title: 'Early Bird',
-        price: 69,
-        priceDescription: 'Until February 28, 2026',
-        href: 'https://luma.com/gophercamp',
-        buttonText: 'Buy Early Bird',
-        badge: 'Limited time',
-      },
-      standard: {
-        title: 'Standard',
-        price: 89,
-        priceDescription: 'March 1 - April 21, 2026',
-        href: 'https://luma.com/gophercamp',
-        buttonText: 'Buy Standard',
-        badge: 'Available Now',
-      },
-      lastMinute: {
-        title: 'Last Minute',
-        price: 109,
-        priceDescription: 'From April 22, 2026',
-        href: 'https://luma.com/gophercamp',
-        buttonText: 'Buy Last Minute',
-        badge: 'Available Now',
-      },
+  ticketsUrl: 'https://luma.com/gophercamp27',
+  ticketTiers: [
+    {
+      title: 'Super Early Bird',
+      price: 69,
+      priceDescription: 'October 15 - December 31, 2026',
+      startsAt: '2026-10-14T22:00:00.000Z',
+      endsAt: '2026-12-31T22:59:59.000Z',
+      buttonText: 'Buy Super Early Bird',
     },
-  },
+    {
+      title: 'Early Bird',
+      price: 99,
+      priceDescription: 'January 1 - February 28, 2027',
+      startsAt: '2026-12-31T23:00:00.000Z',
+      endsAt: '2027-02-28T22:59:59.000Z',
+      buttonText: 'Buy Early Bird',
+    },
+    {
+      title: 'Standard',
+      price: 119,
+      priceDescription: 'March 1 - April 18, 2027',
+      startsAt: '2027-02-28T23:00:00.000Z',
+      endsAt: '2027-04-18T21:59:59.000Z',
+      buttonText: 'Buy Standard',
+    },
+    {
+      title: 'Last Minute',
+      price: 139,
+      priceDescription: 'April 16 - April 23, 2027',
+      startsAt: '2027-04-15T22:00:00.000Z',
+      endsAt: '2027-04-23T21:59:59.000Z',
+      buttonText: 'Buy Last Minute',
+    },
+  ],
 
   alerts: [
     // {

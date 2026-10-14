@@ -19,7 +19,7 @@ export default function Home() {
       ) : (
         <TicketsSection background="secondary" />
       )}
-      <SpeakersSection background="primary" />
+      {siteConfig.programReady && <SpeakersSection background="primary" />}
       <AboutSection background="secondary" />
       <LocationSection background="primary" />
       <NewsletterSection background="accent" />

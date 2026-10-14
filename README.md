@@ -1,6 +1,6 @@
-# Gophercamp 2026 Website
+# Gophercamp 2027 Website
 
-This is the official website for Gophercamp 2026, the Go conference in Czech Republic. The site is built using modern web technologies to provide a sleek, responsive experience for attendees and speakers.
+This is the official website for Gophercamp 2027, the Go conference in Brno, Czech Republic on April 22–23, 2027. The site is built using modern web technologies to provide a sleek, responsive experience for attendees and speakers.
 
 ## Tech Stack
 

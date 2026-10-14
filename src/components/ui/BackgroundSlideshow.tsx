@@ -67,7 +67,7 @@ export default function BackgroundSlideshow({
         >
           <Image
             src={images[currentIndex]}
-            alt="Gophercamp 2026 slideshow"
+            alt="Photos from Gophercamp 2025"
             fill
             priority
             sizes="100vw"

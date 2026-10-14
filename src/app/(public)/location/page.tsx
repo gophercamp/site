@@ -20,7 +20,7 @@ export default function LocationPage() {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-              Getting to Gophercamp 2026
+              Getting to Gophercamp 2027
             </h1>
             <p className="text-lg text-secondary mb-6">
               Clubco Brno, Vlněna 5, 602 00 Brno-střed, Czech Republic

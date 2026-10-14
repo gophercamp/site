@@ -20,11 +20,10 @@ export default function NewsletterSection({ background }: SectionProps) {
 
   // Check for confirmation query parameters on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-
+    const params = new URLSearchParams(window.location.search);
+    const frame = requestAnimationFrame(() => {
       if (params.get('subscriptionConfirmed') === 'true') {
-        setSuccessMessage('Thank you for confirming your subscription to Gophercamp 2026 updates!');
+        setSuccessMessage('Thank you for confirming your subscription to Gophercamp 2027 updates!');
         setIsSubmitted(true);
       } else if (params.get('subscriptionError') === 'true') {
         setError(
@@ -36,9 +35,10 @@ export default function NewsletterSection({ background }: SectionProps) {
         );
       }
 
-      // Clear the URL parameters without refreshing
       window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const subscribeToNewsletter = async (
@@ -177,7 +177,7 @@ export default function NewsletterSection({ background }: SectionProps) {
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Stay Informed</h2>
               <p className="text-secondary">
-                Sign up for updates about Gophercamp 2026 including speaker announcements, ticket
+                Sign up for updates about Gophercamp 2027 including speaker announcements, ticket
                 sales, and more.
               </p>
             </div>

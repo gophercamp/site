@@ -9,7 +9,7 @@ export default function EmailLayout({ children }: EmailLayoutProps) {
   return (
     <Container style={{ fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
       <Heading as="h1" style={{ color: '#00ADD8' }}>
-        Gophercamp 2026
+        Gophercamp 2027
       </Heading>
       <Section>{children}</Section>
 
@@ -22,7 +22,7 @@ export default function EmailLayout({ children }: EmailLayoutProps) {
           paddingTop: '20px',
         }}
       >
-        <p>Gophercamp 2026 • Brno, Czech Republic</p>
+        <p>Gophercamp 2027 • Brno, Czech Republic</p>
       </Section>
     </Container>
   );

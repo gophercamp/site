@@ -12,6 +12,7 @@ import {
   SessionizeSessionDetail,
 } from '@/lib/sessionize';
 import { TwitterIcon, LinkedInIcon, WebsiteIcon } from '@/components/ui/icons';
+import { siteConfig } from '@/lib/config';
 
 interface SpeakerPageProps {
   params: Promise<{ id: string }>;
@@ -21,6 +22,8 @@ interface SpeakerPageProps {
  * Generate static params for all speakers with accepted sessions
  */
 export async function generateStaticParams() {
+  if (!siteConfig.programReady) return [];
+
   const speakers = await fetchSpeakersWithAcceptedSessions();
   return speakers.map(speaker => ({
     id: speaker.id,
@@ -31,21 +34,23 @@ export async function generateStaticParams() {
  * Generate metadata for the speaker page
  */
 export async function generateMetadata({ params }: SpeakerPageProps): Promise<Metadata> {
+  if (!siteConfig.programReady) notFound();
+
   const { id } = await params;
   const speakers = await fetchSpeakersWithAcceptedSessions();
   const speaker = speakers.find(s => s.id === id);
 
   if (!speaker) {
     return {
-      title: 'Speaker Not Found | Gophercamp 2026',
+      title: 'Speaker Not Found | Gophercamp 2027',
     };
   }
 
   return {
-    title: `${speaker.fullName} | Gophercamp 2026`,
+    title: `${speaker.fullName} | Gophercamp 2027`,
     description: speaker.bio || `${speaker.fullName} - ${speaker.tagLine}`,
     openGraph: {
-      title: `${speaker.fullName} | Gophercamp 2026`,
+      title: `${speaker.fullName} | Gophercamp 2027`,
       description: speaker.bio || `${speaker.fullName} - ${speaker.tagLine}`,
       images: speaker.profilePicture ? [speaker.profilePicture] : undefined,
     },
@@ -64,6 +69,8 @@ async function getSpeakerSessionDetails(
 }
 
 export default async function SpeakerPage({ params }: SpeakerPageProps) {
+  if (!siteConfig.programReady) notFound();
+
   const { id } = await params;
   const speakers = await fetchSpeakersWithAcceptedSessions();
   const speaker = speakers.find(s => s.id === id);
@@ -204,7 +211,7 @@ export default async function SpeakerPage({ params }: SpeakerPageProps) {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold text-primary mb-6">
-                {sessionDetails.length === 1 ? 'Session' : 'Sessions'} at Gophercamp 2026
+                {sessionDetails.length === 1 ? 'Session' : 'Sessions'} at Gophercamp 2027
               </h2>
               <div className="space-y-6">
                 {sessionDetails.map(session => (

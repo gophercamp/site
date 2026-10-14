@@ -3,6 +3,7 @@
 import Button from '@/components/ui/Button';
 import { siteConfig } from '@/lib/config';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { SectionProps, getSectionBackgroundClass } from './types';
 
 /**
@@ -73,7 +74,7 @@ function TicketCard({
       <div className="mb-4">
         {isPast && (
           <div className="inline-block bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase">
-            Sold Out
+            Sale Ended
           </div>
         )}
         {isFuture && (
@@ -131,26 +132,19 @@ function TicketCard({
  * Tickets section component displaying available ticket options
  */
 export default function TicketsSection({ background }: SectionProps) {
-  // Define ticket availability periods
-  const { earlyBirdEnd, standardEnd, tiers } = siteConfig.ticketPeriods;
+  const [now, setNow] = useState<number | null>(null);
 
-  // Helper function to check if current date is within a period
-  const now = new Date();
-  const isEarlyBirdPeriod = now < earlyBirdEnd;
-  const isStandardPeriod = now >= earlyBirdEnd && now < standardEnd;
-  const isLastMinutePeriod = now >= standardEnd;
-
-  // Determine which ticket should be highlighted
-  const currentTicketTier = isEarlyBirdPeriod
-    ? 'early-bird'
-    : isStandardPeriod
-      ? 'standard'
-      : 'last-minute';
+  useEffect(() => {
+    const update = () => setNow(Date.now());
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Common features for all tickets
   const standardFeatures: TicketFeature[] = [
     { text: 'Full conference access' },
-    { text: 'All talks & workshops' },
+    { text: 'Conference talks & networking' },
     { text: 'Lunch & refreshments' },
     { text: 'Conference swag' },
   ];
@@ -176,33 +170,28 @@ export default function TicketsSection({ background }: SectionProps) {
           </div>
 
           {/* Ticket Options */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <TicketCard
-              {...tiers.earlyBird}
-              features={standardFeatures}
-              buttonVariant={currentTicketTier === 'early-bird' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'early-bird' ? tiers.earlyBird.badge : undefined}
-              status={isEarlyBirdPeriod ? 'now' : 'past'}
-              delay={0.1}
-            />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {siteConfig.ticketTiers.map((tier, index) => {
+              const status =
+                now === null || now < Date.parse(tier.startsAt)
+                  ? 'future'
+                  : now > Date.parse(tier.endsAt)
+                    ? 'past'
+                    : 'now';
 
-            <TicketCard
-              {...tiers.standard}
-              features={standardFeatures}
-              buttonVariant={currentTicketTier === 'standard' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'standard' ? tiers.standard.badge : undefined}
-              status={now < earlyBirdEnd ? 'future' : isStandardPeriod ? 'now' : 'past'}
-              delay={0.2}
-            />
-
-            <TicketCard
-              {...tiers.lastMinute}
-              features={standardFeatures}
-              buttonVariant={currentTicketTier === 'last-minute' ? 'primary' : 'outline'}
-              badge={currentTicketTier === 'last-minute' ? tiers.lastMinute.badge : undefined}
-              status={isLastMinutePeriod ? 'now' : 'future'}
-              delay={0.3}
-            />
+              return (
+                <TicketCard
+                  key={tier.title}
+                  {...tier}
+                  href={siteConfig.ticketsUrl}
+                  features={standardFeatures}
+                  buttonVariant={status === 'now' ? 'primary' : 'outline'}
+                  badge={status === 'now' ? 'Available Now' : undefined}
+                  status={status}
+                  delay={0.1 * index}
+                />
+              );
+            })}
           </div>
 
           {/* Additional Info */}

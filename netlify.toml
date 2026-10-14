@@ -1,4 +1,4 @@
-# Netlify configuration for Gophercamp 2026 website
+# Netlify configuration for Gophercamp 2027 website
 [build]
   base = "/"
   publish = ".next"
@@ -34,15 +34,15 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 # Uncomment when CFP is open (also set cfpOpen = true in src/lib/config.ts)
-# [[redirects]]
-#   from = "/cfp"
-#   to = "https://sessionize.com/gophercamp"
-#   status = 301
+[[redirects]]
+  from = "/cfp"
+  to = "https://sessionize.com/gophercamp27"
+  status = 301
 
 [[redirects]]
   from = "/tickets"
-  to = "https://luma.com/gophercamp"
-  status = 301
+  to = "https://luma.com/gophercamp27"
+  status = 302
 
 [[redirects]]
   from = "/app"

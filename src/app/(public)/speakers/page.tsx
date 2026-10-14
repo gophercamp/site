@@ -1,21 +1,24 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { fetchSpeakersWithAcceptedSessions } from '@/lib/sessionize';
 import SpeakersGrid from '@/components/speakers/SpeakersGrid';
 import CFPSection from '@/components/sections/CFPSection';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: 'Speakers | Gophercamp 2026',
+  title: 'Speakers | Gophercamp 2027',
   description:
-    'Meet the amazing speakers at Gophercamp 2026. Industry experts and Go enthusiasts sharing their knowledge and experiences.',
+    'Meet the amazing speakers at Gophercamp 2027. Industry experts and Go enthusiasts sharing their knowledge and experiences.',
   openGraph: {
-    title: 'Speakers | Gophercamp 2026',
+    title: 'Speakers | Gophercamp 2027',
     description:
-      'Meet the amazing speakers at Gophercamp 2026. Industry experts and Go enthusiasts sharing their knowledge and experiences.',
+      'Meet the amazing speakers at Gophercamp 2027. Industry experts and Go enthusiasts sharing their knowledge and experiences.',
   },
 };
 
 export default async function SpeakersPage() {
+  if (!siteConfig.programReady) notFound();
+
   const speakers = await fetchSpeakersWithAcceptedSessions();
 
   // Sort speakers alphabetically by full name
@@ -29,7 +32,7 @@ export default async function SpeakersPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Our Speakers</h1>
             <p className="text-lg text-secondary mb-2">
-              Meet the amazing people sharing their knowledge at Gophercamp 2026
+              Meet the amazing people sharing their knowledge at Gophercamp 2027
             </p>
             <p className="text-sm text-secondary mb-2">
               {speakers.length} speaker{speakers.length !== 1 ? 's' : ''} confirmed

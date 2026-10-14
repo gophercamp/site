@@ -1,20 +1,23 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { fetchAcceptedSessions, fetchSpeakersWithAcceptedSessions } from '@/lib/sessionize';
 import SessionsGrid from '@/components/sessions/SessionsGrid';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: 'Sessions | Gophercamp 2026',
+  title: 'Sessions | Gophercamp 2027',
   description:
-    'Explore the sessions at Gophercamp 2026. Talks, workshops, and lightning talks covering Go language features, cloud-native development, and more.',
+    'Explore the sessions at Gophercamp 2027. Talks, workshops, and lightning talks covering Go language features, cloud-native development, and more.',
   openGraph: {
-    title: 'Sessions | Gophercamp 2026',
+    title: 'Sessions | Gophercamp 2027',
     description:
-      'Explore the sessions at Gophercamp 2026. Talks, workshops, and lightning talks from Go experts and community members.',
+      'Explore the sessions at Gophercamp 2027. Talks, workshops, and lightning talks from Go experts and community members.',
   },
 };
 
 export default async function SessionsPage() {
+  if (!siteConfig.programReady) notFound();
+
   const [sessions, speakers] = await Promise.all([
     fetchAcceptedSessions(),
     fetchSpeakersWithAcceptedSessions(),
@@ -31,7 +34,7 @@ export default async function SessionsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Sessions</h1>
             <p className="text-lg text-secondary mb-2">
-              Discover the talks, workshops, and lightning talks at Gophercamp 2026
+              Discover the talks, workshops, and lightning talks at Gophercamp 2027
             </p>
             <p className="text-sm text-secondary mb-2">
               {sessions.length} session{sessions.length !== 1 ? 's' : ''} confirmed

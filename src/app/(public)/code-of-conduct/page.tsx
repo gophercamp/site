@@ -7,9 +7,9 @@ import { contactInfo } from '@/lib/social';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Code of Conduct | Gophercamp 2026',
+  title: 'Code of Conduct | Gophercamp 2027',
   description:
-    'Code of conduct for Gophercamp 2026 conference, ensuring a safe and inclusive environment for all participants.',
+    'Code of conduct for Gophercamp 2027 conference, ensuring a safe and inclusive environment for all participants.',
 };
 
 export default function CodeOfConductPage() {
@@ -80,7 +80,7 @@ export default function CodeOfConductPage() {
 
       <Section title="Our Commitment">
         <p>
-          Gophercamp 2026 is dedicated to providing a harassment-free conference experience for
+          Gophercamp 2027 is dedicated to providing a harassment-free conference experience for
           everyone, regardless of gender, gender identity and expression, age, sexual orientation,
           disability, physical appearance, body size, race, ethnicity, religion (or lack thereof),
           or technology choices.
@@ -148,7 +148,7 @@ export default function CodeOfConductPage() {
 
       <Section title="Photography and Recording">
         <p>
-          By attending Gophercamp 2026, you consent to being photographed or recorded for
+          By attending Gophercamp 2027, you consent to being photographed or recorded for
           promotional purposes. If you prefer not to be photographed, please inform the organizers,
           and we will make reasonable efforts to accommodate your request.
         </p>
@@ -156,7 +156,7 @@ export default function CodeOfConductPage() {
 
       <Section title="Accessibility">
         <p>
-          We are committed to making Gophercamp 2026 accessible to all participants. If you have
+          We are committed to making Gophercamp 2027 accessible to all participants. If you have
           specific accessibility needs, please contact us at
           <strong> {contactInfo.accessibility}</strong> so we can ensure your full participation in
           the conference.
@@ -182,7 +182,7 @@ export default function CodeOfConductPage() {
 
       <InfoBox variant="default" title="Thank You">
         <p>
-          Thank you for helping make Gophercamp 2026 a welcoming, safe, and inclusive event for all
+          Thank you for helping make Gophercamp 2027 a welcoming, safe, and inclusive event for all
           participants. Together, we can create an amazing conference experience that celebrates our
           shared passion for Go and technology.
         </p>

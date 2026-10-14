@@ -1,20 +1,23 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { fetchSchedule } from '@/lib/sessionize';
 import ProgramGrid from '@/components/program/ProgramGrid';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: 'Program | Gophercamp 2026',
+  title: 'Program | Gophercamp 2027',
   description:
-    'The full conference program for Gophercamp 2026 — schedule, sessions, and workshops.',
+    'The full conference program for Gophercamp 2027 — schedule, sessions, and workshops.',
   openGraph: {
-    title: 'Program | Gophercamp 2026',
+    title: 'Program | Gophercamp 2027',
     description:
-      'The full conference program for Gophercamp 2026 — schedule, sessions, and workshops.',
+      'The full conference program for Gophercamp 2027 — schedule, sessions, and workshops.',
   },
 };
 
 export default async function ProgramPage() {
+  if (!siteConfig.programReady) notFound();
+
   const days = await fetchSchedule();
 
   return (
@@ -25,19 +28,19 @@ export default async function ProgramPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Program</h1>
             <p className="text-lg text-secondary mb-6">
-              The full schedule for Gophercamp 2026 — April 23–24, Brno
+              The full schedule for Gophercamp 2027 — April 22–23, Brno
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-6 text-left">
               <div className="bg-primary rounded-lg border border-primary px-5 py-4">
                 <p className="text-xs font-semibold text-go-blue uppercase tracking-wide mb-1">
-                  Thursday, April 23
+                  Thursday, April 22
                 </p>
                 <p className="text-sm font-semibold text-primary mb-1">Full-Day Workshop</p>
-                <p className="text-sm text-secondary">Ultimate Go by Bill Kennedy</p>
+                <p className="text-sm text-secondary">Workshop details to be announced</p>
               </div>
               <div className="bg-primary rounded-lg border border-primary px-5 py-4">
                 <p className="text-xs font-semibold text-go-blue uppercase tracking-wide mb-1">
-                  Friday, April 24
+                  Friday, April 23
                 </p>
                 <p className="text-sm font-semibold text-primary mb-1">Conference Day</p>
                 <p className="text-sm text-secondary">Talks, lightning talks &amp; networking</p>

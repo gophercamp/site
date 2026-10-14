@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import OrganisersSection from '@/components/sections/OrganisersSection';
 
 export const metadata: Metadata = {
-  title: 'About | Gophercamp 2026',
+  title: 'About | Gophercamp 2027',
   description:
     'Learn about Gophercamp — the Go programming language conference in the Czech Republic.',
   openGraph: {
-    title: 'About | Gophercamp 2026',
+    title: 'About | Gophercamp 2027',
     description:
       'Learn about Gophercamp — the Go programming language conference in the Czech Republic.',
   },

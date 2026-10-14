@@ -290,7 +290,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-              Gophercamp <span className="text-go-blue">2026</span>
+              Gophercamp <span className="text-go-blue">2027</span>
             </h1>
 
             <h2 className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
@@ -299,7 +299,7 @@ export default function HeroSection() {
 
             <div className="flex flex-col gap-3 mb-10">
               <Link
-                href="/speakers"
+                href="/about"
                 className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg transition-all duration-300 hover:shadow-xl group"
               >
                 <svg
@@ -317,7 +317,7 @@ export default function HeroSection() {
                   />
                 </svg>
                 <div className="flex flex-col flex-1">
-                  <span className="font-medium text-primary">April 23-24, 2026</span>
+                  <span className="font-medium text-primary">April 22-23, 2027</span>
                   <span className="text-sm text-primary/80">Workshops Thu • Conference Fri</span>
                 </div>
                 <svg
@@ -336,45 +336,47 @@ export default function HeroSection() {
                 </svg>
               </Link>
 
-              <Link
-                href="/sessions"
-                className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg transition-all duration-300 hover:shadow-xl group"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-go-blue"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              {siteConfig.programReady && (
+                <Link
+                  href="/sessions"
+                  className="flex items-center gap-3 bg-primary-95 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary shadow-lg transition-all duration-300 hover:shadow-xl group"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  />
-                </svg>
-                <div className="flex flex-col flex-1">
-                  <span className="font-medium text-primary">Sessions</span>
-                  <span className="text-sm text-primary/80">
-                    Talks, workshops & lightning talks
-                  </span>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-go-blue transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-go-blue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                    />
+                  </svg>
+                  <div className="flex flex-col flex-1">
+                    <span className="font-medium text-primary">Sessions</span>
+                    <span className="text-sm text-primary/80">
+                      Talks, workshops & lightning talks
+                    </span>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-go-blue transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              )}
 
               <Link
                 href="/location"

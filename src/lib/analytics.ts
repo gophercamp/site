@@ -86,7 +86,7 @@ export const trackEvent = (event: AnalyticsEvent): void => {
         event_label: event.label,
         value: event.value,
         // Custom parameters for Gophercamp tracking
-        custom_parameter_1: 'gophercamp_2026',
+        custom_parameter_1: 'gophercamp_2027',
       });
     }
   } catch (error) {

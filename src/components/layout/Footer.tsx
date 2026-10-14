@@ -6,7 +6,6 @@ import { getFooterSocialLinks, contactInfo } from '@/lib/social';
 import { siteConfig } from '@/lib/config';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
   const socialLinks = getFooterSocialLinks();
 
   return (
@@ -15,11 +14,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* About Column */}
           <div className="sm:col-span-2">
-            <h3 className="font-bold text-primary text-lg mb-4">Gophercamp 2026</h3>
+            <h3 className="font-bold text-primary text-lg mb-4">Gophercamp 2027</h3>
             <p className="text-secondary mb-2">
               The Go programming language conference in the Czech Republic.
             </p>
-            <p className="text-secondary mb-2">April 23 - 24, 2026 • {contactInfo.location}</p>
+            <p className="text-secondary mb-2">April 22 - 23, 2027 • {contactInfo.location}</p>
             <Link
               href="/location"
               className="text-secondary hover:text-go-blue transition-colors text-sm"
@@ -37,20 +36,32 @@ export default function Footer() {
                   About
                 </Link>
               </li>
+              {siteConfig.programReady && (
+                <>
+                  <li>
+                    <Link
+                      href="/speakers"
+                      className="text-secondary hover:text-go-blue transition-colors"
+                    >
+                      Speakers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/program"
+                      className="text-secondary hover:text-go-blue transition-colors"
+                    >
+                      Program
+                    </Link>
+                  </li>
+                </>
+              )}
               <li>
                 <Link
-                  href="/speakers"
+                  href="/sponsors"
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
-                  Speakers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={siteConfig.programReady ? '/program' : '/sessions'}
-                  className="text-secondary hover:text-go-blue transition-colors"
-                >
-                  {siteConfig.programReady ? 'Program' : 'Sessions'}
+                  Past Sponsors
                 </Link>
               </li>
               <li>
@@ -121,8 +132,24 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary mt-8 pt-8 text-center text-secondary text-sm">
-          <p>© {currentYear} Gophercamp. All rights reserved.</p>
+        <div className="border-t border-primary mt-8 pt-8 grid grid-cols-[auto_1fr] items-center gap-4 text-secondary text-sm">
+          <nav aria-label="Previous editions" className="flex items-center gap-3">
+            <a
+              href="https://2026.gophercamp.cz"
+              aria-label="Gophercamp 2026"
+              className="hover:text-go-blue transition-colors"
+            >
+              2026
+            </a>
+            <a
+              href="https://2025.gophercamp.cz"
+              aria-label="Gophercamp 2025"
+              className="hover:text-go-blue transition-colors"
+            >
+              2025
+            </a>
+          </nav>
+          <p className="text-right">© 2027 Gophercamp. All rights reserved.</p>
         </div>
       </div>
     </footer>
