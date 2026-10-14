@@ -6,7 +6,7 @@
 
 # Environment variables
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24"
   NEXT_TELEMETRY_DISABLED = "1"
 
 [[headers]]
@@ -46,7 +46,7 @@
 
 [[redirects]]
   from = "/app"
-  to = "https://gophercamp.sessionize.com"
+  to = "https://gophercamp27.sessionize.com"
   status = 301
 
 [[plugins]]
