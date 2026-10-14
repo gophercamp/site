@@ -299,7 +299,6 @@ function SessionRow({ row, index }: { row: FlatRow; index: number }) {
   ].filter(Boolean);
 
   return (
-    // @ts-expect-error: mixed style array is fine for react-pdf
     <View style={rowStyle} wrap={false}>
       <View style={styles.colTime}>
         <Text style={styles.cellTextMuted}>{row.time}</Text>
