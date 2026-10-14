@@ -110,7 +110,7 @@ export const siteConfig = {
    */
   nextEdition: {
     /** Set to `true` to show the Save the Date section on the home page. */
-    show: true,
+    show: false,
     /** The edition year shown in the heading. */
     year: 2027,
     /** Human-readable date range shown on the page. */
