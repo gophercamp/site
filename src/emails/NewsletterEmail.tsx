@@ -29,7 +29,7 @@ export default function NewsletterEmail({
 
       <Section style={{ marginTop: '30px', fontSize: '12px', color: '#666' }}>
         <Text>
-          You&apos;re receiving this email because you subscribed to the Gophercamp 2026 newsletter.
+          You&apos;re receiving this email because you subscribed to the Gophercamp newsletter.
         </Text>
         <Text style={{ marginTop: '10px' }}>
           Don&apos;t want to receive these emails?{' '}

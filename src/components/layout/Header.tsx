@@ -9,12 +9,14 @@ import { siteConfig } from '@/lib/config';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
-  { href: '/speakers', label: 'Speakers' },
-  siteConfig.programReady
-    ? { href: '/program', label: 'Program' }
-    : { href: '/sessions', label: 'Sessions' },
+  ...(siteConfig.programReady
+    ? [
+        { href: '/speakers', label: 'Speakers' },
+        { href: '/program', label: 'Program' },
+      ]
+    : []),
   { href: '/location', label: 'Location' },
-  { href: '/sponsors', label: 'Sponsors' },
+  { href: '/sponsors', label: 'Past Sponsors' },
 ];
 
 export default function Header() {
@@ -27,7 +29,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-mono font-bold text-go-blue text-xl md:text-2xl">
-            Gophercamp<span className="text-go-blue-dark">2026</span>
+            Gophercamp<span className="text-go-blue-dark">2027</span>
           </span>
         </Link>
 

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 // ---------------------------------------------------------------------------
 
 interface Props {
-  /** ISO date-time string for the conference start (e.g. "2026-04-23T09:00:00+02:00"). */
+  /** ISO date-time string for the conference start (e.g. "2027-04-22T08:30:00+02:00"). */
   targetDate: string;
 }
 
@@ -70,7 +70,7 @@ export default function CountdownBadge({ targetDate }: Props) {
               🎉
             </p>
             <p className="text-white font-bold text-xl drop-shadow-md">It&apos;s happening!</p>
-            <p className="text-white/80 text-sm mt-1 drop-shadow-sm">Gophercamp 2026</p>
+            <p className="text-white/80 text-sm mt-1 drop-shadow-sm">Gophercamp 2027</p>
           </>
         )}
 
@@ -108,7 +108,7 @@ export default function CountdownBadge({ targetDate }: Props) {
             </p>
 
             <p className="text-white/50 text-xs mt-4 drop-shadow-sm">
-              Gophercamp 2026 &middot; Brno
+              Gophercamp 2027 &middot; Brno
             </p>
           </>
         )}

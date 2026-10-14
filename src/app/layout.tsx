@@ -14,23 +14,23 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Gophercamp 2026 | The Go Conference in Czech Republic',
+  title: 'Gophercamp 2027 | The Go Conference in Czech Republic',
   metadataBase: new URL('https://gophercamp.cz'),
   description:
-    'Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.',
-  keywords: ['Go', 'Golang', 'Conference', 'Gophercamp', 'Czech Republic', 'Prague', 'Programming'],
+    'Join us for Gophercamp 2027, the Go programming language conference in Brno, Czech Republic on April 22–23, 2027.',
+  keywords: ['Go', 'Golang', 'Conference', 'Gophercamp', 'Czech Republic', 'Brno', 'Programming'],
   openGraph: {
-    title: 'Gophercamp 2026 | The Go Conference in Czech Republic',
+    title: 'Gophercamp 2027 | The Go Conference in Czech Republic',
     description:
-      'Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.',
+      'Join us for Gophercamp 2027, the Go programming language conference in Brno, Czech Republic on April 22–23, 2027.',
     url: 'https://gophercamp.cz',
-    siteName: 'Gophercamp 2026',
+    siteName: 'Gophercamp 2027',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1920,
         height: 710,
-        alt: 'Gophercamp 2026',
+        alt: 'Gophercamp 2027',
       },
     ],
     locale: 'en_US',
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gophercamp 2026 | The Go Conference in Czech Republic',
+    title: 'Gophercamp 2027 | The Go Conference in Czech Republic',
     description:
-      'Join us for Gophercamp 2026, the Go programming language conference in Czech Republic on April 24, 2026.',
+      'Join us for Gophercamp 2027, the Go programming language conference in Brno, Czech Republic on April 22–23, 2027.',
     images: ['/images/og-image.jpg'],
   },
 };

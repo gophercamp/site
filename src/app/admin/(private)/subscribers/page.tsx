@@ -2,7 +2,7 @@
 
 import AdminTable from '@/components/admin/AdminTable';
 import { NewsletterSubscriber } from '@/lib/newsletter-store';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FaEnvelope } from 'react-icons/fa';
 import { deleteSubscriber, getSubscribers, getSubscriberStats } from './actions';
 
@@ -18,11 +18,7 @@ export default function SubscribersPage() {
     active: 0,
   });
 
-  useEffect(() => {
-    loadSubscribers();
-  }, []);
-
-  async function loadSubscribers() {
+  const loadSubscribers = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -39,7 +35,15 @@ export default function SubscribersPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      void loadSubscribers();
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [loadSubscribers]);
 
   async function handleDeleteSubscriber(email: string) {
     if (

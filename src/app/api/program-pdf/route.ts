@@ -5,6 +5,7 @@ import ProgramPdf from '@/components/program/ProgramPdf';
 import React from 'react';
 import type { DocumentProps } from '@react-pdf/renderer';
 import { unstable_cache } from 'next/cache';
+import { siteConfig } from '@/lib/config';
 
 /**
  * Renders and caches a PDF buffer for a specific set of day filters.
@@ -51,10 +52,14 @@ function buildPdf(dayFilters: string[]) {
  *
  * Query parameters:
  *   ?day=YYYY-MM-DD  — include only the day whose date starts with this value.
- *                      May be repeated for multiple days, e.g. ?day=2026-04-23&day=2026-04-24
+ *                      May be repeated for multiple days, e.g. ?day=2027-04-22&day=2027-04-23
  *                      Omit to include all days.
  */
 export async function GET(request: Request) {
+  if (!siteConfig.programReady) {
+    return NextResponse.json({ error: 'The program has not been published yet.' }, { status: 404 });
+  }
+
   const { searchParams } = new URL(request.url);
   const dayFilters = searchParams.getAll('day');
 
@@ -73,7 +78,7 @@ export async function GET(request: Request) {
     status: 200,
     headers: {
       'Content-Type': 'application/pdf',
-      'Content-Disposition': `inline; filename="gophercamp-2026-program${dayFilters.length === 1 ? `-${dayFilters[0]}` : ''}.pdf"`,
+      'Content-Disposition': `inline; filename="gophercamp-2027-program${dayFilters.length === 1 ? `-${dayFilters[0]}` : ''}.pdf"`,
       'Content-Length': String(uint8.byteLength),
       'Cache-Control': 'no-store',
     },

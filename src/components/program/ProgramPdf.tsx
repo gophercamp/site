@@ -299,7 +299,6 @@ function SessionRow({ row, index }: { row: FlatRow; index: number }) {
   ].filter(Boolean);
 
   return (
-    // @ts-expect-error: mixed style array is fine for react-pdf
     <View style={rowStyle} wrap={false}>
       <View style={styles.colTime}>
         <Text style={styles.cellTextMuted}>{row.time}</Text>
@@ -353,7 +352,7 @@ interface ProgramPdfProps {
 export default function ProgramPdf({ days, generatedAt }: ProgramPdfProps) {
   return (
     <Document
-      title="Gophercamp 2026 — Program"
+      title="Gophercamp 2027 — Program"
       author="Gophercamp"
       subject="Conference Program"
       keywords="Gophercamp, Go, Golang, conference, schedule"
@@ -362,8 +361,8 @@ export default function ProgramPdf({ days, generatedAt }: ProgramPdfProps) {
         {/* Header */}
         <View style={styles.header} fixed>
           <View>
-            <Text style={styles.headerTitle}>Gophercamp 2026</Text>
-            <Text style={styles.headerSubtitle}>Conference Program · April 23–24, Brno</Text>
+            <Text style={styles.headerTitle}>Gophercamp 2027</Text>
+            <Text style={styles.headerSubtitle}>Conference Program · April 22–23, Brno</Text>
           </View>
           <View>
             <Text style={styles.headerMeta}>gophercamp.cz</Text>

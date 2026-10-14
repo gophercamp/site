@@ -30,7 +30,7 @@ export default function AdminSidebar() {
       <div className="p-4 border-t border-primary">
         <div className="flex items-center">
           <div className="w-2 h-2 rounded-full bg-green-400 mr-2"></div>
-          <span className="text-xs text-secondary">GopherCamp 2026</span>
+          <span className="text-xs text-secondary">GopherCamp 2027</span>
         </div>
         <AdminSidebarDate />
       </div>

@@ -79,7 +79,7 @@ export default function AdminDashboard() {
           </h3>
           <div className="mt-2 max-w-xl text-sm text-[var(--text-secondary)]">
             <p>
-              This admin panel allows you to manage newsletter subscribers for the Gophercamp 2026
+              This admin panel allows you to manage newsletter subscribers for the Gophercamp 2027
               conference. Use the navigation menu to access different sections.
             </p>
           </div>

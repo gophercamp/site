@@ -124,13 +124,13 @@ export default function AboutSection({ background }: SectionProps) {
           <div className="max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-primary mb-4">Two Days of Go Excellence</h3>
             <p className="text-secondary mb-4">
-              <strong>Day 1 - Thursday, April 23:</strong> Dive deep with hands-on workshops led by
+              <strong>Day 1 - Thursday, April 22:</strong> Dive deep with hands-on workshops led by
               industry experts. Perfect your Go skills in an interactive learning environment.
             </p>
             <p className="text-secondary mb-4">
-              <strong>Day 2 - Friday, April 24:</strong> Join 200 gophers for a full day of
-              inspiring talks from 20 speakers, covering everything from fundamentals to
-              cutting-edge Go applications.
+              <strong>Day 2 - Friday, April 23:</strong> Join fellow gophers for a full day of
+              inspiring talks, covering everything from fundamentals to cutting-edge Go
+              applications.
             </p>
           </div>
 

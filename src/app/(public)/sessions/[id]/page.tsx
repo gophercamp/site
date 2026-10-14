@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { siteConfig } from '@/lib/config';
 import {
   fetchAcceptedSessions,
   fetchSpeakersWithAcceptedSessions,
@@ -16,6 +17,8 @@ interface SessionPageProps {
  * Generate static params for all accepted sessions
  */
 export async function generateStaticParams() {
+  if (!siteConfig.programReady) return [];
+
   const sessions = await fetchAcceptedSessions();
   return sessions.map(session => ({
     id: session.id,
@@ -26,23 +29,25 @@ export async function generateStaticParams() {
  * Generate metadata for the session page
  */
 export async function generateMetadata({ params }: SessionPageProps): Promise<Metadata> {
+  if (!siteConfig.programReady) notFound();
+
   const { id } = await params;
   const sessions = await fetchAcceptedSessions();
   const session = sessions.find(s => s.id === id);
 
   if (!session) {
     return {
-      title: 'Session Not Found | Gophercamp 2026',
+      title: 'Session Not Found | Gophercamp 2027',
     };
   }
 
   const speakerNames = session.speakers.map(s => s.name).join(', ');
 
   return {
-    title: `${session.title} | Gophercamp 2026`,
+    title: `${session.title} | Gophercamp 2027`,
     description: session.description || `${session.title} by ${speakerNames}`,
     openGraph: {
-      title: `${session.title} | Gophercamp 2026`,
+      title: `${session.title} | Gophercamp 2027`,
       description: session.description || `${session.title} by ${speakerNames}`,
     },
   };
@@ -60,6 +65,8 @@ function getCategoryValue(
 }
 
 export default async function SessionPage({ params }: SessionPageProps) {
+  if (!siteConfig.programReady) notFound();
+
   const { id } = await params;
   const [sessions, speakers] = await Promise.all([
     fetchAcceptedSessions(),

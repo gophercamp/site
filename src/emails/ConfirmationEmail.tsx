@@ -12,7 +12,7 @@ export default function ConfirmationEmail({ confirmUrl, unsubscribeUrl }: Confir
     <EmailLayout>
       <Text>Hello,</Text>
       <Text>
-        Thank you for subscribing to the Gophercamp 2026 newsletter. Please confirm your
+        Thank you for subscribing to the Gophercamp 2027 newsletter. Please confirm your
         subscription by clicking the button below:
       </Text>
 
