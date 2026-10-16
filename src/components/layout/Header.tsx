@@ -16,7 +16,7 @@ const navLinks = [
       ]
     : []),
   { href: '/location', label: 'Location' },
-  { href: '/sponsors', label: 'Past Sponsors' },
+  { href: '/partnership', label: 'Partnership' },
 ];
 
 export default function Header() {
