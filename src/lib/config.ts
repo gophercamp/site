@@ -160,9 +160,9 @@ export const siteConfig = {
     {
       title: 'Standard',
       price: 119,
-      priceDescription: 'March 1 - April 18, 2027',
+      priceDescription: 'March 1 - April 15, 2027',
       startsAt: '2027-02-28T23:00:00.000Z',
-      endsAt: '2027-04-18T21:59:59.000Z',
+      endsAt: '2027-04-15T21:59:59.000Z',
       buttonText: 'Buy Standard',
     },
     {

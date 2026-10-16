@@ -44,6 +44,7 @@
   to = "https://luma.com/gophercamp27"
   status = 302
 
+
 [[redirects]]
   from = "/app"
   to = "https://gophercamp27.sessionize.com"

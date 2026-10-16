@@ -58,10 +58,10 @@ export default function Footer() {
               )}
               <li>
                 <Link
-                  href="/sponsors"
+                  href="/partnership"
                   className="text-secondary hover:text-go-blue transition-colors"
                 >
-                  Past Sponsors
+                  Partnership
                 </Link>
               </li>
               <li>
