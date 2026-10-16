@@ -78,6 +78,10 @@ export default function CFPSection({ background }: SectionProps) {
               <ul className="space-y-2 text-secondary">
                 <li className="flex items-start gap-2">
                   <span className="text-go-blue">•</span>
+                  <span>Building AI-Powered Applications with Go</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-go-blue">•</span>
                   <span>Go language features and best practices</span>
                 </li>
                 <li className="flex items-start gap-2">

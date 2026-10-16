@@ -44,7 +44,7 @@ export const siteConfig = {
    *
    * Also remember to re-enable the /cfp redirect in netlify.toml.
    */
-  cfpOpen: false,
+  cfpOpen: true,
 
   /**
    * Set to `true` when the new edition's speakers, sessions, and program are ready.
@@ -71,7 +71,7 @@ export const siteConfig = {
   cfpUrl: 'https://sessionize.com/gophercamp27',
 
   /** Human-readable submission deadline shown in the UI */
-  cfpDeadline: 'March 14, 2027',
+  cfpDeadline: 'February 28, 2027',
 
   /**
    * ISO date-time string for the start of the conference (Europe/Prague time).
