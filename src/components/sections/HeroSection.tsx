@@ -72,7 +72,7 @@ function SaveTheDateBadge() {
   const icsUri = buildIcsDataUri(title, dateStart, dateEnd, venue);
 
   return (
-    <div className="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-xl">
+    <div className="absolute inset-0 rounded-full hero-date-badge-bg backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-xl">
       <div className="text-center px-6">
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-1.5 bg-go-blue/90 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
@@ -98,7 +98,7 @@ function SaveTheDateBadge() {
         </div>
 
         {/* Date */}
-        <div className="text-go-blue text-base font-bold drop-shadow-md mb-1">{dates}</div>
+        <div className="text-go-blue-on-image text-base font-bold drop-shadow-md mb-1">{dates}</div>
 
         {/* Venue */}
         <div className="text-white/70 text-xs mb-4">{venue}</div>
@@ -290,7 +290,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-              Gophercamp <span className="text-go-blue">2027</span>
+              Gophercamp <span className="text-go-blue-on-image">2027</span>
             </h1>
 
             <h2 className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
@@ -461,14 +461,14 @@ export default function HeroSection() {
                   href={primarySocial.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 rounded-full bg-white-20 backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 group"
+                  className="absolute inset-0 rounded-full hero-badge-bg backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 group"
                   onClick={() => trackSocialClick(primarySocial.trackingId)}
                 >
                   <div className="text-center px-4">
                     <div className="text-white text-base font-bold mb-2 drop-shadow-md">
                       Memories from
                     </div>
-                    <div className="text-go-blue text-xl font-bold drop-shadow-md mb-2">
+                    <div className="text-go-blue-on-image text-xl font-bold drop-shadow-md mb-2">
                       Gophercamp 2025
                     </div>
 
