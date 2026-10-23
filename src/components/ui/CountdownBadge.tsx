@@ -58,7 +58,7 @@ export default function CountdownBadge({ targetDate }: Props) {
   }, [targetDate]);
 
   return (
-    <div className="absolute inset-0 rounded-full bg-white-20 backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl">
+    <div className="absolute inset-0 rounded-full hero-badge-bg backdrop-blur-sm border border-white-30 flex items-center justify-center shadow-xl">
       <div className="text-center w-full px-10">
         {/* ── SSR placeholder — avoids hydration mismatch ─────────────── */}
         {timeLeft === undefined && null}
@@ -83,7 +83,7 @@ export default function CountdownBadge({ targetDate }: Props) {
 
             {/* Days — the dominant number */}
             <div className="mb-3">
-              <span className="text-go-blue text-6xl font-bold tabular-nums leading-none drop-shadow-md">
+              <span className="text-go-blue-on-image text-6xl font-bold tabular-nums leading-none drop-shadow-md">
                 {String(timeLeft.days).padStart(2, '0')}
               </span>
               <p className="text-white/70 text-xs uppercase tracking-widest mt-1">Days</p>

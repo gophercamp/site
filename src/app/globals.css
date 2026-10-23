@@ -6,14 +6,20 @@
   --go-blue-light: #5dc9e2;
   --go-blue-dark: #007d9c;
   --go-blue-darker: #00526a;
+  --go-blue-text: #00657d;
+  --go-blue-surface: #00738f;
+  --go-blue-on-image: #5dc9e2;
   --go-black: #2e2e2e;
-  --bg-primary: #f8f9fa;
-  --bg-primary-rgb: 248, 249, 250;
-  --bg-secondary: #f1f3f5;
-  --bg-secondary-rgb: 241, 243, 245;
-  --text-primary: #2e2e2e;
-  --text-secondary: #4b5563;
-  --border-color: #e5e7eb;
+  --bg-primary: #e9eef1;
+  --bg-primary-rgb: 233, 238, 241;
+  --bg-secondary: #dde5ea;
+  --bg-secondary-rgb: 221, 229, 234;
+  --text-primary: #17212b;
+  --text-secondary: #364451;
+  --border-color: #b9c5ce;
+  --hero-badge-bg: rgba(0, 0, 0, 0.3);
+  --hero-badge-hover-bg: rgba(0, 0, 0, 0.4);
+  --hero-date-badge-bg: var(--hero-badge-bg);
 
   /* Form element colors */
   --form-focus-color: var(--go-blue);
@@ -31,6 +37,9 @@
   --go-blue-light: #5dc9e2;
   --go-blue-dark: #007d9c;
   --go-blue-darker: #00526a;
+  --go-blue-text: var(--go-blue);
+  --go-blue-surface: var(--go-blue);
+  --go-blue-on-image: var(--go-blue);
   --go-black: #e5e7eb;
   --bg-primary: #1f2937;
   --bg-primary-rgb: 31, 41, 55;
@@ -39,6 +48,9 @@
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --border-color: #374151;
+  --hero-badge-bg: rgba(255, 255, 255, 0.2);
+  --hero-badge-hover-bg: rgba(255, 255, 255, 0.25);
+  --hero-date-badge-bg: rgba(255, 255, 255, 0.1);
 
   /* Form element colors - dark mode */
   --form-focus-color: var(--go-blue);
@@ -51,7 +63,7 @@
 
 /* Ensure custom colors are available as CSS classes */
 .bg-go-blue {
-  background-color: var(--go-blue) !important;
+  background-color: var(--go-blue-surface) !important;
 }
 .bg-go-blue-dark {
   background-color: var(--go-blue-dark) !important;
@@ -63,7 +75,10 @@
   background-color: var(--go-blue-darker) !important;
 }
 .text-go-blue {
-  color: var(--go-blue) !important;
+  color: var(--go-blue-text) !important;
+}
+.text-go-blue-on-image {
+  color: var(--go-blue-on-image) !important;
 }
 .text-go-blue-dark {
   color: var(--go-blue-dark) !important;
@@ -150,11 +165,22 @@ section {
 
 /* Background overlay for slideshows and images */
 .overlay-background {
-  background-color: rgba(0, 0, 0, 0.15); /* Subtle overlay in light mode - 15% opacity */
+  /* Keep foreground text legible even over the brightest slideshow photos. */
+  background-color: rgba(0, 0, 0, 0.72);
 }
 
 .dark .overlay-background {
   background-color: rgba(0, 0, 0, 0.5); /* 50% black in dark mode */
+}
+
+.hero-badge-bg {
+  background-color: var(--hero-badge-bg);
+}
+.hero-badge-bg:hover {
+  background-color: var(--hero-badge-hover-bg);
+}
+.hero-date-badge-bg {
+  background-color: var(--hero-date-badge-bg);
 }
 
 /* InfoBox colors */
